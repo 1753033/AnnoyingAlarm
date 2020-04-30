@@ -107,3 +107,11 @@ Ví dụ: Youtube, Soundcloud, Facebook Video, ...
 thời gian báo thức phù hợp.
 
 Tham khảo: Alarmy
+
+## Kế hoạch trong tuần
+* Tuần 1: Giao Diện - UI
+  | MSSV    | Tên thành viên      | Chức năng           | % Hoàn thành |
+  |---------|---------------------|---------------------|--------------|
+  |         |                     | Báo thức            |     100      |
+  | 1753033 | Trịnh Thái Bình     | Thời tiết           |     100      |
+  |         |                     | Tin tức             |     100      |
