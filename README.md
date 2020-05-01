@@ -1,11 +1,11 @@
 # Annoying Alarm
-Project Android: Annoying Alarm - Wake you up everytime
+## Project Android: Annoying Alarm - Wake you up everytime
 
-1.1753033 - Trịnh Thái Bình - 1753033@student.hcmus.edu.vn
+1.  1753033 - Trịnh Thái Bình - 1753033@student.hcmus.edu.vn
 
-2.1753030 - Mai Thanh Bình - 1753030@student.hcmus.edu.vn
+2.  1753030 - Mai Thanh Bình - 1753030@student.hcmus.edu.vn
 
-3.1753028 - Nguyễn Trần Tuấn Anh - 1753033@student.hcmus.edu.vn
+3.  1753028 - Nguyễn Trần Tuấn Anh - 1753033@student.hcmus.edu.vn
 
 ## Mô tả chức năng
 
@@ -110,8 +110,24 @@ Tham khảo: Alarmy
 
 ## Kế hoạch trong tuần
 * Tuần 1: Giao Diện - UI
-  | MSSV    | Tên thành viên      | Chức năng           | % Hoàn thành |
-  |---------|---------------------|---------------------|--------------|
-  |         |                     | Báo thức            |     100      |
-  | 1753033 | Trịnh Thái Bình     | Thời tiết           |     100      |
-  |         |                     | Tin tức             |     100      |
+  | MSSV    | Tên thành viên         | Chức năng           | % Hoàn thành |
+  |---------|------------------------|---------------------|--------------|
+  | 1753033 |   Trịnh Thái Bình      | Báo thức            |     100      |
+  |         |                        | Thời tiết           |     100      |
+  |         |                        | Tin tức             |     100      |
+  |         |                        | Nhạc thư giãn       |     100      |
+  |         |                        | Thêm nhắc nhở       |     100      |
+  |         |                        |                     |              |
+  | 1753030 |   Mai Thanh Bình       | Đăng nhập           |     100      |
+  |         |                        | Theo dõi giấc ngủ   |     100      |
+  |         |                        | Thành tích          |     100      |
+  |         |                        | Đồng bộ GCalender   |     100      |
+  |         |                        | Đồng bộ dữ liệu     |     100      |
+  |         |                        |                     |              |
+  | 1753028 |   Nguyễn Trần Tuấn Anh | Tiết kiệm pin       |     100      |
+  |         |                        | To do list          |     100      |
+  |         |                        | Hẹn giờ tắt Media   |     100      |
+  |         |                        | Quản lý âm thanh    |     100      |
+  |         |                        | Tùy chỉnh giao diện |     100      |
+  
+  Link prototype: https://www.figma.com/file/RmN8naeVG5uLmm1Fup2ETK/Project-Android?node-id=1%3A3
