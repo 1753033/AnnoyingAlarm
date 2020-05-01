@@ -8,6 +8,7 @@
 3.  1753028 - Nguyễn Trần Tuấn Anh - 1753033@student.hcmus.edu.vn
 
 ## Mô tả chức năng
+link: https://drive.google.com/file/d/1YCceFuEgN4QqU8mrMTwRrR80XZpNjVom/view?usp=sharing
 
 1. Hẹn giờ báo thức
 
