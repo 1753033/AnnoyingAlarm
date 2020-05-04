@@ -2,13 +2,16 @@ package com.example.annoyingalarm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,10 +30,13 @@ import java.util.Date;
 
 public class WeatherActivity extends AppCompatActivity {
 
+    ImageButton btnAlarm;
     EditText search;
     Button btnSearch,btnNext;
     TextView tvCity,tvCountry,tvTemp,tvState,tvHumidity,tvCloud,tvWind,tvDate;
     ImageView iconWeather;
+    String City;
+    String APIKey ="53fbf527d52d4d773e828243b90c1f8e";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,18 +56,45 @@ public class WeatherActivity extends AppCompatActivity {
         tvWind = findViewById(R.id.tvWind);
         tvDate = findViewById(R.id.tvDate);
         iconWeather = findViewById(R.id.icon);
+        btnAlarm = findViewById(R.id.btnAlarm);
 
+        getCurrentWeatherData("Saigon");
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String city = search.getText().toString();
-                getCurrentWeatherData(city);
+                if (city.equals("")){
+                    City = "Saigon";
+                }
+                else {
+                    City = city;
+                }
+                getCurrentWeatherData(City);
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = search.getText().toString();
+                Intent intent = new Intent(WeatherActivity.this,WeatherNextDayActivity.class);
+                intent.putExtra("City",city);
+                intent.putExtra("APIKey",APIKey);
+                startActivity(intent);
+            }
+        });
+
+        btnAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WeatherActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
     }
     public void getCurrentWeatherData(String data){
         RequestQueue requestQueue = Volley.newRequestQueue(WeatherActivity.this);
-        String URL = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&appid=e9566061dd067245ba0c8c82e118fbed";
+        String URL = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&appid="+APIKey;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -75,7 +108,7 @@ public class WeatherActivity extends AppCompatActivity {
                     long trans = Long.valueOf(dateJSON);
                     //Chuyen giay thanh mili giay
                     Date day = new Date(trans*1000);
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd-MM-yyyy HH-mm-ss");
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE dd-MM-yyyy HH:mm:ss");
                     String Date = simpleDateFormat.format(day);
                     tvDate.setText(Date);
 
@@ -113,7 +146,7 @@ public class WeatherActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(WeatherActivity.this,"Can't not find.",Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(stringRequest);
