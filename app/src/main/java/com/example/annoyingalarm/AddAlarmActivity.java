@@ -65,12 +65,12 @@ public class AddAlarmActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 tvTime.setText("");
                 alarmManager.cancel(pendingIntent);
                 intent.putExtra("Extra","off");
                 sendBroadcast(intent);
-
+                Intent switchToMain = new Intent(AddAlarmActivity.this,MainActivity.class);
+                startActivity(switchToMain);
             }
         });
     }

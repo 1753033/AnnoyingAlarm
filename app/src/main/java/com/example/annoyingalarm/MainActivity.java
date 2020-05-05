@@ -16,7 +16,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnAddAlarm,btnWeather;
+    ImageButton btnAddAlarm,btnWeather,btnNews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent switchToWeather = new Intent(MainActivity.this,WeatherActivity.class);
                 startActivity(switchToWeather);
+            }
+        });
+        btnNews = findViewById(R.id.btnNews);
+        btnNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToNews = new Intent(MainActivity.this,NewsActivity.class);
+                startActivity(switchToNews);
             }
         });
     }

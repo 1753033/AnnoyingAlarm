@@ -143,35 +143,35 @@
         android:id="@+id/layout_menu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
         android:layout_weight="10"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btnAlarm"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/icon_alarm" />
 
         <ImageButton
             android:id="@+id/btnNews"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/icon_news" />
 
         <ImageButton
             android:id="@+id/btnNight"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/icon_night" />
 
         <ImageButton
             android:id="@+id/btnWeather"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/icon_weather" />
 
@@ -179,7 +179,7 @@
         <ImageButton
             android:id="@+id/btnMore"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/icon_more" />
     </LinearLayout>
