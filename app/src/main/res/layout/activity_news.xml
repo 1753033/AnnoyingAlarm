@@ -19,17 +19,11 @@
             android:layout_weight="10"
             android:orientation="vertical">
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="News:"
-                android:textSize="20dp"
-                android:layout_margin="2dp"/>
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DD-MM-YYYY"
-                android:textSize="15dp"
-                android:layout_margin="2dp"
+                android:textSize="25dp"
+                android:layout_margin="3dp"
                 android:id="@+id/tvDateNews"/>
         </LinearLayout>
         <ListView

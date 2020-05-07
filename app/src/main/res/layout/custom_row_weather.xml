@@ -13,13 +13,13 @@
         <TextView android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:text="Date"
             android:layout_margin="3dp"/>
         <TextView android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="10dp"
             android:text="Date"
             android:layout_margin="3dp"/>
     </LinearLayout>
@@ -37,24 +37,24 @@
             android:gravity="center">
             <ImageView
                 android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/icon_weather"
                 android:id="@+id/imgState"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Max"
-                android:textSize="18dp"
-                android:id="@+id/tvMaxTemp"/>
+                android:text="Min"
+                android:textSize="10dp"
+                android:id="@+id/tvMinTemp"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Max"
-                android:textSize="18dp"
-                android:id="@+id/tvMinTemp"/>
+                android:textSize="10dp"
+                android:id="@+id/tvMaxTemp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

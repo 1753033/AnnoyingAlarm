@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,10 +29,15 @@ public class NewsActivity extends AppCompatActivity {
     ArrayList<String> arrayTitle,arrayLink;
     ArrayAdapter adapter;
 
+    ImageButton btnAlarm,btnWeather;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        btnAlarm = findViewById(R.id.btnAlarm);
+        btnWeather = findViewById(R.id.btnWeather);
 
         lvTitle = findViewById(R.id.lvTitle);
         arrayTitle = new ArrayList<>();
@@ -48,6 +54,21 @@ public class NewsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(NewsActivity.this,NewsDetailActivity.class);
                 intent.putExtra("link",arrayLink.get(position));
+                startActivity(intent);
+            }
+        });
+
+        btnAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewsActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewsActivity.this,WeatherActivity.class);
                 startActivity(intent);
             }
         });

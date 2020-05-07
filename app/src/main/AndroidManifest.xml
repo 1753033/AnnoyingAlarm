@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".NewsDetailActivity"></activity>
         <activity android:name=".NewsActivity" />
-        <activity android:name=".WeatherNextDayActivity" />
         <activity android:name=".WeatherActivity" />
         <activity android:name=".AddAlarmActivity" />
         <activity android:name=".MainActivity">
