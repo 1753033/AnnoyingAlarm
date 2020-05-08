@@ -26,4 +26,9 @@
     <string name="to_do_list">Todo list</string>
     <string name="sound">Sounds</string>
     <string name="setting">Settings</string>
+
+    <!-- Login screen -->
+    <string name="welcome_app">Welcome to Annoying Alarm</string>
+    <string name="content_app">Login to see your top picks for you</string>
+    <string name="login_with_google">Login with Google</string>
 </resources>
