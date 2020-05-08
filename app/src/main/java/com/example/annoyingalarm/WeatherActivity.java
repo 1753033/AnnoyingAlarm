@@ -111,7 +111,7 @@ public class WeatherActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
 
                     String name = jsonObject.getString("name");
-                    tvCity.setText("City: "+name);
+                    tvCity.setText(name);
 
                     String dateJSON = jsonObject.getString("dt");
                     long trans = Long.valueOf(dateJSON);
