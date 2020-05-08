@@ -36,6 +36,7 @@ public class AddAlarmActivity extends AppCompatActivity {
 
         calendar = Calendar.getInstance();
         //Truy cap he thong bao dong cua may
+
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         final Intent intent = new Intent(AddAlarmActivity.this,AlarmReceiver.class);

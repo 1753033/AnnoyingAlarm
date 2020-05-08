@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,14 +21,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NewsActivity extends AppCompatActivity {
 
     ListView lvTitle;
     ArrayList<String> arrayTitle,arrayLink;
     ArrayAdapter adapter;
-
+    TextView tvDateNews;
     ImageButton btnAlarm,btnWeather;
 
     @Override
@@ -39,6 +41,7 @@ public class NewsActivity extends AppCompatActivity {
         btnAlarm = findViewById(R.id.btnAlarm);
         btnWeather = findViewById(R.id.btnWeather);
 
+        tvDateNews = findViewById(R.id.tvDateNews);
         lvTitle = findViewById(R.id.lvTitle);
         arrayTitle = new ArrayList<>();
         arrayLink = new ArrayList<>();
@@ -46,6 +49,10 @@ public class NewsActivity extends AppCompatActivity {
         adapter = new ArrayAdapter(NewsActivity.this,android.R.layout.simple_list_item_1,arrayTitle);
 
         lvTitle.setAdapter(adapter);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        tvDateNews.setText(formatter.format(date));
 
         new RSS().execute("https://vnexpress.net/rss/so-hoa.rss");
 
