@@ -20,4 +20,10 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <!-- More screen -->
+    <string name="account_info">Account Info</string>
+    <string name="nofitication">Nofitications</string>
+    <string name="to_do_list">Todo list</string>
+    <string name="sound">Sounds</string>
+    <string name="setting">Settings</string>
 </resources>
