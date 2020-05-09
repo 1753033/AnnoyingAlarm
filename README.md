@@ -139,13 +139,13 @@ Tham khảo: Alarmy
   | 1753033 |   Trịnh Thái Bình      | Báo thức            |     100      |
   |         |                        | Thời tiết           |     100      |
   |         |                        | Tin tức             |     100      |
+  |         |                        | Thêm nhắc nhở       |     100      |
   |         |                        |                     |              |
   | 1753030 |   Mai Thanh Bình       | Đăng nhập           |     100      |
   |         |                        | Theo dõi giấc ngủ   |     100      |
   |         |                        | Thành tích          |     100      |
-  |         |                        |                     |              |
-  | 1753028 |   Nguyễn Trần Tuấn Anh | Thêm nhắc nhở       |     100      |
-  |         |                        | To do list          |     100      |
   |         |                        | Đồng bộ GCalender   |     100      |
+  |         |                        |                     |              |
+  | 1753028 |   Nguyễn Trần Tuấn Anh | To do list          |     100      |
 
   Link UI : https://drive.google.com/open?id=1b3Y06f8MNqxVWmXptFNP63FMunYbdxSq
