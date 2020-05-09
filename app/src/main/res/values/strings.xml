@@ -32,4 +32,6 @@
     <string name="content_app">Login to see your top picks for you</string>
     <string name="login_with_google">Login with Google</string>
     <string name="log_out">  Log out</string>
+    <string name="sleep_history">Sleep History</string>
+    <string name="go_to_details">Go to details</string>
 </resources>
