@@ -144,7 +144,8 @@ Tham khảo: Alarmy
   |         |                        | Theo dõi giấc ngủ   |     100      |
   |         |                        | Thành tích          |     100      |
   |         |                        |                     |              |
-  | 1753028 |   Nguyễn Trần Tuấn Anh | Nhạc thư giãn       |     100      |
+  | 1753028 |   Nguyễn Trần Tuấn Anh | Thêm nhắc nhở       |     100      |
   |         |                        | To do list          |     100      |
+  |         |                        | Đồng bộ GCalender   |     100      |
 
   Link UI : https://drive.google.com/open?id=1b3Y06f8MNqxVWmXptFNP63FMunYbdxSq
