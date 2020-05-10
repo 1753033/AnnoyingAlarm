@@ -132,3 +132,20 @@ Tham khảo: Alarmy
   |         |                        | Tùy chỉnh giao diện |     100      |
   
   Link prototype: https://www.figma.com/file/RmN8naeVG5uLmm1Fup2ETK/Project-Android?node-id=1%3A3
+
+* Tuần 2: Cài đặt giao diện - Layout XML
+  | MSSV    | Tên thành viên         | Chức năng           | % Hoàn thành |
+  |---------|------------------------|---------------------|--------------|
+  | 1753033 |   Trịnh Thái Bình      | Báo thức            |     100      |
+  |         |                        | Thời tiết           |     100      |
+  |         |                        | Tin tức             |     100      |
+  |         |                        | Thêm nhắc nhở       |     100      |
+  |         |                        |                     |              |
+  | 1753030 |   Mai Thanh Bình       | Đăng nhập           |     100      |
+  |         |                        | Theo dõi giấc ngủ   |     100      |
+  |         |                        | Thành tích          |     100      |
+  |         |                        | Đồng bộ GCalender   |     100      |
+  |         |                        |                     |              |
+  | 1753028 |   Nguyễn Trần Tuấn Anh | To do list          |     100      |
+
+  Link UI : https://drive.google.com/open?id=1b3Y06f8MNqxVWmXptFNP63FMunYbdxSq
