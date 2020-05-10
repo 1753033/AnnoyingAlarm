@@ -31,15 +31,12 @@ public class NewsActivity extends AppCompatActivity {
     ArrayList<String> arrayTitle,arrayLink;
     ArrayAdapter adapter;
     TextView tvDateNews;
-    ImageButton btnAlarm,btnWeather;
+    ImageButton btnAlarm,btnWeather,btnNight,btnMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-
-        btnAlarm = findViewById(R.id.btnAlarm);
-        btnWeather = findViewById(R.id.btnWeather);
 
         tvDateNews = findViewById(R.id.tvDateNews);
         lvTitle = findViewById(R.id.lvTitle);
@@ -65,18 +62,36 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
-        btnAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NewsActivity.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnWeather = findViewById(R.id.btnWeather);
         btnWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewsActivity.this,WeatherActivity.class);
-                startActivity(intent);
+                Intent switchToWeather = new Intent(NewsActivity.this,WeatherActivity.class);
+                startActivity(switchToWeather);
+            }
+        });
+        btnAlarm = findViewById(R.id.btnAlarm);
+        btnAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToAlarm = new Intent(NewsActivity.this,MainActivity.class);
+                startActivity(switchToAlarm);
+            }
+        });
+        btnNight = findViewById(R.id.btnNight);
+        btnNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToNight = new Intent(NewsActivity.this,SleepHistoryActivity.class);
+                startActivity(switchToNight);
+            }
+        });
+        btnMore = findViewById(R.id.btnMore);
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToMore = new Intent(NewsActivity.this,MoreActivity.class);
+                startActivity(switchToMore);
             }
         });
     }

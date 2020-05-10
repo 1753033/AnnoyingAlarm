@@ -32,7 +32,7 @@ import java.util.Date;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    ImageButton btnAlarm,btnNews;
+    ImageButton btnAlarm,btnNews,btnNight,btnMore;
     EditText search;
     Button btnSearch;
     TextView tvCity,tvTemp,tvState,tvHumidity,tvCloud,tvWind,tvDate;
@@ -49,8 +49,6 @@ public class WeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        btnAlarm = findViewById(R.id.btnAlarm);
-        btnNews = findViewById(R.id.btnNews);
 
         search = findViewById(R.id.search);
         btnSearch = findViewById(R.id.btnSearch);
@@ -85,21 +83,39 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
 
-
+        btnAlarm = findViewById(R.id.btnAlarm);
         btnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(WeatherActivity.this,MainActivity.class);
-                startActivity(intent);
+                Intent switchToAlarm = new Intent(WeatherActivity.this,MainActivity.class);
+                startActivity(switchToAlarm);
             }
         });
+        btnNews = findViewById(R.id.btnNews);
         btnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(WeatherActivity.this,NewsActivity.class);
-                startActivity(intent);
+                Intent switchToNews = new Intent(WeatherActivity.this,NewsActivity.class);
+                startActivity(switchToNews);
             }
         });
+        btnNight = findViewById(R.id.btnNight);
+        btnNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToNight = new Intent(WeatherActivity.this,SleepHistoryActivity.class);
+                startActivity(switchToNight);
+            }
+        });
+        btnMore = findViewById(R.id.btnMore);
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToMore = new Intent(WeatherActivity.this,MoreActivity.class);
+                startActivity(switchToMore);
+            }
+        });
+
     }
     public void getCurrentWeatherData(String data){
         RequestQueue requestQueue = Volley.newRequestQueue(WeatherActivity.this);

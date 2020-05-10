@@ -16,7 +16,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnAddAlarm,btnWeather,btnNews;
+    ImageButton btnAddAlarm,btnWeather,btnNews,btnNight,btnMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent switchToNews = new Intent(MainActivity.this,NewsActivity.class);
                 startActivity(switchToNews);
+            }
+        });
+        btnNight = findViewById(R.id.btnNight);
+        btnNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToNight = new Intent(MainActivity.this,SleepHistoryActivity.class);
+                startActivity(switchToNight);
+            }
+        });
+        btnMore = findViewById(R.id.btnMore);
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToMore = new Intent(MainActivity.this,MoreActivity.class);
+                startActivity(switchToMore);
             }
         });
     }
