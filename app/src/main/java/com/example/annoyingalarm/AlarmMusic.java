@@ -34,13 +34,13 @@ public class AlarmMusic extends Service {
         if (ID == 1) {
             mediaPlayer = MediaPlayer.create(this, R.raw.nhacchuong);
             mediaPlayer.start();
+
             ID = 0;
         }
         else if (ID == 0){
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
-        Log.e("In Alarm Music","Hello");
 
         return START_NOT_STICKY;
     }
