@@ -39,7 +39,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="T"
+                android:text="Tu"
                 android:id="@+id/rbTuesday"/>
             <RadioButton
                 android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="T"
+                android:text="Th"
                 android:id="@+id/rbThursday"/>
             <RadioButton
                 android:layout_width="wrap_content"

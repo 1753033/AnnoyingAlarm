@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class AlarmListAdapter extends BaseAdapter {
     private ArrayList<AlarmObject> list;
     private Context context;
+    private String[] day = {"M ","Tu ","W ","Th ", "F ","Sa ","Su"};
 
     public AlarmListAdapter(Context context, ArrayList<AlarmObject> list) {
         this.list = list;
@@ -54,42 +56,42 @@ public class AlarmListAdapter extends BaseAdapter {
         TextView tvTime = row.findViewById(R.id.tvTime);
         TextView tvName = row.findViewById(R.id.tvName);
         ToggleButton btnToggle = row.findViewById(R.id.btnToggle);
+        TextView tvRepeat = row.findViewById(R.id.tvRepeat);
 
         final AlarmObject obj = (AlarmObject) getItem(position);
         tvName.setText(obj.getName());
         tvTime.setText(String.format("%02d:%02d", obj.timeHour, obj.timeMinute));
+        btnToggle.setChecked(obj.isEnabled);
+        tvRepeat.setText("");
+        btnToggle.setChecked(obj.isEnabled);
+        for(int i = 0;i<obj.repeatingDays.length;i++){
+            if (obj.repeatingDays[i]){
+                tvRepeat.setText(tvRepeat.getText()+day[i]);
+            }
+        }
 
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"You choose: "+obj.getName(),Toast.LENGTH_SHORT).show();
+                ((MainActivity) context).startAlarmDetailsActivity(obj.id);
             }
         });
-        /*btnToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        btnToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Auto-generated method stub
-                ((MainActivity) context).setAlarmEnabled(Long.valueOf(obj.id), isChecked);
+                ((MainActivity) context).setAlarmEnabled(obj.id, isChecked);
             }
         });
 
-        btnToggle.setChecked(obj.isEnabled);*/
-
-        /*convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) context).startAlarmDetailsActivity(Long.valueOf(obj.id));
-            }
-        });*/
-
-        /*convertView.setOnLongClickListener(new View.OnLongClickListener() {
+        row.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                // TODO Auto-generated method stub
                 ((MainActivity) context).deleteAlarm(obj.id);
                 return true;
             }
-        });*/
+        });
 
         return row;
     }
