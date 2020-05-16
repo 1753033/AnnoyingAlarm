@@ -20,8 +20,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
+    final int Code_Settings = 123001;
     ImageButton btnAddAlarm,btnWeather,btnNews,btnNight,btnMore;
+    Button btnTA_Test;
     ListView listViewAlarm;
     AlarmListAdapter adapter;
     //AlarmDBHelper dbHelper = new AlarmDBHelper(this);
@@ -112,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         }
     }
+
+    public void startSettingsActivity() {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+
+        startActivityForResult(intent, Code_Settings);
+    }
+
     public void deleteAlarm(long id) {
         final long alarmId = id;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
