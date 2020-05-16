@@ -24,12 +24,14 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NewsActivity extends AppCompatActivity {
 
     ListView lvTitle;
-    ArrayList<String> arrayTitle,arrayLink;
-    ArrayAdapter adapter;
+    ArrayList<String> arrayTitle,arrayLink,arrayImg;
+    NewsAdapter adapter;
     TextView tvDateNews;
     ImageButton btnAlarm,btnWeather,btnNight,btnMore;
 
@@ -42,8 +44,9 @@ public class NewsActivity extends AppCompatActivity {
         lvTitle = findViewById(R.id.lvTitle);
         arrayTitle = new ArrayList<>();
         arrayLink = new ArrayList<>();
+        arrayImg = new ArrayList<>();
 
-        adapter = new ArrayAdapter(NewsActivity.this,android.R.layout.simple_list_item_1,arrayTitle);
+        adapter = new NewsAdapter(NewsActivity.this,arrayTitle,arrayLink,arrayImg);
 
         lvTitle.setAdapter(adapter);
 
@@ -127,9 +130,15 @@ public class NewsActivity extends AppCompatActivity {
             Document document = parser.getDocument(s);
 
             NodeList nodeList = document.getElementsByTagName("item");
-
+            NodeList nodeList1 = document.getElementsByTagName("description");
 
             for (int i =0;i<nodeList.getLength();i++){
+                String cdata = nodeList1.item(i+1).getTextContent();
+                Pattern p = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
+                Matcher matcher = p.matcher(cdata);
+                if(matcher.find()){
+                    arrayImg.add(matcher.group(1));
+                }
                 Element element = (Element) nodeList.item(i);
                 arrayTitle.add(parser.getValue(element,"title"));
                 arrayLink.add(parser.getValue(element,"link"));

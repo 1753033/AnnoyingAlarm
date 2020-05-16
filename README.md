@@ -149,3 +149,16 @@ Tham khảo: Alarmy
   | 1753028 |   Nguyễn Trần Tuấn Anh | To do list          |     100      |
 
   Link UI : https://drive.google.com/open?id=1b3Y06f8MNqxVWmXptFNP63FMunYbdxSq
+* Tuần 3: Cài đặt chức năng Báo thức,Tin tức,Thời tiết
+  | Chức năng           | % Giao diện | % Chức năng |
+  |---------------------|-------------|-------------|
+  | Báo thức            |      70     |      50     |
+  | Thời tiết           |      90     |     100     |
+  | Tin tức             |      90     |     100     |
+  
+  Tham khảo : 
+  https://viblo.asia/p/ung-dung-alarmclock-voi-android-ZK1ov1dyG5b9
+  https://www.youtube.com/watch?v=hYT111gytpg&t=4s
+  https://www.youtube.com/watch?v=syYMLWQLBQk&t=23s
+  https://youtu.be/spvbL94cE9c
+ 
