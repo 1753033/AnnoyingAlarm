@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
-
+/* //BUGGED
     @Override
     protected void onPause() {
         super.onPause();
@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         myPrefEditor.putString("Background", chosenMode);
         myPrefEditor.commit();
-    }
+    }*/
 
 
     public static class SettingsFragment extends PreferenceFragmentCompat {

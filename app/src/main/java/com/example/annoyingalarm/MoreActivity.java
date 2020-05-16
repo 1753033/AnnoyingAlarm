@@ -15,12 +15,21 @@ import android.widget.LinearLayout;
 public class MoreActivity extends AppCompatActivity {
 
     ImageButton btnWeather,btnNews,btnNight,btnAlarm;
-    Button btnSetting;
+    Button btnSetting, btnTodo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more);
+
+        btnTodo = findViewById(R.id.btnTodoList);
+        btnTodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openTodo = new Intent(MoreActivity.this,TodoListActivity.class);
+                startActivity(openTodo);
+            }
+        });
 
         btnSetting = findViewById(R.id.btnSetting);
         btnSetting.setOnClickListener(new View.OnClickListener() {
@@ -63,24 +72,5 @@ public class MoreActivity extends AppCompatActivity {
                 startActivity(switchToAlarm);
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        LinearLayout curScr = findViewById(R.id.more_layout);
-
-        SharedPreferences myPrefContainer = getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        String key = "Background";
-
-        if ((myPrefContainer != null) && myPrefContainer.contains(key)) {
-            String color = myPrefContainer.getString(key, "1");
-
-            if (color == "0xFFFFFF")
-                curScr.setBackgroundColor(Color.WHITE);
-            if (color == "0x000000")
-                curScr.setBackgroundColor(Color.BLACK);
-        }
     }
 }
