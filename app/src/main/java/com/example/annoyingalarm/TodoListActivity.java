@@ -35,7 +35,10 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
 
         mLayoutInflater = LayoutInflater.from(this);
 
-        listView = findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
+        taskArrayList = new ArrayList<Task>();
+        taskArrayAdapter = new TodoAdapter(this, taskArrayList);
+
         listView.setAdapter(taskArrayAdapter);
 
         listView.setOnItemClickListener(this);
@@ -88,6 +91,11 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
                     return;
                 }
 
+                Task addedTask = new Task(1, title,description,targetDate);
+
+                taskArrayList.add(addedTask);
+                taskArrayAdapter.notifyDataSetChanged();
+
                 Toast.makeText(TodoListActivity.this, "Title : " + title + "\nDescription : " + description + "\nTargetDate : " + targetDate, Toast.LENGTH_LONG).show();
             }
         });
@@ -133,6 +141,12 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-
+        if (v.getId() == R.id.txtTitle) {
+            EditText title = (EditText)v;
+            if (title.getText().length() < 1)
+            {
+                title.setError("Title cant be empty!!");
+            }
+        }
     }
 }
