@@ -33,7 +33,9 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
 
-        listView = (ListView) findViewById(R.id.listView);
+        mLayoutInflater = LayoutInflater.from(this);
+
+        listView = findViewById(R.id.listView);
         listView.setAdapter(taskArrayAdapter);
 
         listView.setOnItemClickListener(this);

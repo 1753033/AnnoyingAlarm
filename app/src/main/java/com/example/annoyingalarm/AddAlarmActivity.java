@@ -18,6 +18,7 @@ import android.widget.Toast;
 public class AddAlarmActivity extends AppCompatActivity {
 
     private AlarmObject alarmDetails;
+    AlarmDBHelper dbHelper = new AlarmDBHelper(this);
     private TimePicker timePicker;
     private EditText tbName;
     private Button btnDone,btnCancel;
@@ -45,7 +46,8 @@ public class AddAlarmActivity extends AppCompatActivity {
             alarmDetails = new AlarmObject();
         }
         else{
-            alarmDetails = (AlarmObject) getIntent().getSerializableExtra("alarm");
+            alarmDetails = dbHelper.getAlarm(id);
+
             timePicker.setHour(alarmDetails.getTimeHour());
             timePicker.setMinute(alarmDetails.getTimeMinute());
             tbName.setText(alarmDetails.getName());
@@ -62,16 +64,14 @@ public class AddAlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateModelFromLayout();
-                if(id==-1) {
-                    Intent newAlarm = new Intent();
-                    newAlarm.putExtra("newAlarm", alarmDetails);
-                    setResult(RESULT_OK, newAlarm);
+                if(alarmDetails.getId()<0){
+                    dbHelper.createAlarm(alarmDetails);
                 }
                 else {
-                    Intent updateAlarm = new Intent();
-                    updateAlarm.putExtra("updateAlarm",alarmDetails);
-                    setResult(RESULT_OK,updateAlarm);
+                    dbHelper.updateAlarm(alarmDetails);
                 }
+                //AlarmManagerHelper.setAlarms(this);
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -88,6 +88,9 @@ public class AddAlarmActivity extends AppCompatActivity {
         alarmDetails.timeHour = timePicker.getHour();
         alarmDetails.name = tbName.getText().toString();
         alarmDetails.setRepeatingDays(new boolean[]{rbMon.isChecked(), rbTue.isChecked(),rbWed.isChecked(),rbThu.isChecked(),rbFri.isChecked(),rbSat.isChecked(),rbSun.isChecked()});
+        if(rbMon.isChecked() && rbTue.isChecked() && rbWed.isChecked() && rbThu.isChecked() && rbFri.isChecked() && rbSat.isChecked() && rbSun.isChecked()){
+            alarmDetails.repeatWeekly = true;
+        }
         alarmDetails.isEnabled = true;
     }
 }

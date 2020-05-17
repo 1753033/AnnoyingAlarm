@@ -3,8 +3,6 @@ package com.example.annoyingalarm;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     final int Code_Settings = 123001;
@@ -25,19 +18,15 @@ public class MainActivity extends AppCompatActivity {
     Button btnTA_Test;
     ListView listViewAlarm;
     AlarmListAdapter adapter;
-    //AlarmDBHelper dbHelper = new AlarmDBHelper(this);
-    static ArrayList<AlarmObject> listAlarm;
+    AlarmDBHelper dbHelper = new AlarmDBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(listAlarm==null) {
-            listAlarm = new ArrayList<>();
-        }
         listViewAlarm = findViewById(R.id.listViewAlarm);
-        adapter = new AlarmListAdapter(MainActivity.this,listAlarm);
+        adapter = new AlarmListAdapter(MainActivity.this,dbHelper.getAlarms());
         listViewAlarm.setAdapter(adapter);
 
         btnAddAlarm = findViewById(R.id.btnAddAlarm);
@@ -82,36 +71,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                AlarmObject newAlarm = (AlarmObject) data.getSerializableExtra("newAlarm");
-                newAlarm.id = listAlarm.size();
-                listAlarm.add(newAlarm);
-                adapter.notifyDataSetChanged();
-            }
-        }
-        else if(requestCode == 1){
-            if (resultCode == RESULT_OK) {
-                AlarmObject updateAlarm = (AlarmObject) data.getSerializableExtra("updateAlarm");
-                listAlarm.remove((int) updateAlarm.getId());
-                listAlarm.add(updateAlarm);
-                adapter.notifyDataSetChanged();
-            }
+        if (resultCode == RESULT_OK) {
+            adapter.setAlarms(dbHelper.getAlarms());
+            adapter.notifyDataSetChanged();
         }
     }
     public void startAlarmDetailsActivity(long id) {
         Intent intent = new Intent(MainActivity.this, AddAlarmActivity.class);
-        if(id == -1 ) {
-            intent.putExtra("id", id);
-            startActivityForResult(intent, 0);
-        }
-        else{
-            intent.putExtra("alarm",listAlarm.get((int) id));
-            startActivityForResult(intent, 1);
-        }
+        intent.putExtra("id", id);
+        startActivityForResult(intent, 0);
     }
 
     public void startSettingsActivity() {
@@ -123,28 +95,24 @@ public class MainActivity extends AppCompatActivity {
     public void deleteAlarm(long id) {
         final long alarmId = id;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Do you want to delete "+ listAlarm.get((int)alarmId).getName() +" ?")
+        builder.setMessage("Do you want to delete "+ dbHelper.getAlarm(alarmId).getName() +" ?")
                 .setCancelable(true)
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        listAlarm.remove((int)alarmId);
+                        dbHelper.deleteAlarm(alarmId);
+                        adapter.setAlarms(dbHelper.getAlarms());
                         adapter.notifyDataSetChanged();
                     }
                 }).show();
     }
     public void setAlarmEnabled(long id, boolean isEnabled) {
-        //AlarmManagerHelper.cancelAlarms(this);
-
-        //AlarmObject model = dbHelper.getAlarm(id);
-        AlarmObject obj = listAlarm.get((int)id);
+        AlarmObject obj = dbHelper.getAlarm(id);
         obj.isEnabled = isEnabled;
-        //dbHelper.updateAlarm(model);
+        dbHelper.updateAlarm(obj);
 
-        //adapter.setAlarms(dbHelper.getAlarms());
+        adapter.setAlarms(dbHelper.getAlarms());
         adapter.notifyDataSetChanged();
-        Toast.makeText(this,String.valueOf(obj.isEnabled),Toast.LENGTH_SHORT).show();
-        //AlarmManagerHelper.setAlarms(this);
     }
 }

@@ -24,6 +24,10 @@ public class AlarmListAdapter extends BaseAdapter {
         this.context = context;
     }
 
+    public void setAlarms(ArrayList<AlarmObject> list) {
+        this.list = list;
+    }
+
     @Override
     public int getCount() {
         if(list != null) {
@@ -35,7 +39,7 @@ public class AlarmListAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         if(list!=null){
-        return list.get(position);
+            return list.get(position);
         }
         return null;
     }

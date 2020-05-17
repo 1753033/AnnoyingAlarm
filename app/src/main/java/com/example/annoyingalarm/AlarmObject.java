@@ -2,9 +2,7 @@ package com.example.annoyingalarm;
 
 import android.net.Uri;
 
-import java.io.Serializable;
-
-public class AlarmObject implements Serializable {
+public class AlarmObject {
 
     public static final int MONDAY = 0;
     public static final int TUESDAY = 1;
@@ -15,21 +13,21 @@ public class AlarmObject implements Serializable {
     public static final int SUNDAY = 6;
 
     long id = -1;
-    int timeHour;
-    int timeMinute;
+    int timeHour = 0;
+    int timeMinute = 0 ;
     boolean repeatingDays[];
-    boolean repeatWeekly;
-    Uri alarmTone;
-    String name;
-    boolean isEnabled;
+    boolean repeatWeekly = false;
+    Uri alarmTone = null;
+    String name = "";
+    boolean isEnabled = true;
 
     public AlarmObject() {
-        repeatingDays = new boolean[7];
+        repeatingDays = new boolean[]{false,false,false,false,false,false,false};
     }
 
     public AlarmObject(long id, int timeHour, int timeMinute,
-                      boolean[] repeatingDays, boolean repeatWeekly, Uri alarmTone,
-                      String name, boolean isEnabled) {
+                       boolean[] repeatingDays, boolean repeatWeekly, Uri alarmTone,
+                       String name, boolean isEnabled) {
         this.id = id;
         this.timeHour = timeHour;
         this.timeMinute = timeMinute;
@@ -40,13 +38,6 @@ public class AlarmObject implements Serializable {
         this.isEnabled = isEnabled;
     }
 
-    public AlarmObject(long id) {
-        this.id = id;
-        this.name = "Hello World";
-        this.isEnabled = false;
-        this.timeHour = 7;
-        this.timeMinute = 0;
-    }
 
     public void setRepeatingDay(int dayOfWeek, boolean value) {
         repeatingDays[dayOfWeek] = value;
