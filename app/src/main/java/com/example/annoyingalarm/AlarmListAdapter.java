@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class AlarmListAdapter extends BaseAdapter {
     private ArrayList<AlarmObject> list;
     private Context context;
-    private String[] day = {"M ","Tu ","W ","Th ", "F ","Sa ","Su"};
+    private String[] day = {"Su ","M ","Tu ","W ","Th ", "F ","Sa"};
 
     public AlarmListAdapter(Context context, ArrayList<AlarmObject> list) {
         this.list = list;

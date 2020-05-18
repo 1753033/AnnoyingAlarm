@@ -34,6 +34,11 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Su"
+                android:id="@+id/rbSunday"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="M"
                 android:id="@+id/rbMonday"/>
             <RadioButton
@@ -61,11 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sa"
                 android:id="@+id/rbSaturday"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Su"
-                android:id="@+id/rbSunday"/>
+
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
