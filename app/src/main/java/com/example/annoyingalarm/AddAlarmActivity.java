@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +43,6 @@ public class AddAlarmActivity extends AppCompatActivity {
 
 
         final long id = getIntent().getExtras().getLong("id");
-        Toast.makeText(this,String.valueOf(id),Toast.LENGTH_SHORT).show();
         if(id == -1){
             alarmDetails = new AlarmObject();
         }
@@ -71,7 +71,7 @@ public class AddAlarmActivity extends AppCompatActivity {
                 else {
                     dbHelper.updateAlarm(alarmDetails);
                 }
-                //AlarmManagerHelper.setAlarms(this);
+                AlarmManagerHelper.setAlarms(AddAlarmActivity.this);
                 setResult(RESULT_OK);
                 finish();
             }
@@ -92,6 +92,7 @@ public class AddAlarmActivity extends AppCompatActivity {
         if(rbMon.isChecked() && rbTue.isChecked() && rbWed.isChecked() && rbThu.isChecked() && rbFri.isChecked() && rbSat.isChecked() && rbSun.isChecked()){
             alarmDetails.repeatWeekly = true;
         }
+        alarmDetails.alarmTone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         alarmDetails.isEnabled = true;
     }
 }

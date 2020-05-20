@@ -108,11 +108,15 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
     public void setAlarmEnabled(long id, boolean isEnabled) {
+        AlarmManagerHelper.cancelAlarms(this);
+
         AlarmObject obj = dbHelper.getAlarm(id);
         obj.isEnabled = isEnabled;
         dbHelper.updateAlarm(obj);
 
         adapter.setAlarms(dbHelper.getAlarms());
         adapter.notifyDataSetChanged();
+
+        AlarmManagerHelper.setAlarms(this);
     }
 }

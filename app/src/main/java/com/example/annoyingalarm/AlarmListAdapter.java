@@ -77,7 +77,6 @@ public class AlarmListAdapter extends BaseAdapter {
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"You choose: "+obj.getName(),Toast.LENGTH_SHORT).show();
                 ((MainActivity) context).startAlarmDetailsActivity(obj.id);
             }
         });
@@ -98,12 +97,5 @@ public class AlarmListAdapter extends BaseAdapter {
         });
 
         return row;
-    }
-    private void updateTextColor(TextView view, boolean isOn){
-        if (isOn) {
-            view.setTextColor(Color.GREEN);
-        } else {
-            view.setTextColor(Color.BLACK);
-        }
     }
 }
