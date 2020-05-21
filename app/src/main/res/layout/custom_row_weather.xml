@@ -45,16 +45,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Min"
+                android:text="Max"
                 android:textSize="10dp"
-                android:id="@+id/tvMinTemp"/>
+                android:id="@+id/tvMaxTemp"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Max"
+                android:text="Min"
                 android:textSize="10dp"
-                android:id="@+id/tvMaxTemp"/>
+                android:id="@+id/tvMinTemp"/>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

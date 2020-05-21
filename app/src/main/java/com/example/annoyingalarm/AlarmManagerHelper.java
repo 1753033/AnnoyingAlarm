@@ -14,7 +14,9 @@ public class AlarmManagerHelper extends BroadcastReceiver {
     public static final String NAME = "name";
     public static final String TIME_HOUR = "timeHour";
     public static final String TIME_MINUTE = "timeMinute";
+    public static final String TYPE = "alarmType";
     public static final String TONE = "alarmTone";
+    public static final String ONCE = "once";
     @Override
     public void onReceive(Context context, Intent intent) {
         setAlarms(context);
@@ -103,6 +105,17 @@ public class AlarmManagerHelper extends BroadcastReceiver {
         intent.putExtra(TIME_HOUR, model.timeHour);
         intent.putExtra(TIME_MINUTE, model.timeMinute);
         intent.putExtra(TONE, model.alarmTone.toString());
+        intent.putExtra(TYPE, model.type);
+
+        if(       !model.getRepeatingDay(model.SUNDAY)  &&!model.getRepeatingDay(model.MONDAY)
+                &&!model.getRepeatingDay(model.TUESDAY) &&!model.getRepeatingDay(model.WEDNESDAY)
+                &&!model.getRepeatingDay(model.THURSDAY)&&!model.getRepeatingDay(model.FRIDAY)
+                &&!model.getRepeatingDay(model.SATURDAY)){
+            intent.putExtra(ONCE,true);
+        }
+        else {
+            intent.putExtra(ONCE,false);
+        }
 
         return PendingIntent.getService(context, (int) model.id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }

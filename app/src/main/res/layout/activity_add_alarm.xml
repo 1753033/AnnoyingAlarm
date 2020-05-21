@@ -68,7 +68,23 @@
                 android:id="@+id/rbSaturday"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mission"
+                android:layout_marginStart="5dp"
+                android:textSize="20dp"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner"/>
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -93,5 +109,6 @@
             android:layout_marginHorizontal="50dp"
             android:text="Done"/>
     </LinearLayout>
+
 
 </LinearLayout>

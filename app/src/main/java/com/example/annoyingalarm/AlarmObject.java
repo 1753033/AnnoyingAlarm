@@ -20,6 +20,7 @@ public class AlarmObject {
     boolean repeatWeekly = false;
     Uri alarmTone = null;
     String name = "";
+    String type = "";
     boolean isEnabled = true;
 
     public AlarmObject() {
@@ -28,7 +29,7 @@ public class AlarmObject {
 
     public AlarmObject(long id, int timeHour, int timeMinute,
                        boolean[] repeatingDays, boolean repeatWeekly, Uri alarmTone,
-                       String name, boolean isEnabled) {
+                       String name,String type,  boolean isEnabled) {
         this.id = id;
         this.timeHour = timeHour;
         this.timeMinute = timeMinute;
@@ -36,6 +37,7 @@ public class AlarmObject {
         this.repeatWeekly = repeatWeekly;
         this.alarmTone = alarmTone;
         this.name = name;
+        this.type = type;
         this.isEnabled = isEnabled;
     }
 
@@ -102,6 +104,14 @@ public class AlarmObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public boolean isEnabled() {

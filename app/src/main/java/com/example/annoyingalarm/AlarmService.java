@@ -16,7 +16,14 @@ public class AlarmService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // TODO Auto-generated method stub
-        Intent alarmIntent = new Intent(getBaseContext(), AlarmScreenActivity.class);
+        String type = intent.getExtras().getString("alarmType");
+        Intent alarmIntent;
+        if(type.equals("Math")) {
+            alarmIntent = new Intent(getBaseContext(), AlarmScreenMathActivity.class);
+        }
+        else {
+            alarmIntent = new Intent(getBaseContext(), AlarmScreenActivity.class);
+        }
         alarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         alarmIntent.putExtras(intent);
         getApplication().startActivity(alarmIntent);

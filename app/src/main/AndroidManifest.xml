@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AlarmScreenActivity"></activity>
+        <activity android:name=".AlarmScreenMathActivity"></activity>
+        <activity android:name=".AlarmScreenActivity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -34,8 +35,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".TodoListActivity" />
-        <service android:name=".AlarmService" android:enabled="true"/>
-        <receiver android:name=".AlarmManagerHelper"/>
+
+        <service
+            android:name=".AlarmService"
+            android:enabled="true" />
+
+        <receiver android:name=".AlarmManagerHelper" />
     </application>
 
 </manifest>

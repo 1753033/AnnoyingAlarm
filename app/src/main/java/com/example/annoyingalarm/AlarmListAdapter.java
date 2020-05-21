@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -59,8 +60,9 @@ public class AlarmListAdapter extends BaseAdapter {
 
         TextView tvTime = row.findViewById(R.id.tvTime);
         TextView tvName = row.findViewById(R.id.tvName);
-        ToggleButton btnToggle = row.findViewById(R.id.btnToggle);
+        Switch btnToggle = row.findViewById(R.id.btnToggle);
         TextView tvRepeat = row.findViewById(R.id.tvRepeat);
+        TextView tvType = row.findViewById(R.id.tvType);
 
         final AlarmObject obj = (AlarmObject) getItem(position);
         tvName.setText(obj.getName());
@@ -68,6 +70,7 @@ public class AlarmListAdapter extends BaseAdapter {
         btnToggle.setChecked(obj.isEnabled);
         tvRepeat.setText("");
         btnToggle.setChecked(obj.isEnabled);
+        tvType.setText(obj.type);
         for(int i = 0;i<obj.repeatingDays.length;i++){
             if (obj.repeatingDays[i]){
                 tvRepeat.setText(tvRepeat.getText()+day[i]);
