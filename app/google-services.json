@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "239319496320",
+    "firebase_url": "https://smartalarm-2214f.firebaseio.com",
+    "project_id": "smartalarm-2214f",
+    "storage_bucket": "smartalarm-2214f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239319496320:android:aebc80edd1b6cc0b231865",
+        "android_client_info": {
+          "package_name": "com.example.annoyingalarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239319496320-qg9dathqvu8nlvnmg3db7a4ibr8hiij0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.annoyingalarm",
+            "certificate_hash": "7adffe910db48763b1698e4b8b4a4bab1e5952ea"
+          }
+        },
+        {
+          "client_id": "239319496320-94kd6fikos1bnj1355s9l366vik5kot5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHr8j78pRThvBAfkHMKFEgiEampeH2lX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239319496320-94kd6fikos1bnj1355s9l366vik5kot5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

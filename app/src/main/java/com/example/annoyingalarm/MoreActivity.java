@@ -14,8 +14,9 @@ import android.widget.LinearLayout;
 
 public class MoreActivity extends AppCompatActivity {
 
-    ImageButton btnWeather,btnNews,btnNight,btnAlarm;
-    Button btnSetting, btnTodo;
+    private ImageButton btnWeather,btnNews,btnNight,btnAlarm;
+    private Button btnSetting, btnTodo;
+    private Button btnAccountInfo, btnNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,15 @@ public class MoreActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent openTodo = new Intent(MoreActivity.this,TodoListActivity.class);
                 startActivity(openTodo);
+            }
+        });
+
+        btnAccountInfo = (Button) findViewById(R.id.btnAccountInfo);
+        btnAccountInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openLogin = new Intent(MoreActivity.this, LoginActivity.class);
+                startActivity(openLogin);
             }
         });
 
