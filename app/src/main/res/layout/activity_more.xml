@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@drawable/round_bg"
+                android:background="@color/Background_Light"
                 android:drawableStart="@drawable/ic_account_info"
                 android:text="@string/account_info" />
 
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@drawable/round_bg"
+                android:background="@color/Background_Light"
                 android:drawableStart="@drawable/ic_notification"
                 android:text="@string/nofitication" />
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@drawable/round_bg"
+                android:background="@color/Background_Light"
                 android:drawableStart="@drawable/ic_todo_list"
                 android:text="@string/to_do_list" />
 
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@drawable/round_bg"
+                android:background="@color/Background_Light"
                 android:drawableStart="@drawable/ic_sound"
                 android:text="@string/sound" />
 
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@drawable/round_bg"
+                android:background="@color/Background_Light"
                 android:drawableStart="@drawable/ic_setting"
                 android:text="@string/setting" />
         </LinearLayout>
@@ -112,6 +112,7 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:gravity="center"
+        android:background="#fff1ff"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -150,6 +151,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:orientation="vertical">
             <ImageButton
                 android:id="@+id/btnNight"

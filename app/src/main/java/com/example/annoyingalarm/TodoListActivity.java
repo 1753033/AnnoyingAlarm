@@ -32,8 +32,8 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bar
+        //requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        //getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_todo);
 
         mLayoutInflater = LayoutInflater.from(this);

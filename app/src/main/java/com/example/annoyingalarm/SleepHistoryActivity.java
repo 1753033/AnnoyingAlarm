@@ -2,9 +2,12 @@ package com.example.annoyingalarm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -27,13 +30,45 @@ import java.util.List;
 public class SleepHistoryActivity extends AppCompatActivity {
     private CombinedChart mChart1;
     private CombinedChart mChart2;
+    private ImageButton btnAlarm,btnWeather,btnNews,btnNight,btnMore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_sleep_history);
-
+        btnWeather = findViewById(R.id.btnWeather);
+        btnWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToWeather = new Intent(SleepHistoryActivity.this,WeatherActivity.class);
+                startActivity(switchToWeather);
+            }
+        });
+        btnNews = findViewById(R.id.btnNews);
+        btnNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToNews = new Intent(SleepHistoryActivity.this,NewsActivity.class);
+                startActivity(switchToNews);
+            }
+        });
+        btnAlarm = findViewById(R.id.btnAlarm);
+        btnAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToNight = new Intent(SleepHistoryActivity.this,MainActivity.class);
+                startActivity(switchToNight);
+            }
+        });
+        btnMore = findViewById(R.id.btnMore);
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent switchToMore = new Intent(SleepHistoryActivity.this,MoreActivity.class);
+                startActivity(switchToMore);
+            }
+        });
 //        mChart1 = (CombinedChart) findViewById(R.id.combinedChart1);
 //        mChart1.getDescription().setEnabled(false);
 //        mChart1.setBackgroundColor(Color.WHITE);

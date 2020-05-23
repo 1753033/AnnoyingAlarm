@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="#d1c4e9"
         android:weightSum="3">
         <EditText
             android:id="@+id/search"
@@ -31,21 +32,37 @@
             android:layout_height="wrap_content"
             android:text="Search"
             android:id="@+id/btnSearch"
+            android:background="#d1c4e9"
             android:layout_marginLeft="10dp"/>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="City: "
-        android:textSize="20dp"
-        android:id="@+id/tvCityName"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="3dp"
-        android:layout_gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City: "
+                android:textSize="20dp"
+                android:id="@+id/tvCityName"
+                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:id="@+id/tvDate"
+                android:text="Date"
+                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
     <ImageView
         android:layout_marginTop="1dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_gravity="center"
         android:id="@+id/icon"/>
     <TextView
@@ -122,13 +139,6 @@
                 android:id="@+id/tvWind"/>
         </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:id="@+id/tvDate"
-        android:text="Date"
-        android:layout_gravity="center"/>
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -142,6 +152,7 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:gravity="center"
+        android:background="#fff1ff"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="wrap_content"
