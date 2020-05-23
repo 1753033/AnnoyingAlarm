@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,6 +22,9 @@ public class AccountInfoActivity extends AppCompatActivity {
     Button btnLogout;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    private TextView txtUsername, txtEmail, txtName, txtEmail2;
+    private ImageView tvAvatar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +48,24 @@ public class AccountInfoActivity extends AppCompatActivity {
             }
         });
 
+        // UpdateUI
+        txtEmail = findViewById(R.id.txtEmail);
+        txtEmail2 = findViewById(R.id.txtEmail2);
+        txtName = findViewById(R.id.txtName);
+        txtUsername = findViewById(R.id.txtUsername);
+        tvAvatar = findViewById(R.id.tvAvatar);
+        updateUI();
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    private void updateUI() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        txtUsername.setText(account.getDisplayName());
+        txtName.setText("    Name: " + account.getDisplayName());
+        txtEmail.setText(account.getEmail());
+        txtEmail2.setText("    Email: " + account.getEmail());
+        tvAvatar.setImageURI(account.getPhotoUrl());
     }
 
     private void signOut() {
