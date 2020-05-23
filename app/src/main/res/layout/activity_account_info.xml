@@ -93,7 +93,7 @@
             />
 
         <Button
-            android:id="@+id/btnSetting"
+            android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="26dp"

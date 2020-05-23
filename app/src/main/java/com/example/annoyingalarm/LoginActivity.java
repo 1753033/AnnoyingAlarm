@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar mProgress;
     private int RC_SIGN_IN = 1;
+    // Biến constant được dùng để định danh dữ liệu được truyền giữa các Activity
+    public static final String EXTRA_DATA = "EXTRA_DATA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,16 @@ public class LoginActivity extends AppCompatActivity {
                 signIn();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        // đặt resultCode là Activity.RESULT_CANCELED thể hiện
+        // đã thất bại khi người dùng click vào nút Back.
+        // Khi này sẽ không trả về data.
+        setResult(Activity.RESULT_CANCELED);
+        super.onBackPressed();
     }
 
     private void signIn() {
@@ -120,8 +133,20 @@ public class LoginActivity extends AppCompatActivity {
             Uri personPhoto = account.getPhotoUrl();
 
             Toast.makeText(LoginActivity.this,personName + " " + personEmail ,Toast.LENGTH_SHORT).show();
+            // Tạo một Intent mới để chứa dữ liệu trả về
+            final Intent data = new Intent();
+
+            // Truyền data vào intent
+            data.putExtra(EXTRA_DATA, new String[]{personName, personEmail});
+
+            // Đặt resultCode là Activity.RESULT_OK to
+            // thể hiện đã thành công và có chứa kết quả trả về
+            setResult(Activity.RESULT_OK, data);
+
+            // gọi hàm finish() để đóng Activity hiện tại và trở về MainActivity.
+            finish();
         }
-        signOut();
+
     }
 
     private void signOut() {
