@@ -7,6 +7,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ public class AlarmScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_alarm_screen);
         String name = getIntent().getStringExtra(AlarmManagerHelper.NAME);
         int timeHour = getIntent().getIntExtra(AlarmManagerHelper.TIME_HOUR, 0);

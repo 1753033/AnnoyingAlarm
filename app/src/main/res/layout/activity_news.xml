@@ -22,7 +22,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Today's news"
-                android:textSize="20dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
                 android:layout_margin="2dp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -45,42 +46,88 @@
         android:layout_weight="10"
         android:gravity="center"
         android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/btnAlarm"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_alarm" />
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btnAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/icon_alarm" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Alarm"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnNews"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_news" />
-
-        <ImageButton
-            android:id="@+id/btnNight"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_night" />
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btnNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/icon_news" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="News"/>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnWeather"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_weather" />
-
-
-        <ImageButton
-            android:id="@+id/btnMore"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/icon_more" />
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btnNight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/icon_night" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Sleep"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btnWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/icon_weather" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Weather"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/icon_more" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="More"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

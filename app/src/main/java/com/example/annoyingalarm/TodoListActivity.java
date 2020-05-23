@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -31,6 +32,8 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_todo);
 
         mLayoutInflater = LayoutInflater.from(this);

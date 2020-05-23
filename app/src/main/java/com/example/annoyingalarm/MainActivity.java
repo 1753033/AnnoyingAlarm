@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -15,7 +17,6 @@ import android.widget.ListView;
 public class MainActivity extends AppCompatActivity {
     final int Code_Settings = 123001;
     ImageButton btnAddAlarm,btnWeather,btnNews,btnNight,btnMore;
-    Button btnTA_Test;
     ListView listViewAlarm;
     AlarmListAdapter adapter;
     AlarmDBHelper dbHelper = new AlarmDBHelper(this);
@@ -23,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_main);
+
 
         listViewAlarm = findViewById(R.id.listViewAlarm);
         adapter = new AlarmListAdapter(MainActivity.this,dbHelper.getAlarms());

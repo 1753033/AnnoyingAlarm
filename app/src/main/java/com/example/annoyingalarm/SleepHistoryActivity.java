@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -29,6 +30,8 @@ public class SleepHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_sleep_history);
 
 //        mChart1 = (CombinedChart) findViewById(R.id.combinedChart1);

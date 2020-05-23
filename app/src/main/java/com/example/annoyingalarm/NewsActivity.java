@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -38,6 +39,8 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_news);
 
         tvDateNews = findViewById(R.id.tvDateNews);
@@ -60,6 +63,7 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(NewsActivity.this,NewsDetailActivity.class);
+                intent.putExtra("title",arrayTitle.get(position));
                 intent.putExtra("link",arrayLink.get(position));
                 startActivity(intent);
             }
