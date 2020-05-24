@@ -26,6 +26,7 @@
                 android:layout_weight="90"
                 android:text="Alarm"
                 android:textSize="25dp"
+                android:textColor="@android:color/black"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="5dp"
                 android:textStyle="bold"/>

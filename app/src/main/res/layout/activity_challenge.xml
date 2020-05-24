@@ -15,9 +15,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:gravity="center_horizontal"
             android:text="@string/challenges"
+            android:background="#d1c4e9"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="30sp"

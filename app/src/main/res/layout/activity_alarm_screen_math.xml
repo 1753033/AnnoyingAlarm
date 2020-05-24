@@ -9,30 +9,25 @@
     android:background="#ede7f6"
     tools:context=".AlarmScreenMathActivity">
     <TextView
-        android:id="@+id/alarm_screen_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Alarm!"
-        android:textSize="38dp"/>
-
-    <TextView
         android:id="@+id/alarm_screen_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
         android:text="00 : 00"
-        android:textSize="52dp"
-        android:layout_below="@+id/alarm_screen_title"
-        android:layout_marginTop="28dp"/>
+        android:textSize="60dp" />
 
     <TextView
         android:id="@+id/alarm_screen_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/alarm_screen_dismiss"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:textColor="@android:color/black"
         android:text="Alarm name" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_smile"
+        android:id="@+id/icon_wake"/>
     <LinearLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -44,15 +39,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text=" X + Y ="
-            android:textSize="30dp"
+            android:textSize="40dp"
             android:gravity="center"
+            android:textColor="@android:color/black"
             android:id="@+id/tvFunction"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="30dp"
+            android:textSize="40dp"
             android:gravity="center"
+            android:textColor="@android:color/black"
             android:text=" Z "
             android:id="@+id/tvResult"/>
 

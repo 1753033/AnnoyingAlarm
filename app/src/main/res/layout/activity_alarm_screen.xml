@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:textColor="@android:color/black"
         android:text="Alarm!"
         android:textSize="38dp"/>
 
@@ -20,6 +21,7 @@
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
         android:text="00 : 00"
         android:textSize="52dp"
         android:layout_below="@+id/alarm_screen_title"
@@ -30,8 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
+        android:textColor="@android:color/black"
         android:text="Alarm name" />
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_smile"/>
     <Button
         android:id="@+id/alarm_screen_dismiss"
         android:layout_width="wrap_content"
@@ -40,5 +46,6 @@
         android:text="OFF"
         android:textSize="38dp"
         android:layout_marginBottom="106dp"/>
+
 
 </LinearLayout>

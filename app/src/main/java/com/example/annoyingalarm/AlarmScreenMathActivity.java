@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
     private Ringtone ringtone;
     private Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnCheck,btnClear;
     private TextView tvName,tvTime,tvFunction,tvResult;
+    private ImageView img;
     private String result="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
         final String tone = getIntent().getStringExtra(AlarmManagerHelper.TONE);
         final boolean once = getIntent().getBooleanExtra(AlarmManagerHelper.ONCE,true);
 
+        img = findViewById(R.id.icon_wake);
 
         tvName =  findViewById(R.id.alarm_screen_name);
         tvTime =  findViewById(R.id.alarm_screen_time);
@@ -91,6 +94,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
             public void onClick(View v) {
                 result = "";
                 tvResult.setText(result);
+                img.setImageResource(R.drawable.icon_hmm);
             }
         });
 
@@ -98,14 +102,15 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int resultInt = Integer.valueOf(result);
-                Toast.makeText(AlarmScreenMathActivity.this,result,Toast.LENGTH_SHORT).show();
                 if(checkResult(value,x,y,resultInt)) {
+                    img.setImageResource(R.drawable.icon_happy);
                     ringtone.stop();
                     finish();
                 }
                 else {
                     result = "";
                     tvResult.setText(result);
+                    img.setImageResource(R.drawable.icon_sad);
                 }
             }
         });

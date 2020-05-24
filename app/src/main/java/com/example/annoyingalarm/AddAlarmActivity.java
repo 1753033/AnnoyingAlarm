@@ -131,6 +131,9 @@ public class AddAlarmActivity extends AppCompatActivity {
         alarmDetails.timeMinute = timePicker.getMinute();
         alarmDetails.timeHour = timePicker.getHour();
         alarmDetails.name = tbName.getText().toString();
+        if(alarmDetails.name.isEmpty()){
+            alarmDetails.name = "Alarm";
+        }
         alarmDetails.setRepeatingDays(new boolean[]{rbSun.isChecked(),rbMon.isChecked(), rbTue.isChecked(),rbWed.isChecked(),rbThu.isChecked(),rbFri.isChecked(),rbSat.isChecked()});
         if(rbMon.isChecked() && rbTue.isChecked() && rbWed.isChecked() && rbThu.isChecked() && rbFri.isChecked() && rbSat.isChecked() && rbSun.isChecked()){
             alarmDetails.repeatWeekly = true;

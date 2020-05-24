@@ -2,23 +2,21 @@ package com.example.annoyingalarm;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
 public class AlarmListAdapter extends BaseAdapter {
     private ArrayList<AlarmObject> list;
     private Context context;
-    private String[] day = {"Su ","M ","Tu ","W ","Th ", "F ","Sa"};
+    private String[] day = {"Su ","Mo ","Tu ","We ","Th ", "Fr ","Sa"};
 
     public AlarmListAdapter(Context context, ArrayList<AlarmObject> list) {
         this.list = list;
@@ -62,7 +60,7 @@ public class AlarmListAdapter extends BaseAdapter {
         TextView tvName = row.findViewById(R.id.tvName);
         Switch btnToggle = row.findViewById(R.id.btnToggle);
         TextView tvRepeat = row.findViewById(R.id.tvRepeat);
-        TextView tvType = row.findViewById(R.id.tvType);
+        final ImageView img = row.findViewById(R.id.imgType);
 
         final AlarmObject obj = (AlarmObject) getItem(position);
         tvName.setText(obj.getName());
@@ -70,12 +68,32 @@ public class AlarmListAdapter extends BaseAdapter {
         btnToggle.setChecked(obj.isEnabled);
         tvRepeat.setText("");
         btnToggle.setChecked(obj.isEnabled);
-        tvType.setText(obj.type);
-        for(int i = 0;i<obj.repeatingDays.length;i++){
-            if (obj.repeatingDays[i]){
-                tvRepeat.setText(tvRepeat.getText()+day[i]);
+        if(obj.type.equals("Default")){
+            if (obj.isEnabled){
+                img.setImageResource(R.drawable.icon_notion);
+            }
+            else {
+                img.setImageResource(R.drawable.icon_notioff);
             }
         }
+        else {
+            img.setImageResource(R.drawable.icon_math);
+        }
+        tvRepeat.setText(", ");
+        if(obj.repeatWeekly){
+            tvRepeat.setText(tvRepeat.getText()+"Everyday");
+        }
+        else{
+            for(int i = 0;i<obj.repeatingDays.length;i++){
+                if (obj.repeatingDays[i]){
+                    tvRepeat.setText(tvRepeat.getText()+day[i]);
+                }
+            }
+        }
+        if (tvRepeat.getText().toString().equals(", ")){
+            tvRepeat.setText(", Once");
+        }
+
 
         row.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +105,14 @@ public class AlarmListAdapter extends BaseAdapter {
 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Auto-generated method stub
+                if(obj.type.equals("Default")){
+                    if (obj.isEnabled){
+                        img.setImageResource(R.drawable.icon_notion);
+                    }
+                    else {
+                        img.setImageResource(R.drawable.icon_notioff);
+                    }
+                }
                 ((MainActivity) context).setAlarmEnabled(obj.id, isChecked);
             }
         });
