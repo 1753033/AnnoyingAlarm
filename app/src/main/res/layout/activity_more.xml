@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
+    android:background="@drawable/background"
     tools:context=".MoreActivity">
 
     <RelativeLayout

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,13 +65,18 @@ public class WeatherActivity extends AppCompatActivity {
         tvDate = findViewById(R.id.tvDate);
         iconWeather = findViewById(R.id.icon);
         lvWeather7days = findViewById(R.id.lvWeather7days);
+        final LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) findViewById(R.id.layoutTop).getLayoutParams();
 
         arrayList = new ArrayList<>();
         weatherAdapter = new WeatherAdapter(WeatherActivity.this,arrayList);
         lvWeather7days.setAdapter(weatherAdapter);
 
+        layoutParams.setMargins(0,0,0,200);
+        lvWeather7days.setVisibility(View.GONE);;
+
         getCurrentWeatherData("Saigon");
         Get7DaysData("Saigon");
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +87,9 @@ public class WeatherActivity extends AppCompatActivity {
                 else {
                     City = city;
                 }
+                arrayList = new ArrayList<>();
+                lvWeather7days.setVisibility(View.VISIBLE);
+                layoutParams.setMargins(0,0,0,0);
                 getCurrentWeatherData(City);
                 Get7DaysData(City);
             }

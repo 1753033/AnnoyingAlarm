@@ -154,7 +154,6 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
                 break;
         }
         function += String.valueOf(y);
-        function += " = ";
 
         return function;
     }

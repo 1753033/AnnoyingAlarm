@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="@string/sleep_history"
-        android:background="#d1c4e9"
+        android:background="#ede7f6"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="30sp"
