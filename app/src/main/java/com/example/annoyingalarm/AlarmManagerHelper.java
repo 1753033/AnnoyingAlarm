@@ -15,6 +15,7 @@ public class AlarmManagerHelper extends BroadcastReceiver {
     public static final String TIME_HOUR = "timeHour";
     public static final String TIME_MINUTE = "timeMinute";
     public static final String TYPE = "alarmType";
+    public static final String VOL = "vol";
     public static final String TONE = "alarmTone";
     public static final String ONCE = "once";
     @Override
@@ -106,6 +107,7 @@ public class AlarmManagerHelper extends BroadcastReceiver {
         intent.putExtra(TIME_MINUTE, model.timeMinute);
         intent.putExtra(TONE, model.alarmTone.toString());
         intent.putExtra(TYPE, model.type);
+        intent.putExtra(VOL,model.volume);
 
         if(       !model.getRepeatingDay(model.SUNDAY)  &&!model.getRepeatingDay(model.MONDAY)
                 &&!model.getRepeatingDay(model.TUESDAY) &&!model.getRepeatingDay(model.WEDNESDAY)

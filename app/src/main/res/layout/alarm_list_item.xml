@@ -57,12 +57,15 @@
                     android:layout_weight="1"
                     android:id="@+id/btnToggle"
                     android:gravity="left"
-                    android:layout_gravity="center"/>
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center|right"/>
                 <ImageView
                     android:id="@+id/imgType"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center|right"
                     android:src="@drawable/icon_notioff"/>
         </LinearLayout>
 

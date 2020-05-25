@@ -29,13 +29,14 @@
                 android:textSize="25dp"
                 android:textColor="@android:color/black"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="5dp"
+                android:paddingLeft="5dp"
                 android:textStyle="bold"/>
             <ImageButton
                 android:id="@+id/btnAddAlarm"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_weight="10"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/icon_add"
                 android:layout_gravity="center"/>
         </LinearLayout>

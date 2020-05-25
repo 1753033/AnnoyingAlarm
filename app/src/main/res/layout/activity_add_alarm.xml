@@ -54,57 +54,39 @@
             android:id="@+id/tbName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:textSize="20dp"
-            android:hint="Label" />
-        <TextView
-            android:layout_width="wrap_content"
+            android:hint="Alarm" />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:layout_marginVertical="5dp"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:text="Repeat"
             android:textSize="20dp"
             android:layout_gravity="start"
             android:layout_marginStart="5dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Su"
-                android:id="@+id/rbSunday"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="M"
-                android:id="@+id/rbMonday"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tu"
-                android:id="@+id/rbTuesday"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="W"
-                android:id="@+id/rbWednesday"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Th"
-                android:id="@+id/rbThursday"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="F"
-                android:id="@+id/rbFriday"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sa"
-                android:id="@+id/rbSaturday"/>
-
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="Once"
+                android:textSize="20dp"
+                android:textColor="@color/Background_Dark"
+                android:id="@+id/tvRepeat"/>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_repeat"
+            android:paddingLeft="50dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/btnRepeat"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,14 +97,31 @@
                 android:layout_height="wrap_content"
                 android:text="Mission"
                 android:layout_marginStart="5dp"
+                android:layout_marginEnd="22dp"
                 android:textSize="20dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volume"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="20dp"
+                android:textSize="20dp"/>
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/seekBar"/>
+        </LinearLayout>
+
     </LinearLayout>
-
-
 
 </LinearLayout>

@@ -30,15 +30,15 @@
         android:id="@+id/icon_wake"/>
 
     <LinearLayout
-        android:layout_width="230dp"
-        android:layout_height="340dp"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
         android:weightSum="6"
         android:background="@drawable/cal"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="100dp"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_gravity="center"
@@ -51,6 +51,7 @@
                 android:text=" X + Y"
                 android:textSize="25dp"
                 android:gravity="center|left"
+                android:layout_marginLeft="5dp"
                 android:textColor="@android:color/background_light"
                 android:id="@+id/tvFunction"/>
             <TextView
@@ -59,6 +60,7 @@
                 android:layout_weight="2"
                 android:textSize="40dp"
                 android:gravity="center|right"
+                android:layout_marginRight="5dp"
                 android:textColor="@android:color/background_light"
                 android:text=" Z "
                 android:id="@+id/tvResult"/>
@@ -74,7 +76,7 @@
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="7"
                 android:textSize="0dp"
                 android:layout_weight="1"
@@ -83,7 +85,7 @@
                 />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="8"
                 android:layout_weight="1"
                 android:textSize="0dp"
@@ -92,7 +94,7 @@
                 />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="9"
                 android:layout_weight="1"
                 android:textSize="0dp"
@@ -109,7 +111,7 @@
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="4"
                 android:textSize="0dp"
                 android:layout_weight="1"
@@ -118,7 +120,7 @@
                 />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="5"
                 android:textSize="0dp"
                 android:layout_weight="1"
@@ -127,7 +129,7 @@
                 />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="6"
                 android:textSize="0dp"
                 android:layout_weight="1"
@@ -144,7 +146,7 @@
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="1"
                 android:textSize="0dp"
                 android:layout_weight="1"
@@ -153,7 +155,7 @@
                 />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="2"
                 android:textSize="0dp"
                 android:layout_weight="1"
@@ -162,7 +164,7 @@
                 />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="3"
                 android:textSize="0dp"
                 android:layout_weight="1"
@@ -179,7 +181,7 @@
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:text="0"
                 android:textSize="0dp"
                 android:layout_weight="2"
@@ -188,7 +190,7 @@
                 />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:layout_weight="1"
                 android:textSize="0dp"
                 android:text="="

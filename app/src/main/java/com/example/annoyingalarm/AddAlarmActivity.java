@@ -1,11 +1,18 @@
 package com.example.annoyingalarm;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -13,23 +20,30 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class AddAlarmActivity extends AppCompatActivity {
+public class AddAlarmActivity extends AppCompatActivity{
 
     private AlarmObject alarmDetails;
     AlarmDBHelper dbHelper = new AlarmDBHelper(this);
     private TimePicker timePicker;
     private EditText tbName;
+    private TextView tvRepeat;
     private Button btnDone,btnCancel;
-    private RadioButton rbMon,rbTue,rbWed,rbThu,rbFri,rbSat,rbSun;
     private Spinner spinner;
+    private LayoutInflater layoutInflater;
+    private ImageButton btnRepeat;
+    private SeekBar seekBarVol;
+    private AudioManager audioManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,17 +51,30 @@ public class AddAlarmActivity extends AppCompatActivity {
         getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_add_alarm);
 
+        layoutInflater = LayoutInflater.from(this);
+        btnRepeat = findViewById(R.id.btnRepeat);
+        btnRepeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = layoutInflater.inflate(R.layout.repeat_days, null);
+
+                AlertDialog.Builder mBuilder = createAlertDialog(view);
+                mBuilder.show();
+            }
+        });
+
+        audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+        seekBarVol = findViewById(R.id.seekBar);
+        seekBarVol.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM));
+        seekBarVol.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ALARM));
+
+
+        tvRepeat = findViewById(R.id.tvRepeat);
         timePicker = findViewById(R.id.timePicker);
         tbName = findViewById(R.id.tbName);
         btnCancel = findViewById(R.id.btnCancel);
         btnDone = findViewById(R.id.btnDone);
-        rbSun = findViewById(R.id.rbSunday);
-        rbMon = findViewById(R.id.rbMonday);
-        rbTue = findViewById(R.id.rbTuesday);
-        rbWed = findViewById(R.id.rbWednesday);
-        rbThu = findViewById(R.id.rbThursday);
-        rbFri = findViewById(R.id.rbFriday);
-        rbSat = findViewById(R.id.rbSaturday);
+
         spinner = findViewById(R.id.spinner);
 
         timePicker.setIs24HourView(true);
@@ -69,13 +96,8 @@ public class AddAlarmActivity extends AppCompatActivity {
             timePicker.setHour(alarmDetails.getTimeHour());
             timePicker.setMinute(alarmDetails.getTimeMinute());
             tbName.setText(alarmDetails.getName());
-            rbSun.setChecked(alarmDetails.getRepeatingDay(alarmDetails.SUNDAY));
-            rbMon.setChecked(alarmDetails.getRepeatingDay(alarmDetails.MONDAY));
-            rbTue.setChecked(alarmDetails.getRepeatingDay(alarmDetails.TUESDAY));
-            rbWed.setChecked(alarmDetails.getRepeatingDay(alarmDetails.WEDNESDAY));
-            rbThu.setChecked(alarmDetails.getRepeatingDay(alarmDetails.THURSDAY));
-            rbFri.setChecked(alarmDetails.getRepeatingDay(alarmDetails.FRIDAY));
-            rbSat.setChecked(alarmDetails.getRepeatingDay(alarmDetails.SATURDAY));
+            seekBarVol.setProgress(alarmDetails.volume);
+
             if(alarmDetails.type.equals("Default")){
                 spinner.setSelection(0);
             }
@@ -84,25 +106,6 @@ public class AddAlarmActivity extends AppCompatActivity {
             }
         }
 
-        View.OnTouchListener radioButtonTouch = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (((RadioButton) v).isChecked()) {
-                    // If the button was already checked, uncheck them all
-                    ((RadioButton) v).setChecked(false);
-                    // Prevent the system from re-checking it
-                    return true;
-                }
-                return false;
-            }
-        };
-        rbSun.setOnTouchListener(radioButtonTouch);
-        rbMon.setOnTouchListener(radioButtonTouch);
-        rbTue.setOnTouchListener(radioButtonTouch);
-        rbWed.setOnTouchListener(radioButtonTouch);
-        rbThu.setOnTouchListener(radioButtonTouch);
-        rbFri.setOnTouchListener(radioButtonTouch);
-        rbSat.setOnTouchListener(radioButtonTouch);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +130,83 @@ public class AddAlarmActivity extends AppCompatActivity {
             }
         });
     }
+
+    private AlertDialog.Builder createAlertDialog(final View view) {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        final RadioButton rbMon,rbTue,rbWed,rbThu,rbFri,rbSat,rbSun;
+        rbSun = view.findViewById(R.id.rbSunday);
+        rbMon = view.findViewById(R.id.rbMonday);
+        rbTue = view.findViewById(R.id.rbTuesday);
+        rbWed = view.findViewById(R.id.rbWednesday);
+        rbThu = view.findViewById(R.id.rbThursday);
+        rbFri = view.findViewById(R.id.rbFriday);
+        rbSat = view.findViewById(R.id.rbSaturday);
+
+        View.OnTouchListener radioButtonTouch = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (((RadioButton) v).isChecked()) {
+                    // If the button was already checked, uncheck them all
+                    ((RadioButton) v).setChecked(false);
+                    // Prevent the system from re-checking it
+                    return true;
+                }
+                return false;
+            }
+        };
+        rbSun.setOnTouchListener(radioButtonTouch);
+        rbMon.setOnTouchListener(radioButtonTouch);
+        rbTue.setOnTouchListener(radioButtonTouch);
+        rbWed.setOnTouchListener(radioButtonTouch);
+        rbThu.setOnTouchListener(radioButtonTouch);
+        rbFri.setOnTouchListener(radioButtonTouch);
+        rbSat.setOnTouchListener(radioButtonTouch);
+
+        rbSun.setChecked(alarmDetails.getRepeatingDay(alarmDetails.SUNDAY));
+        rbMon.setChecked(alarmDetails.getRepeatingDay(alarmDetails.MONDAY));
+        rbTue.setChecked(alarmDetails.getRepeatingDay(alarmDetails.TUESDAY));
+        rbWed.setChecked(alarmDetails.getRepeatingDay(alarmDetails.WEDNESDAY));
+        rbThu.setChecked(alarmDetails.getRepeatingDay(alarmDetails.THURSDAY));
+        rbFri.setChecked(alarmDetails.getRepeatingDay(alarmDetails.FRIDAY));
+        rbSat.setChecked(alarmDetails.getRepeatingDay(alarmDetails.SATURDAY));
+
+        mBuilder.setView(view);
+
+        mBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alarmDetails.setRepeatingDays(new boolean[]{rbSun.isChecked(),rbMon.isChecked(), rbTue.isChecked(),rbWed.isChecked(),rbThu.isChecked(),rbFri.isChecked(),rbSat.isChecked()});
+                if(rbMon.isChecked() && rbTue.isChecked() && rbWed.isChecked() && rbThu.isChecked() && rbFri.isChecked() && rbSat.isChecked() && rbSun.isChecked()){
+                    alarmDetails.repeatWeekly = true;
+                }
+                else{
+                    alarmDetails.repeatWeekly = false;
+                }
+
+                tvRepeat.setText("");
+                String[] day = {"Su ","Mo ","Tu ","We ","Th ", "Fr ","Sa"};
+                if(alarmDetails.repeatWeekly){
+                    tvRepeat.setText(tvRepeat.getText()+"Everyday");
+                }
+                else{
+                    for(int i = 0;i<alarmDetails.repeatingDays.length;i++){
+                        if (alarmDetails.repeatingDays[i]){
+                            tvRepeat.setText(tvRepeat.getText()+day[i]);
+                        }
+                    }
+                }
+            }
+        });
+        mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        mBuilder.setCancelable(false);
+        return mBuilder;
+    }
+
     private void updateModelFromLayout() {
         alarmDetails.timeMinute = timePicker.getMinute();
         alarmDetails.timeHour = timePicker.getHour();
@@ -134,15 +214,10 @@ public class AddAlarmActivity extends AppCompatActivity {
         if(alarmDetails.name.isEmpty()){
             alarmDetails.name = "Alarm";
         }
-        alarmDetails.setRepeatingDays(new boolean[]{rbSun.isChecked(),rbMon.isChecked(), rbTue.isChecked(),rbWed.isChecked(),rbThu.isChecked(),rbFri.isChecked(),rbSat.isChecked()});
-        if(rbMon.isChecked() && rbTue.isChecked() && rbWed.isChecked() && rbThu.isChecked() && rbFri.isChecked() && rbSat.isChecked() && rbSun.isChecked()){
-            alarmDetails.repeatWeekly = true;
-        }
-        else{
-            alarmDetails.repeatWeekly = false;
-        }
         alarmDetails.alarmTone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         alarmDetails.type = spinner.getSelectedItem().toString();
+        alarmDetails.volume = seekBarVol.getProgress();
         alarmDetails.isEnabled = true;
     }
+
 }

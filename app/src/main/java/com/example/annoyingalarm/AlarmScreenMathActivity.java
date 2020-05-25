@@ -17,10 +17,12 @@ import java.util.Random;
 
 public class AlarmScreenMathActivity extends AppCompatActivity {
     private Ringtone ringtone;
-    private Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnCheck,btnClear;
+    private Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnCheck;
     private TextView tvName,tvTime,tvFunction,tvResult;
     private ImageView img;
     private String result="";
+    private int check = 0,x=0,y=0,value=0;
+    private Random generator = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,39 +80,43 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
         btn8.setOnClickListener(btnClick);
         btn9.setOnClickListener(btnClick);
 
-        Random generator = new Random();
-
-        final int y = generator.nextInt(10)+1;
-        final int x = generator.nextInt(10)+y;
-        final int value = generator.nextInt(2);
-
+        generator = new Random();
+        y = generator.nextInt(10)+1;
+        x = generator.nextInt(10)+y;
+        value = generator.nextInt(2);
         tvFunction.setText(stringFunction(value,x,y));
 
-        btnClear = findViewById(R.id.btnClear);
         btnCheck = findViewById(R.id.btnCheck);
-
-        btnClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                result = "";
-                tvResult.setText(result);
-                img.setImageResource(R.drawable.icon_hmm);
-            }
-        });
-
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int resultInt = Integer.valueOf(result);
                 if(checkResult(value,x,y,resultInt)) {
-                    img.setImageResource(R.drawable.icon_happy);
-                    ringtone.stop();
-                    finish();
+                    check++;
+                    if(check==2) {
+                        img.setImageResource(R.drawable.icon_smile);
+                    }
+                    else if(check==3){
+                        img.setImageResource(R.drawable.icon_happy);
+                    }
+
+                    if(check==3) {
+                        ringtone.stop();
+                        finish();
+                    }
+                    else {
+                        generator = new Random();
+                        y = generator.nextInt(10)+1;
+                        x = generator.nextInt(10)+y;
+                        value = generator.nextInt(2);
+                        tvFunction.setText(stringFunction(value,x,y));
+                        result = "";
+                        tvResult.setText(result);
+                    }
                 }
                 else {
                     result = "";
                     tvResult.setText(result);
-                    img.setImageResource(R.drawable.icon_sad);
                 }
             }
         });
@@ -121,7 +127,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
                 if (toneUri != null) {
                     ringtone = RingtoneManager.getRingtone(this,toneUri);
                     ringtone.play();
-                    Toast.makeText(this,"Ring",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Wake UP!!!",Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (Exception e) {

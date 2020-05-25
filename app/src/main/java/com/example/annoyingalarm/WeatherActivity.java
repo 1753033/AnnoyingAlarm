@@ -195,7 +195,7 @@ public class WeatherActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
 
                     JSONArray jsonArrayList = jsonObject.getJSONArray("list");
-                    for (int i =0;i<jsonArrayList.length();i++){
+                    for (int i =1;i<jsonArrayList.length();i++){
                         JSONObject jsonObjectList = jsonArrayList.getJSONObject(i);
                         String date = jsonObjectList.getString("dt");
                         long trans = Long.valueOf(date);

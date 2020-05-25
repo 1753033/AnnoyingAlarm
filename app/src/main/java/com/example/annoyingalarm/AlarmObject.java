@@ -21,6 +21,7 @@ public class AlarmObject {
     Uri alarmTone = null;
     String name = "";
     String type = "";
+    int volume = 100;
     boolean isEnabled = true;
 
     public AlarmObject() {
@@ -29,7 +30,7 @@ public class AlarmObject {
 
     public AlarmObject(long id, int timeHour, int timeMinute,
                        boolean[] repeatingDays, boolean repeatWeekly, Uri alarmTone,
-                       String name,String type,  boolean isEnabled) {
+                       String name,String type,int volume,  boolean isEnabled) {
         this.id = id;
         this.timeHour = timeHour;
         this.timeMinute = timeMinute;
@@ -38,6 +39,7 @@ public class AlarmObject {
         this.alarmTone = alarmTone;
         this.name = name;
         this.type = type;
+        this.volume = volume;
         this.isEnabled = isEnabled;
     }
 

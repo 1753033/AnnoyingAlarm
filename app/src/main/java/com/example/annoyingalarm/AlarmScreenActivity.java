@@ -2,6 +2,7 @@ package com.example.annoyingalarm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 public class AlarmScreenActivity extends AppCompatActivity {
     private Ringtone ringtone;
+    private AudioManager audioManager = (AudioManager) getApplication().getSystemService(AUDIO_SERVICE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra(AlarmManagerHelper.NAME);
         int timeHour = getIntent().getIntExtra(AlarmManagerHelper.TIME_HOUR, 0);
         int timeMinute = getIntent().getIntExtra(AlarmManagerHelper.TIME_MINUTE, 0);
+        int volumn = getIntent().getIntExtra(AlarmManagerHelper.VOL, 100);
         String tone = getIntent().getStringExtra(AlarmManagerHelper.TONE);
 
         TextView tvName =  findViewById(R.id.tvName);
@@ -45,6 +48,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
             if (tone != null && !tone.equals("")) {
                 Uri toneUri = Uri.parse(tone);
                 if (toneUri != null) {
+                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volumn,AudioManager.FLAG_PLAY_SOUND);
                     ringtone = RingtoneManager.getRingtone(this,toneUri);
                     ringtone.play();
                     Toast.makeText(this,"WAKE UPPP",Toast.LENGTH_SHORT).show();
