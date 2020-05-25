@@ -2,6 +2,7 @@ package com.example.annoyingalarm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -23,6 +24,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
     private String result="";
     private int check = 0,x=0,y=0,value=0;
     private Random generator = null;
+    private AudioManager audioManager ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,9 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
         int timeMinute = getIntent().getIntExtra(AlarmManagerHelper.TIME_MINUTE, 0);
         final String tone = getIntent().getStringExtra(AlarmManagerHelper.TONE);
         final boolean once = getIntent().getBooleanExtra(AlarmManagerHelper.ONCE,true);
+        int volumn = getIntent().getIntExtra(AlarmManagerHelper.VOL, 7);
+
+        audioManager = (AudioManager) getApplication().getSystemService(AUDIO_SERVICE);
 
         img = findViewById(R.id.icon_wake);
 
@@ -125,6 +130,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
             if (tone != null && !tone.equals("")) {
                 Uri toneUri = Uri.parse(tone);
                 if (toneUri != null) {
+                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volumn,AudioManager.FLAG_PLAY_SOUND);
                     ringtone = RingtoneManager.getRingtone(this,toneUri);
                     ringtone.play();
                     Toast.makeText(this,"Wake UP!!!",Toast.LENGTH_SHORT).show();

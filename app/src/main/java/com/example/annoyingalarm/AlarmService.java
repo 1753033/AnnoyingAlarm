@@ -21,6 +21,9 @@ public class AlarmService extends Service {
         if(type.equals("Math")) {
             alarmIntent = new Intent(getBaseContext(), AlarmScreenMathActivity.class);
         }
+        else if (type.equals("Shake")){
+            alarmIntent = new Intent(getBaseContext(),AlarmScreenShakeActivity.class);
+        }
         else {
             alarmIntent = new Intent(getBaseContext(), AlarmScreenActivity.class);
         }

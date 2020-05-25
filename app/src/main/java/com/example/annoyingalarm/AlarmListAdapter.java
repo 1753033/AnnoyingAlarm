@@ -76,8 +76,11 @@ public class AlarmListAdapter extends BaseAdapter {
                 img.setImageResource(R.drawable.icon_notioff);
             }
         }
-        else {
+        else if (obj.type.equals("Math")) {
             img.setImageResource(R.drawable.icon_math);
+        }
+        else {
+            img.setImageResource(R.drawable.icon_shake);
         }
         tvRepeat.setText(", ");
         if(obj.repeatWeekly){

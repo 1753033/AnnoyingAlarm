@@ -81,6 +81,7 @@ public class AddAlarmActivity extends AppCompatActivity{
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Default");
         arrayList.add("Math");
+        arrayList.add("Shake");
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -101,8 +102,11 @@ public class AddAlarmActivity extends AppCompatActivity{
             if(alarmDetails.type.equals("Default")){
                 spinner.setSelection(0);
             }
-            else {
+            else if (alarmDetails.type.equals("Math")) {
                 spinner.setSelection(1);
+            }
+            else {
+                spinner.setSelection(2);
             }
         }
 
