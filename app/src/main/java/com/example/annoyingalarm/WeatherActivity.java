@@ -87,7 +87,7 @@ public class WeatherActivity extends AppCompatActivity {
                 else {
                     City = city;
                 }
-                arrayList = new ArrayList<>();
+
                 lvWeather7days.setVisibility(View.VISIBLE);
                 layoutParams.setMargins(0,0,0,0);
                 getCurrentWeatherData(City);
@@ -186,6 +186,9 @@ public class WeatherActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
     private void Get7DaysData(String data) {
+        if(!arrayList.isEmpty()){
+            arrayList.clear();
+        }
         String URL = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+data+"&units=metric&cnt=7&appid="+APIKey;
         RequestQueue requestQueue = Volley.newRequestQueue(WeatherActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
