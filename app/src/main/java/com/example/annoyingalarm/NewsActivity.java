@@ -89,7 +89,7 @@ public class NewsActivity extends AppCompatActivity {
         btnNight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNight = new Intent(NewsActivity.this,SleepHistoryActivity.class);
+                Intent switchToNight = new Intent(NewsActivity.this,RelaxActivity.class);
                 startActivity(switchToNight);
             }
         });

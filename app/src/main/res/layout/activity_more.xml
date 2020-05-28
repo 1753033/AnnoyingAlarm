@@ -76,6 +76,16 @@
                 android:text="@string/nofitication" />
 
             <Button
+                android:id="@+id/btnSleepHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_marginRight="26dp"
+                android:background="@color/Background_Light"
+                android:drawableStart="@drawable/icon_sleeping"
+                android:text="Sleep History" />
+
+            <Button
                 android:id="@+id/btnTodoList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -196,6 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/Background_Dark"
                 android:text="More"/>
         </LinearLayout>
     </LinearLayout>

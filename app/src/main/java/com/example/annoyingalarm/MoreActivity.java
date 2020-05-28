@@ -22,7 +22,7 @@ public class MoreActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_LOGIN = 0x9345;
     private ImageButton btnWeather,btnNews,btnNight,btnAlarm;
     private Button btnSetting, btnTodo;
-    private Button btnAccountInfo, btnNotification;
+    private Button btnAccountInfo, btnNotification,btnSleepHistory;
     private TextView txtName, txtEmail;
     private int FLAG_LOGIN = 0;
 
@@ -54,6 +54,15 @@ public class MoreActivity extends AppCompatActivity {
                     final Intent openAcountInfo = new Intent(MoreActivity.this, AccountInfoActivity.class);
                     startActivity(openAcountInfo);
                 }
+            }
+        });
+
+        btnSleepHistory = findViewById(R.id.btnSleepHistory);
+        btnSleepHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openSleepHistory = new Intent(MoreActivity.this,SleepHistoryActivity.class);
+                startActivity(openSleepHistory);
             }
         });
 
@@ -89,7 +98,7 @@ public class MoreActivity extends AppCompatActivity {
         btnNight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNight = new Intent(MoreActivity.this,SleepHistoryActivity.class);
+                Intent switchToNight = new Intent(MoreActivity.this,RelaxActivity.class);
                 startActivity(switchToNight);
             }
         });

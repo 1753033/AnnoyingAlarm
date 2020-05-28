@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "239319496320-rkgftksvsc0t0abqkvfsoacdlkql42t8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.annoyingalarm",
+            "certificate_hash": "e35bc23760691ce112e91061fc8b89921e5d0315"
+          }
+        },
+        {
           "client_id": "239319496320-qg9dathqvu8nlvnmg3db7a4ibr8hiij0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

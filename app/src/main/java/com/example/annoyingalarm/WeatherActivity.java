@@ -115,7 +115,7 @@ public class WeatherActivity extends AppCompatActivity {
         btnNight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNight = new Intent(WeatherActivity.this,SleepHistoryActivity.class);
+                Intent switchToNight = new Intent(WeatherActivity.this,RelaxActivity.class);
                 startActivity(switchToNight);
             }
         });

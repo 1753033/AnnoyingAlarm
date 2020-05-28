@@ -44,6 +44,7 @@ public class AddAlarmActivity extends AppCompatActivity{
     private ImageButton btnRepeat;
     private SeekBar seekBarVol;
     private AudioManager audioManager;
+    private String[] day = {"Su ","Mo ","Tu ","We ","Th ", "Fr ","Sa"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +108,25 @@ public class AddAlarmActivity extends AppCompatActivity{
             }
             else {
                 spinner.setSelection(2);
+            }
+
+            tvRepeat.setText("");
+
+            if(alarmDetails.repeatWeekly) {
+                tvRepeat.setText("Everyday");
+            }
+            else if(!alarmDetails.repeatingDays[0] && !alarmDetails.repeatingDays[1]&&
+                    !alarmDetails.repeatingDays[2] && !alarmDetails.repeatingDays[3]&&
+                    !alarmDetails.repeatingDays[4] && !alarmDetails.repeatingDays[5]&&
+                    !alarmDetails.repeatingDays[6]){
+                tvRepeat.setText("Once");
+            }
+            else{
+                for(int i = 0;i<alarmDetails.repeatingDays.length;i++){
+                    if (alarmDetails.repeatingDays[i]){
+                        tvRepeat.setText(tvRepeat.getText()+day[i]);
+                    }
+                }
             }
         }
 
@@ -188,7 +208,7 @@ public class AddAlarmActivity extends AppCompatActivity{
                 }
 
                 tvRepeat.setText("");
-                String[] day = {"Su ","Mo ","Tu ","We ","Th ", "Fr ","Sa"};
+
                 if(alarmDetails.repeatWeekly){
                     tvRepeat.setText(tvRepeat.getText()+"Everyday");
                 }
