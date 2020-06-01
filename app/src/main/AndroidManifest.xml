@@ -18,7 +18,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".RelaxActivity"></activity>
         <activity android:name=".AlarmScreenShakeActivity" />
-        <activity android:name=".WorldClockActivity" />
         <activity android:name=".AlarmScreenMathActivity" />
         <activity android:name=".AlarmScreenActivity" />
         <activity

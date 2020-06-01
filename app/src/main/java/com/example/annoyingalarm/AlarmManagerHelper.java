@@ -25,7 +25,7 @@ public class AlarmManagerHelper extends BroadcastReceiver {
     public static void setAlarms(Context context) {
         cancelAlarms(context);
 
-        AlarmDBHelper dbHelper = new AlarmDBHelper(context);
+        DBHelper dbHelper = new DBHelper(context);
 
         ArrayList<AlarmObject> alarms = dbHelper.getAlarms();
 
@@ -83,7 +83,7 @@ public class AlarmManagerHelper extends BroadcastReceiver {
     }
 
     public static void cancelAlarms(Context context) {
-        AlarmDBHelper dbHelper = new AlarmDBHelper(context);
+        DBHelper dbHelper = new DBHelper(context);
 
         ArrayList<AlarmObject> alarms = dbHelper.getAlarms();
 

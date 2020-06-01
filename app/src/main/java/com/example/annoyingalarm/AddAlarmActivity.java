@@ -2,15 +2,12 @@ package com.example.annoyingalarm;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.media.AudioManager;
-import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -26,7 +23,6 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,7 +30,7 @@ import java.util.ArrayList;
 public class AddAlarmActivity extends AppCompatActivity{
 
     private AlarmObject alarmDetails;
-    AlarmDBHelper dbHelper = new AlarmDBHelper(this);
+    DBHelper dbHelper = new DBHelper(this);
     private TimePicker timePicker;
     private EditText tbName;
     private TextView tvRepeat;
@@ -238,7 +234,8 @@ public class AddAlarmActivity extends AppCompatActivity{
         if(alarmDetails.name.isEmpty()){
             alarmDetails.name = "Alarm";
         }
-        alarmDetails.alarmTone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        //alarmDetails.alarmTone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        alarmDetails.alarmTone= Uri.parse("android.resource://com.example.annoyingalarm/" + R.raw.iphone_alarm_morning);
         alarmDetails.type = spinner.getSelectedItem().toString();
         alarmDetails.volume = seekBarVol.getProgress();
         alarmDetails.isEnabled = true;
