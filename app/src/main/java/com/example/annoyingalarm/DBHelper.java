@@ -8,10 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 import com.example.annoyingalarm.AlarmContract.Alarm;
+import com.example.annoyingalarm.AccountContract.Account;
+import com.example.annoyingalarm.SleepContract.Sleep;
+import com.example.annoyingalarm.ChallengeContract.Challenge;
 
 import java.util.ArrayList;
 
-public class AlarmDBHelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "annoyingalarm.db";
 
@@ -27,10 +30,19 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
             Alarm.COLUMN_NAME_ALARM_VOL + " INTEGER," +
             Alarm.COLUMN_NAME_ALARM_ENABLED + " BOOLEAN" + " );";
 
-    private static final String SQL_DELETE_ALARM =
-            "DROP TABLE IF EXISTS " + Alarm.TABLE_NAME;
+    private static final String SQL_CREATE_ACCOUNT = "CREATE TABLE " + Account.TABLE_NAME + " (" +
+            Account._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            Account.COLUMN_NAME_ACCOUNT_NAME + " TEXT," +
+            Account.COLUMN_NAME_ACCOUNT_EMAIL + " TEXT," +
+            Account.COLUMN_NAME_ACCOUNT_SYNCDATA + " BOOLEAN," +
+            Account.COLUMN_NAME_ACCOUNT_SYNCGOOGLE + " BOOLEAN" + " );";
 
-    public AlarmDBHelper(Context context) {
+    private static final String SQL_DELETE_ALARM = "DROP TABLE IF EXISTS " + Alarm.TABLE_NAME;
+    private static final String SQL_DELETE_ACCOUNT = "DROP TABLE IF EXISTS " + Account.TABLE_NAME;
+    //private static final String SQL_DELETE_SLEEP = "DROP TABLE IF EXISTS " + Sleep.TABLE_NAME;
+    //private static final String SQL_DELETE_CHALLENGE = "DROP TABLE IF EXISTS " + Challenge.TABLE_NAME;
+
+    public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         // TODO Auto-generated constructor stub
     }
@@ -39,12 +51,14 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(SQL_CREATE_ALARM);
+        db.execSQL(SQL_CREATE_ACCOUNT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
         db.execSQL(SQL_DELETE_ALARM);
+        db.execSQL(SQL_DELETE_ACCOUNT);
         onCreate(db);
     }
 
