@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.annoyingalarm.todo.DB;
 import com.example.annoyingalarm.todo.Task;
 import com.example.annoyingalarm.todo.adapter.TodoAdapter;
 
@@ -29,17 +30,17 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
 
     LayoutInflater mLayoutInflater;
 
+    DB Helper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        //getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_todo);
 
         mLayoutInflater = LayoutInflater.from(this);
-
+        Helper = new DB(this);
         listView = (ListView) findViewById(R.id.listView);
-        taskArrayList = new ArrayList<Task>();
+        taskArrayList = Helper.getAllTasks();
         taskArrayAdapter = new TodoAdapter(this, taskArrayList);
 
         listView.setAdapter(taskArrayAdapter);
@@ -71,6 +72,13 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
         return super.onOptionsItemSelected(item);
     }
 
+    private void refreshListView() {
+        taskArrayList = Helper.getAllTasks();
+
+        taskArrayAdapter.setTaskList(taskArrayList);
+        taskArrayAdapter.notifyDataSetChanged();
+    }
+
     private AlertDialog.Builder createAlertDialog(final View view) {
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
@@ -79,7 +87,7 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
         mBuilder.setPositiveButton("SAVE", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Get the inputs from this and insert it into the DB
+
                 EditText titleTxt = (EditText) view.findViewById(R.id.txtTitle);
                 String title = titleTxt.getText().toString().trim();
                 EditText descTxt = (EditText) view.findViewById(R.id.txtDescription);
@@ -94,33 +102,86 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
                     return;
                 }
 
-                Task addedTask = new Task(1, title,description,targetDate);
+                Helper.insertTask(title, description, targetDate, 0);
 
-                taskArrayList.add(addedTask);
-                taskArrayAdapter.notifyDataSetChanged();
-
-                Toast.makeText(TodoListActivity.this, "Title : " + title + "\nDescription : " + description + "\nTargetDate : " + targetDate, Toast.LENGTH_LONG).show();
+                TodoListActivity.this.refreshListView();
             }
         });
-        mBuilder.setNegativeButton("LOAD", new DialogInterface.OnClickListener(){
+        mBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(TaskActivity.this, "Cancel button clicked", Toast.LENGTH_LONG).show();
             }
         });
-        mBuilder.setCancelable(false);
+        mBuilder.setCancelable(true);
+        return mBuilder;
+    }
+
+    private AlertDialog.Builder editTaskDialog(final View view, final Task curTask) {
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+
+        mBuilder.setView(view);
+        mBuilder.setNeutralButton("DELETE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Helper.deleteTask(curTask.getId());
+
+                TodoListActivity.this.refreshListView();
+            }
+        });
+        mBuilder.setPositiveButton("SAVE", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                EditText titleTxt = (EditText) view.findViewById(R.id.txtTitle);
+                String title = titleTxt.getText().toString().trim();
+                EditText descTxt = (EditText) view.findViewById(R.id.txtDescription);
+                String description = descTxt.getText().toString();
+                DatePicker datePicker = (DatePicker) view.findViewById(R.id.datePicker);
+                String targetDate = String.format("%02d", datePicker.getDayOfMonth()) +"/" +
+                        String.format("%02d", Integer.valueOf(datePicker.getMonth()+1)) + "/" + datePicker.getYear();
+
+                if (title.isEmpty())
+                {
+                    Toast.makeText(TodoListActivity.this, "Task not updated!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Helper.updateTask(curTask, title, description, targetDate);
+
+                TodoListActivity.this.refreshListView();
+            }
+        });
+        mBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        mBuilder.setCancelable(true);
         return mBuilder;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // Should be able to edit the data - by launching the dialog
+        Task curTask = (Task) parent.getAdapter().getItem(position);
 
+        if (curTask.getStatus() == 1) {
+            int updateCount = Helper.updateTaskStatus(curTask.getId(), 0);
+            refreshListView();
+            return;
+        }
+
+        int updateCount = Helper.updateTaskStatus(curTask.getId(), 1);
+
+        refreshListView();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         Task currentTask = (Task)parent.getAdapter().getItem(position);
 
         View dialogView = mLayoutInflater.inflate(R.layout.task_new, null);
 
-        // set Value for the dialog fields
         EditText txtTitle = (EditText) dialogView.findViewById(R.id.txtTitle);
         EditText txtDescription = (EditText) dialogView.findViewById(R.id.txtDescription);
         DatePicker targetDate = (DatePicker) dialogView.findViewById(R.id.datePicker);
@@ -134,10 +195,9 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
                 Integer.valueOf(dateArray[1])-1,
                 Integer.valueOf(dateArray[0]),
                 null);
-    }
 
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        AlertDialog.Builder mBuilder = editTaskDialog(dialogView, currentTask);
+        mBuilder.show();
 
         return true;
     }

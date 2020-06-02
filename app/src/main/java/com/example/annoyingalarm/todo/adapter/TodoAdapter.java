@@ -48,19 +48,17 @@ public class TodoAdapter extends BaseAdapter {
         convertView = mLayoutInflater.inflate(R.layout.custom_tasklist, parent, false);
 
         TextView header = (TextView) convertView.findViewById(R.id.header);
-        TextView title = (TextView) convertView.findViewById(R.id.taskTitle);
         TextView description = (TextView) convertView.findViewById(R.id.taskDescription);
         TextView targetDate = (TextView) convertView.findViewById(R.id.targetDate);
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
-        Task theTask = mTaskArrayList.get(position);
-        header.setText(theTask.getDate());
-        title.setText(theTask.getTitle());
-        description.setText(theTask.getTaskDescription());
-        targetDate.setText(theTask.getDate());
+        Task curTask = mTaskArrayList.get(position);
+        header.setText(curTask.getTitle());
+        description.setText(curTask.getTaskDescription());
+        targetDate.setText(curTask.getDate());
 
-        if (theTask.getStatus() == 1)
+        if (curTask.getStatus() == 1)
             imageView.setImageResource(R.drawable.ic_checked);
         else
             imageView.setImageResource(R.drawable.ic_delete);
