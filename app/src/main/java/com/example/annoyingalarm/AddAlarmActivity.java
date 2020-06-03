@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.media.AudioManager;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class AddAlarmActivity extends AppCompatActivity{
     private EditText tbName;
     private TextView tvRepeat;
     private Button btnDone,btnCancel;
-    private Spinner spinner;
+    private Spinner spinner,spinnerSound;
     private LayoutInflater layoutInflater;
     private ImageButton btnRepeat;
     private SeekBar seekBarVol;
@@ -62,8 +63,8 @@ public class AddAlarmActivity extends AppCompatActivity{
 
         audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         seekBarVol = findViewById(R.id.seekBar);
-        seekBarVol.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM));
-        seekBarVol.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_ALARM));
+        seekBarVol.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        seekBarVol.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
 
 
         tvRepeat = findViewById(R.id.tvRepeat);
@@ -73,6 +74,7 @@ public class AddAlarmActivity extends AppCompatActivity{
         btnDone = findViewById(R.id.btnDone);
 
         spinner = findViewById(R.id.spinner);
+        spinnerSound = findViewById(R.id.spinnerSound);
 
         timePicker.setIs24HourView(true);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -83,6 +85,13 @@ public class AddAlarmActivity extends AppCompatActivity{
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
+        ArrayList<String> arraySound = new ArrayList<>();
+        arraySound.add("Android");
+        arraySound.add("Iphone");
+        ArrayAdapter arrayAdapterSound = new ArrayAdapter(this,android.R.layout.simple_spinner_item,arraySound);
+        arrayAdapterSound.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSound.setAdapter(arrayAdapterSound);
 
         final long id = getIntent().getExtras().getLong("id");
         if(id == -1){
@@ -106,8 +115,13 @@ public class AddAlarmActivity extends AppCompatActivity{
                 spinner.setSelection(2);
             }
 
-            tvRepeat.setText("");
+            if(alarmDetails.alarmTone.equals(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM))){
+                spinnerSound.setSelection(0);
+            }else {
+                spinnerSound.setSelection(1);
+            }
 
+            tvRepeat.setText("");
             if(alarmDetails.repeatWeekly) {
                 tvRepeat.setText("Everyday");
             }
@@ -234,8 +248,13 @@ public class AddAlarmActivity extends AppCompatActivity{
         if(alarmDetails.name.isEmpty()){
             alarmDetails.name = "Alarm";
         }
-        //alarmDetails.alarmTone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        alarmDetails.alarmTone= Uri.parse("android.resource://com.example.annoyingalarm/" + R.raw.iphone_alarm_morning);
+
+        if(spinnerSound.getSelectedItem().toString().equals("Android")){
+            alarmDetails.alarmTone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        }
+        else {
+            alarmDetails.alarmTone= Uri.parse("android.resource://com.example.annoyingalarm/" + R.raw.iphone_alarm_morning);
+        }
         alarmDetails.type = spinner.getSelectedItem().toString();
         alarmDetails.volume = seekBarVol.getProgress();
         alarmDetails.isEnabled = true;

@@ -3,6 +3,7 @@ package com.example.annoyingalarm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -25,6 +26,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
     private int check = 0,x=0,y=0,value=0;
     private Random generator = null;
     private AudioManager audioManager ;
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +108,8 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
                     }
 
                     if(check==3) {
-                        ringtone.stop();
+                        //ringtone.stop();
+                        mediaPlayer.stop();
                         finish();
                     }
                     else {
@@ -130,9 +133,12 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
             if (tone != null && !tone.equals("")) {
                 Uri toneUri = Uri.parse(tone);
                 if (toneUri != null) {
-                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volumn,AudioManager.FLAG_PLAY_SOUND);
-                    ringtone = RingtoneManager.getRingtone(this,toneUri);
-                    ringtone.play();
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volumn,AudioManager.FLAG_PLAY_SOUND);
+                    //ringtone = RingtoneManager.getRingtone(this,toneUri);
+                    //ringtone.play();
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),toneUri);
+                    mediaPlayer.setLooping(true);
+                    mediaPlayer.start();
                     Toast.makeText(this,"Wake UP!!!",Toast.LENGTH_SHORT).show();
                 }
             }

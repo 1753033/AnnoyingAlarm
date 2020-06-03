@@ -3,6 +3,7 @@ package com.example.annoyingalarm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 public class AlarmScreenActivity extends AppCompatActivity {
     private Ringtone ringtone;
+    private MediaPlayer mediaPlayer;
     private AudioManager audioManager ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class AlarmScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                ringtone.stop();
+                //ringtone.stop();
+                mediaPlayer.stop();
                 finish();
             }
         });
@@ -50,9 +53,12 @@ public class AlarmScreenActivity extends AppCompatActivity {
             if (tone != null && !tone.equals("")) {
                 Uri toneUri = Uri.parse(tone);
                 if (toneUri != null) {
-                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volumn,AudioManager.FLAG_PLAY_SOUND);
-                    ringtone = RingtoneManager.getRingtone(this,toneUri);
-                    ringtone.play();
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volumn,AudioManager.FLAG_PLAY_SOUND);
+                    //ringtone = RingtoneManager.getRingtone(this,toneUri);
+                    //ringtone.play();
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),toneUri);
+                    mediaPlayer.setLooping(true);
+                    mediaPlayer.start();
                     Toast.makeText(this,"WAKE UPPP",Toast.LENGTH_SHORT).show();
                 }
             }
