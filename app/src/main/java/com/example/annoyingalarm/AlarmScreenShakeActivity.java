@@ -6,6 +6,7 @@ import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -22,6 +23,7 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
     private AudioManager audioManager ;
     private Ringtone ringtone;
     private ImageView img;
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +53,12 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
             if (tone != null && !tone.equals("")) {
                 Uri toneUri = Uri.parse(tone);
                 if (toneUri != null) {
-                    audioManager.setStreamVolume(AudioManager.STREAM_ALARM,volumn,AudioManager.FLAG_PLAY_SOUND);
-                    ringtone = RingtoneManager.getRingtone(this,toneUri);
-                    ringtone.play();
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volumn,AudioManager.FLAG_PLAY_SOUND);
+                    //ringtone = RingtoneManager.getRingtone(this,toneUri);
+                    //ringtone.play();
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),toneUri);
+                    mediaPlayer.setLooping(true);
+                    mediaPlayer.start();
                     Toast.makeText(this,"Ring",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -74,10 +79,24 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
                 else if(count==3){
                     img.setImageResource(R.drawable.icon_happy);
                     tvShake.setText("Good morning you too");
-                    ringtone.stop();
+                    //ringtone.stop();
+                    mediaPlayer.stop();
                     finish();
                 }
             }
         });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Add the following line to register the Session Manager Listener onResume
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    public void onPause() {
+        // Add the following line to unregister the Sensor Manager onPause
+        mSensorManager.unregisterListener(mShakeDetector);
+        super.onPause();
     }
 }
