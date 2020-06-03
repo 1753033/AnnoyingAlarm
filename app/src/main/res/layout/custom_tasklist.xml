@@ -10,9 +10,8 @@
         android:id="@+id/header"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/holo_blue_light"
+        android:background="#ede7f6"
         android:textColor="@android:color/black"
-
         style="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <TextView
@@ -51,7 +50,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/targetDate"
         android:layout_alignTop="@+id/taskDescription"
-
         android:contentDescription="Status Icon"
         android:src="@drawable/ic_checked"
         android:layout_marginRight="10dp" />
