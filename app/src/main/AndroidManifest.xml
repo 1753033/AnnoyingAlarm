@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RelaxActivity"></activity>
+        <activity android:name=".account.RegisterActivity"></activity>
+        <activity android:name=".RelaxActivity" />
         <activity android:name=".AlarmScreenShakeActivity" />
         <activity android:name=".AlarmScreenMathActivity" />
         <activity android:name=".AlarmScreenActivity" />
@@ -26,8 +27,8 @@
         <activity android:name=".ChallengeActivity" />
         <activity android:name=".SleepDetailActivity" />
         <activity android:name=".SleepHistoryActivity" />
-        <activity android:name=".AccountInfoActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".account.AccountInfoActivity" />
+        <activity android:name=".account.LoginActivity" />
         <activity android:name=".MoreActivity" />
         <activity android:name=".NewsDetailActivity" />
         <activity android:name=".NewsActivity" />

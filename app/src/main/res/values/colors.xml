@@ -7,4 +7,5 @@
     <color name="Background_Dark">#000000</color>
     <color name="Letters_Light">#000000</color>
     <color name="Letters_Dark">#FFFFFF</color>
+    <color name="colorButton_Bg">#FFFFFF</color>
 </resources>
