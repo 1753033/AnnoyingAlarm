@@ -11,16 +11,20 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.ArrayList;
 
 public class AlarmListAdapter extends BaseAdapter {
     private ArrayList<AlarmObject> list;
     private Context context;
+    private Fragment alarmFragment;
     private String[] day = {"Su ","Mo ","Tu ","We ","Th ", "Fr ","Sa"};
 
-    public AlarmListAdapter(Context context, ArrayList<AlarmObject> list) {
+    public AlarmListAdapter(Context context, ArrayList<AlarmObject> list, Fragment alarmFragment) {
         this.list = list;
         this.context = context;
+        this.alarmFragment = alarmFragment;
     }
 
     public void setAlarms(ArrayList<AlarmObject> list) {
@@ -101,7 +105,8 @@ public class AlarmListAdapter extends BaseAdapter {
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) context).startAlarmDetailsActivity(obj.id);
+                //((MainActivity) context).startAlarmDetailsActivity(obj.id);
+                ((AlarmFragment)alarmFragment).startAlarmDetailsActivity(obj.id);
             }
         });
         btnToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -116,14 +121,17 @@ public class AlarmListAdapter extends BaseAdapter {
                         img.setImageResource(R.drawable.icon_notioff);
                     }
                 }
-                ((MainActivity) context).setAlarmEnabled(obj.id, isChecked);
+                //((MainActivity) context).setAlarmEnabled(obj.id, isChecked);
+                ((AlarmFragment)alarmFragment).setAlarmEnabled(obj.id,isChecked);
+
             }
         });
 
         row.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                ((MainActivity) context).deleteAlarm(obj.id);
+                //((MainActivity) context).deleteAlarm(obj.id);
+                ((AlarmFragment)alarmFragment).deleteAlarm(obj.id);
                 return true;
             }
         });

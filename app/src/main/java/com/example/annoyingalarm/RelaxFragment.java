@@ -1,18 +1,19 @@
 package com.example.annoyingalarm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
 
@@ -21,39 +22,37 @@ import static com.example.annoyingalarm.R.raw.rain;
 import static com.example.annoyingalarm.R.raw.thunder;
 import static com.example.annoyingalarm.R.raw.water;
 
-public class RelaxActivity extends AppCompatActivity {
+public class RelaxFragment extends Fragment {
     private CountDownTimer countDownTimer;
     private boolean isTimerRunning;
     private long timeLeftInMillis = 0;
     private long startTimeInMillis = 0;
 
     private TextView tvShow;
-    private ImageButton btnStart, btnReset, btnRain, btnNature, btnThunder, btnWater,btnAlarm,btnWeather,btnNews,btnMore;
+    private ImageButton btnStart, btnReset, btnRain, btnNature, btnThunder, btnWater;
     private ProgressBar progressBar;
     private NumberPicker numberPicker;
 
     private MediaPlayer mediaPlayer;
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bar
-        setContentView(R.layout.activity_relax);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_relax, container, false);
 
-        tvShow = findViewById(R.id.tvshow);
-        btnStart = findViewById(R.id.btnStart);
-        btnReset = findViewById(R.id.btnReset);
-        progressBar = findViewById(R.id.progressBar);
-        numberPicker = findViewById(R.id.numberPicker);
+        tvShow = view.findViewById(R.id.tvshow);
+        btnStart = view.findViewById(R.id.btnStart);
+        btnReset = view.findViewById(R.id.btnReset);
+        progressBar = view.findViewById(R.id.progressBar);
+        numberPicker = view.findViewById(R.id.numberPicker);
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(59);
         numberPicker.setWrapSelectorWheel(true);
 
-        btnRain = findViewById(R.id.btRain);
-        btnNature = findViewById(R.id.btNature);
-        btnThunder = findViewById(R.id.btThunder);
-        btnWater = findViewById(R.id.btWater);
+        btnRain = view.findViewById(R.id.btRain);
+        btnNature = view.findViewById(R.id.btNature);
+        btnThunder = view.findViewById(R.id.btThunder);
+        btnWater = view.findViewById(R.id.btWater);
 
         btnStart.setEnabled(false);
         btnReset.setEnabled(false);
@@ -77,41 +76,41 @@ public class RelaxActivity extends AppCompatActivity {
             }
         });
 
-        mediaPlayer = MediaPlayer.create(this,nature);
+        mediaPlayer = MediaPlayer.create(getContext(),nature);
         mediaPlayer.setLooping(true);
 
         btnNature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer = MediaPlayer.create(RelaxActivity.this, nature);
+                mediaPlayer = MediaPlayer.create(getContext(), nature);
                 mediaPlayer.setLooping(true);
-                Toast.makeText(RelaxActivity.this,"You choose Nature sound",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"You choose Nature sound",Toast.LENGTH_SHORT).show();
             }
         });
         btnRain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer = MediaPlayer.create(RelaxActivity.this, rain);
+                mediaPlayer = MediaPlayer.create(getContext(), rain);
                 mediaPlayer.setLooping(true);
-                Toast.makeText(RelaxActivity.this,"You choose Rain sound",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"You choose Rain sound",Toast.LENGTH_SHORT).show();
             }
         });
 
         btnThunder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer = MediaPlayer.create(RelaxActivity.this, thunder);
+                mediaPlayer = MediaPlayer.create(getContext(), thunder);
                 mediaPlayer.setLooping(true);
-                Toast.makeText(RelaxActivity.this,"You choose Thunder sound",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"You choose Thunder sound",Toast.LENGTH_SHORT).show();
             }
         });
 
         btnWater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer = MediaPlayer.create(RelaxActivity.this, water);
+                mediaPlayer = MediaPlayer.create(getContext(), water);
                 mediaPlayer.setLooping(true);
-                Toast.makeText(RelaxActivity.this,"You choose Water sound",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"You choose Water sound",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -139,38 +138,7 @@ public class RelaxActivity extends AppCompatActivity {
 
         updateUICountDown();
 
-        btnWeather = findViewById(R.id.btnWeather);
-        btnWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToWeather = new Intent(RelaxActivity.this,WeatherActivity.class);
-                startActivity(switchToWeather);
-            }
-        });
-        btnAlarm = findViewById(R.id.btnAlarm);
-        btnAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToAlarm = new Intent(RelaxActivity.this,MainActivity.class);
-                startActivity(switchToAlarm);
-            }
-        });
-        btnNews = findViewById(R.id.btnNews);
-        btnNews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToNight = new Intent(RelaxActivity.this,NewsActivity.class);
-                startActivity(switchToNight);
-            }
-        });
-        btnMore = findViewById(R.id.btnMore);
-        btnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToMore = new Intent(RelaxActivity.this,MoreActivity.class);
-                startActivity(switchToMore);
-            }
-        });
+        return view;
     }
     private void startTimer(){
         mediaPlayer.start();
@@ -215,7 +183,7 @@ public class RelaxActivity extends AppCompatActivity {
         btnReset.setVisibility(View.INVISIBLE);
         btnStart.setVisibility(View.VISIBLE);
         mediaPlayer.stop();
-        mediaPlayer = MediaPlayer.create(RelaxActivity.this,rain);
+        mediaPlayer = MediaPlayer.create(getContext(),rain);
         mediaPlayer.setLooping(true);
         progressBar.setProgress((int) (startTimeInMillis/100));
         btnWater.setVisibility(View.VISIBLE);
