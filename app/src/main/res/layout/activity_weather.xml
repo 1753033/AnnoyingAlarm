@@ -27,6 +27,8 @@
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:hint="City, State"
+            android:maxLines="1"
+            android:inputType="text"
             android:layout_marginLeft="2dp"/>
         <Button
             android:layout_width="0dp"

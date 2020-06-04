@@ -1,12 +1,10 @@
 package com.example.annoyingalarm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -15,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,8 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class WeatherActivity extends AppCompatActivity {
-
+public class WeatherFragment extends Fragment {
     ImageButton btnAlarm,btnNews,btnNight,btnMore;
     EditText search;
     Button btnSearch;
@@ -45,35 +45,31 @@ public class WeatherActivity extends AppCompatActivity {
     ListView lvWeather7days;
     WeatherAdapter weatherAdapter;
     ArrayList<Weather> arrayList;
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bar
-        setContentView(R.layout.activity_weather);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_weather,container,false);
 
-
-        search = findViewById(R.id.search);
-        btnSearch = findViewById(R.id.btnSearch);
-        tvCity = findViewById(R.id.tvCityName);
-        tvTemp = findViewById(R.id.tvTemp);
-        tvState = findViewById(R.id.tvState);
-        tvHumidity = findViewById(R.id.tvHumidity);
-        tvCloud = findViewById(R.id.tvCloud);
-        tvWind = findViewById(R.id.tvWind);
-        tvDate = findViewById(R.id.tvDate);
-        iconWeather = findViewById(R.id.icon);
-        lvWeather7days = findViewById(R.id.lvWeather7days);
-        final LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) findViewById(R.id.layoutTop).getLayoutParams();
-
+        search = view.findViewById(R.id.search);
+        btnSearch = view.findViewById(R.id.btnSearch);
+        tvCity = view.findViewById(R.id.tvCityName);
+        tvTemp = view.findViewById(R.id.tvTemp);
+        tvState = view.findViewById(R.id.tvState);
+        tvHumidity = view.findViewById(R.id.tvHumidity);
+        tvCloud = view.findViewById(R.id.tvCloud);
+        tvWind = view.findViewById(R.id.tvWind);
+        tvDate = view.findViewById(R.id.tvDate);
+        iconWeather = view.findViewById(R.id.icon);
+        lvWeather7days = view.findViewById(R.id.lvWeather7days);
+        final LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.findViewById(R.id.layoutTop).getLayoutParams();
 
         arrayList = new ArrayList<>();
-        weatherAdapter = new WeatherAdapter(WeatherActivity.this,arrayList);
+        weatherAdapter = new WeatherAdapter(getContext(),arrayList);
         lvWeather7days.setAdapter(weatherAdapter);
 
         layoutParams.setMargins(0,0,0,200);
-        lvWeather7days.setVisibility(View.GONE);;
+        lvWeather7days.setVisibility(View.GONE);
 
         getCurrentWeatherData("Saigon");
         Get7DaysData("Saigon");
@@ -96,42 +92,10 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
 
-        btnAlarm = findViewById(R.id.btnAlarm);
-        btnAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToAlarm = new Intent(WeatherActivity.this,MainActivity.class);
-                startActivity(switchToAlarm);
-            }
-        });
-        btnNews = findViewById(R.id.btnNews);
-        btnNews.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToNews = new Intent(WeatherActivity.this,NewsActivity.class);
-                startActivity(switchToNews);
-            }
-        });
-        btnNight = findViewById(R.id.btnNight);
-        btnNight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToNight = new Intent(WeatherActivity.this,RelaxActivity.class);
-                startActivity(switchToNight);
-            }
-        });
-        btnMore = findViewById(R.id.btnMore);
-        btnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent switchToMore = new Intent(WeatherActivity.this,MoreActivity.class);
-                startActivity(switchToMore);
-            }
-        });
-
+        return view;
     }
     public void getCurrentWeatherData(String data){
-        RequestQueue requestQueue = Volley.newRequestQueue(WeatherActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String URL = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&appid="+APIKey;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
@@ -154,7 +118,7 @@ public class WeatherActivity extends AppCompatActivity {
                     JSONObject jsonObjectWeather = jsonArrayWeather.getJSONObject(0);
                     String state = jsonObjectWeather.getString("main");
                     String icon = jsonObjectWeather.getString("icon");
-                    Picasso.with(WeatherActivity.this).load("http://openweathermap.org/img/wn/"+icon+".png").into(iconWeather);
+                    Picasso.with(getContext()).load("http://openweathermap.org/img/wn/"+icon+".png").into(iconWeather);
                     tvState.setText(state);
 
                     JSONObject jsonObjectMain = jsonObject.getJSONObject("main");
@@ -181,7 +145,7 @@ public class WeatherActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(WeatherActivity.this,"Can't not find.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Can't not find.",Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(stringRequest);
@@ -191,7 +155,7 @@ public class WeatherActivity extends AppCompatActivity {
             arrayList.clear();
         }
         String URL = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+data+"&units=metric&cnt=7&appid="+APIKey;
-        RequestQueue requestQueue = Volley.newRequestQueue(WeatherActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -231,7 +195,8 @@ public class WeatherActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(WeatherActivity.this,"Can't not find.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Can't not find.",Toast.LENGTH_SHORT).show();
+
             }
         });
 
