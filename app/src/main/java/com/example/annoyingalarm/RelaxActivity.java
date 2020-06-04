@@ -55,6 +55,10 @@ public class RelaxActivity extends AppCompatActivity {
         btnThunder = findViewById(R.id.btThunder);
         btnWater = findViewById(R.id.btWater);
 
+        btnStart.setEnabled(false);
+        btnReset.setEnabled(false);
+        btnReset.setVisibility(View.INVISIBLE);
+
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -62,6 +66,14 @@ public class RelaxActivity extends AppCompatActivity {
                 timeLeftInMillis = startTimeInMillis;
                 progressBar.setMax((int) (startTimeInMillis/1000));
                 progressBar.setProgress((int) (startTimeInMillis/1000));
+                if(newVal!=0) {
+                    btnStart.setEnabled(true);
+                    btnReset.setEnabled(true);
+                }
+                else {
+                    btnStart.setEnabled(false);
+                    btnReset.setEnabled(false);
+                }
             }
         });
 
