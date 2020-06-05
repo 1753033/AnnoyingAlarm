@@ -1,7 +1,9 @@
 package com.example.annoyingalarm;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MoreFragment extends Fragment {
     private static final int REQUEST_CODE_LOGIN = 0x9345;
+    private static final String TAG = "More fragment";
     private ImageButton btnWeather,btnNews,btnNight,btnAlarm;
     private Button btnSetting, btnTodo;
     private Button btnAccountInfo, btnNotification,btnSleepHistory;
@@ -109,12 +112,14 @@ public class MoreFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        updateUI();
+        if(resultCode != Activity.RESULT_CANCELED)
+            updateUI();
     }
 
     private void updateUI() {
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         txtName.setText(firebaseUser.getDisplayName());
+        Log.w(TAG, "ImageURI: " + firebaseUser.getPhotoUrl());
         txtEmail.setText(firebaseUser.getEmail());
         txtEmail.setVisibility(View.VISIBLE);
         avatar.setImageURI(firebaseUser.getPhotoUrl());

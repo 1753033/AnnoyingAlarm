@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AccountInfoActivity extends AppCompatActivity {
-    Button btnLogout;
+    Button btnLogout, btnChangePwd;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private TextView txtUsername, txtEmail, txtName, txtEmail2;
@@ -64,6 +64,15 @@ public class AccountInfoActivity extends AppCompatActivity {
             updateUI();
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // getSupportActionBar().setHomeButtonEnabled(true);
+
+        btnChangePwd = findViewById(R.id.btnChangePwd);
+        btnChangePwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountInfoActivity.this, ChangePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void updateUI() {

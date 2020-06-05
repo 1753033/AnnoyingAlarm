@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".rawcode.RelaxActivity"></activity>
+        <activity android:name=".account.ResetPasswordActivity"></activity>
+        <activity android:name=".account.ChangePasswordActivity" />
+        <activity android:name=".rawcode.RelaxActivity" />
         <activity android:name=".alarm.AlarmScreenShakeActivity" />
         <activity android:name=".alarm.AlarmScreenMathActivity" />
         <activity android:name=".alarm.AlarmScreenActivity" />
@@ -28,6 +30,7 @@
         <activity android:name=".SleepHistoryActivity" />
         <activity android:name=".account.AccountInfoActivity" />
         <activity android:name=".account.LoginActivity" />
+        <activity android:name=".account.RegisterActivity" />
         <activity android:name=".rawcode.MoreActivity" />
         <activity android:name=".NewsDetailActivity" />
         <activity android:name=".rawcode.NewsActivity" />

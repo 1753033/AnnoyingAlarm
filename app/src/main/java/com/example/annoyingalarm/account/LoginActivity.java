@@ -8,9 +8,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +34,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
     private Button btnLoginWGG, btnLogin;
-    private TextView btnRegister;
+    private TextView btnRegister, btnForgotPwd;
+    private EditText txtUsername, txtPassword;
     private GoogleSignInClient mGoogleSignInClient;
     private String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
@@ -55,6 +59,9 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPassword);
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         btnLoginWGG.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +75,20 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                mProgress.setVisibility(View.VISIBLE);
+                String email = txtUsername.getText().toString().trim();
+                String passwowrd = txtPassword.getText().toString();
+                if(TextUtils.isEmpty(email)){
+                    Toast.makeText(LoginActivity.this, "Enter your email id", Toast.LENGTH_SHORT).show();
+                    mProgress.setVisibility(View.INVISIBLE);
+                    return;
+                }
+                if(TextUtils.isEmpty(passwowrd)){
+                    Toast.makeText(LoginActivity.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                    mProgress.setVisibility(View.INVISIBLE);
+                    return;
+                }
+                signInEmailPwd(email, passwowrd);
             }
         });
 
@@ -78,6 +97,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnForgotPwd = findViewById(R.id.btnForgotPwd);
+        btnForgotPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
                 startActivity(intent);
             }
         });
@@ -93,7 +121,31 @@ public class LoginActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    private void signInEmailPwd(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            Toast.makeText(LoginActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Please check your email or password!", Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                            // ...
+                        }
 
+                        // ...
+                    }
+                });
+    }
 
     private void signInWGG() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -147,16 +199,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void updateUI(FirebaseUser fUser){
+    private void updateUI(FirebaseUser account){
         // btnSignOut.setVisibility(View.VISIBLE);
         mProgress.setVisibility(View.INVISIBLE);
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(account !=  null){
             String personName = account.getDisplayName();
-            String personGivenName = account.getGivenName();
-            String personFamilyName = account.getFamilyName();
+            //String personGivenName = account.getGivenName();
+            //String personFamilyName = account.getFamilyName();
             String personEmail = account.getEmail();
-            String personId = account.getId();
+            //String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
 
             Toast.makeText(LoginActivity.this,personName + " " + personEmail ,Toast.LENGTH_SHORT).show();

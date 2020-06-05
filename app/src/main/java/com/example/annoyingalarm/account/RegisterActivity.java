@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.annoyingalarm.MainActivity;
@@ -27,6 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button btnRegister;
     private EditText txtEmail, txtPassword, txtConfirmPw;
+    private TextView btnLogin;
+    private ProgressBar mProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
         txtConfirmPw = findViewById(R.id.txtConfirmPw);
-
+        mProgress = findViewById(R.id.progress_circular);
         btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +53,18 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Password and confirm password are different.",
                             Toast.LENGTH_SHORT).show();
                 }
-                else register(txtEmail.getText().toString(), txtPassword.getText().toString());
+                else {
+                    mProgress.setVisibility(View.VISIBLE);
+                    register(txtEmail.getText().toString(), txtPassword.getText().toString());
+                }
+            }
+        });
+
+        btnLogin = findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -79,6 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser fUser){
+        mProgress.setVisibility(View.INVISIBLE);
         final Intent intent = new Intent(RegisterActivity.this,  MainActivity.class);
         startActivity(intent);
     }

@@ -38,8 +38,15 @@
     <string name="challenges">Challenges</string>
     <string name="user_name">Username</string>
     <string name="password">Password</string>
-    <string name="confirm_password">Confirm Password</string>
     <string name="register">Create account</string>
     <string name="login">Already a member? Login</string>
     <string name="register_title">Don\'t have an account? Sign up</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="reset_pwd_content">We just need your registered Email to sent you password reset instructions</string>
+    <string name="reset_password">RESET PASSWORD</string>
+    <string name="email">Email</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="change_password">Change Password</string>
 </resources>
