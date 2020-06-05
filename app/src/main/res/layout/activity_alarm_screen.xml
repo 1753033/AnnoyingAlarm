@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#ede7f6"
-    tools:context=".AlarmScreenActivity">
+    android:background="@color/Background_LightPurple"
+    tools:context=".alarm.AlarmScreenActivity">
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         android:id="@+id/alarm_screen_dismiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#fff7ff"
+        android:background="@color/Background_TextViewWhite"
         android:text="OFF"
         android:textSize="38dp"
         android:layout_marginBottom="106dp"/>

@@ -1,22 +1,24 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.rawcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.example.annoyingalarm.AccountInfoActivity;
+import com.example.annoyingalarm.LoginActivity;
+import com.example.annoyingalarm.MainActivity;
+import com.example.annoyingalarm.R;
+import com.example.annoyingalarm.SettingsActivity;
+import com.example.annoyingalarm.SleepHistoryActivity;
+import com.example.annoyingalarm.TodoListActivity;
 
 public class MoreActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_LOGIN = 0x9345;
@@ -37,7 +39,7 @@ public class MoreActivity extends AppCompatActivity {
         btnTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openTodo = new Intent(MoreActivity.this,TodoListActivity.class);
+                Intent openTodo = new Intent(MoreActivity.this, TodoListActivity.class);
                 startActivity(openTodo);
             }
         });
@@ -61,7 +63,7 @@ public class MoreActivity extends AppCompatActivity {
         btnSleepHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openSleepHistory = new Intent(MoreActivity.this,SleepHistoryActivity.class);
+                Intent openSleepHistory = new Intent(MoreActivity.this, SleepHistoryActivity.class);
                 startActivity(openSleepHistory);
             }
         });
@@ -73,7 +75,7 @@ public class MoreActivity extends AppCompatActivity {
         btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openSettings = new Intent(MoreActivity.this,SettingsActivity.class);
+                Intent openSettings = new Intent(MoreActivity.this, SettingsActivity.class);
                 startActivity(openSettings);
             }
         });
@@ -82,7 +84,7 @@ public class MoreActivity extends AppCompatActivity {
         btnWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToWeather = new Intent(MoreActivity.this,WeatherActivity.class);
+                Intent switchToWeather = new Intent(MoreActivity.this, WeatherActivity.class);
                 startActivity(switchToWeather);
             }
         });
@@ -90,7 +92,7 @@ public class MoreActivity extends AppCompatActivity {
         btnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNews = new Intent(MoreActivity.this,NewsActivity.class);
+                Intent switchToNews = new Intent(MoreActivity.this, NewsActivity.class);
                 startActivity(switchToNews);
             }
         });
@@ -98,7 +100,7 @@ public class MoreActivity extends AppCompatActivity {
         btnNight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNight = new Intent(MoreActivity.this,RelaxActivity.class);
+                Intent switchToNight = new Intent(MoreActivity.this, RelaxActivity.class);
                 startActivity(switchToNight);
             }
         });
@@ -106,7 +108,7 @@ public class MoreActivity extends AppCompatActivity {
         btnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToAlarm = new Intent(MoreActivity.this,MainActivity.class);
+                Intent switchToAlarm = new Intent(MoreActivity.this, MainActivity.class);
                 startActivity(switchToAlarm);
             }
         });

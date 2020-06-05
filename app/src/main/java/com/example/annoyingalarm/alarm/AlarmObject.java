@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.alarm;
 
 import android.net.Uri;
 
@@ -122,5 +122,13 @@ public class AlarmObject {
 
     public void setEnabled(boolean isEnabled) {
         this.isEnabled = isEnabled;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 }

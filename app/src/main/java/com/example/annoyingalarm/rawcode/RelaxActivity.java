@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.rawcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,9 @@ import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.annoyingalarm.MainActivity;
+import com.example.annoyingalarm.R;
 
 import java.util.Locale;
 
@@ -143,7 +146,7 @@ public class RelaxActivity extends AppCompatActivity {
         btnWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToWeather = new Intent(RelaxActivity.this,WeatherActivity.class);
+                Intent switchToWeather = new Intent(RelaxActivity.this, WeatherActivity.class);
                 startActivity(switchToWeather);
             }
         });
@@ -151,7 +154,7 @@ public class RelaxActivity extends AppCompatActivity {
         btnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToAlarm = new Intent(RelaxActivity.this,MainActivity.class);
+                Intent switchToAlarm = new Intent(RelaxActivity.this, MainActivity.class);
                 startActivity(switchToAlarm);
             }
         });
@@ -159,7 +162,7 @@ public class RelaxActivity extends AppCompatActivity {
         btnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNight = new Intent(RelaxActivity.this,NewsActivity.class);
+                Intent switchToNight = new Intent(RelaxActivity.this, NewsActivity.class);
                 startActivity(switchToNight);
             }
         });
@@ -167,7 +170,7 @@ public class RelaxActivity extends AppCompatActivity {
         btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToMore = new Intent(RelaxActivity.this,MoreActivity.class);
+                Intent switchToMore = new Intent(RelaxActivity.this, MoreActivity.class);
                 startActivity(switchToMore);
             }
         });

@@ -1,11 +1,10 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.alarm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.annoyingalarm.R;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.alarm;
 
 import android.app.Service;
 import android.content.Intent;

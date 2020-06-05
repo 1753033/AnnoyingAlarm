@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#ede7f6"
-    tools:context=".AlarmScreenMathActivity">
+    android:background="@color/Background_LightPurple"
+    tools:context=".alarm.AlarmScreenMathActivity">
     <TextView
         android:id="@+id/alarm_screen_time"
         android:layout_width="wrap_content"

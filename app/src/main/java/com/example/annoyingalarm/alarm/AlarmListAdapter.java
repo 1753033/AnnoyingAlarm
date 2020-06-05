@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.alarm;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.annoyingalarm.R;
 
 import java.util.ArrayList;
 

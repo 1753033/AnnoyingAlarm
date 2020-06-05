@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.rawcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.annoyingalarm.MainActivity;
+import com.example.annoyingalarm.NewsAdapter;
+import com.example.annoyingalarm.NewsDetailActivity;
+import com.example.annoyingalarm.R;
+import com.example.annoyingalarm.XMLDOMParser;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -62,7 +67,7 @@ public class NewsActivity extends AppCompatActivity {
         lvTitle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(NewsActivity.this,NewsDetailActivity.class);
+                Intent intent = new Intent(NewsActivity.this, NewsDetailActivity.class);
                 intent.putExtra("title",arrayTitle.get(position));
                 intent.putExtra("link",arrayLink.get(position));
                 startActivity(intent);
@@ -73,7 +78,7 @@ public class NewsActivity extends AppCompatActivity {
         btnWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToWeather = new Intent(NewsActivity.this,WeatherActivity.class);
+                Intent switchToWeather = new Intent(NewsActivity.this, WeatherActivity.class);
                 startActivity(switchToWeather);
             }
         });
@@ -81,7 +86,7 @@ public class NewsActivity extends AppCompatActivity {
         btnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToAlarm = new Intent(NewsActivity.this,MainActivity.class);
+                Intent switchToAlarm = new Intent(NewsActivity.this, MainActivity.class);
                 startActivity(switchToAlarm);
             }
         });
@@ -89,7 +94,7 @@ public class NewsActivity extends AppCompatActivity {
         btnNight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNight = new Intent(NewsActivity.this,RelaxActivity.class);
+                Intent switchToNight = new Intent(NewsActivity.this, RelaxActivity.class);
                 startActivity(switchToNight);
             }
         });
@@ -97,7 +102,7 @@ public class NewsActivity extends AppCompatActivity {
         btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToMore = new Intent(NewsActivity.this,MoreActivity.class);
+                Intent switchToMore = new Intent(NewsActivity.this, MoreActivity.class);
                 startActivity(switchToMore);
             }
         });

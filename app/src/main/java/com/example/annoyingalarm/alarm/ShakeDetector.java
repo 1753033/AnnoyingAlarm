@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.alarm;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;

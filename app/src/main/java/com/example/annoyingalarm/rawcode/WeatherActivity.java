@@ -1,10 +1,9 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.rawcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -22,6 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.annoyingalarm.MainActivity;
+import com.example.annoyingalarm.R;
+import com.example.annoyingalarm.Weather;
+import com.example.annoyingalarm.WeatherAdapter;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -100,7 +103,7 @@ public class WeatherActivity extends AppCompatActivity {
         btnAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToAlarm = new Intent(WeatherActivity.this,MainActivity.class);
+                Intent switchToAlarm = new Intent(WeatherActivity.this, MainActivity.class);
                 startActivity(switchToAlarm);
             }
         });
@@ -108,7 +111,7 @@ public class WeatherActivity extends AppCompatActivity {
         btnNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNews = new Intent(WeatherActivity.this,NewsActivity.class);
+                Intent switchToNews = new Intent(WeatherActivity.this, NewsActivity.class);
                 startActivity(switchToNews);
             }
         });
@@ -116,7 +119,7 @@ public class WeatherActivity extends AppCompatActivity {
         btnNight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToNight = new Intent(WeatherActivity.this,RelaxActivity.class);
+                Intent switchToNight = new Intent(WeatherActivity.this, RelaxActivity.class);
                 startActivity(switchToNight);
             }
         });
@@ -124,7 +127,7 @@ public class WeatherActivity extends AppCompatActivity {
         btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent switchToMore = new Intent(WeatherActivity.this,MoreActivity.class);
+                Intent switchToMore = new Intent(WeatherActivity.this, MoreActivity.class);
                 startActivity(switchToMore);
             }
         });

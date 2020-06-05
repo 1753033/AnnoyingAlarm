@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.alarm;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +24,9 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.example.annoyingalarm.DBHelper;
+import com.example.annoyingalarm.R;
 
 import java.util.ArrayList;
 
@@ -55,7 +58,6 @@ public class AddAlarmActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 View view = layoutInflater.inflate(R.layout.repeat_days, null);
-
                 AlertDialog.Builder mBuilder = createAlertDialog(view);
                 mBuilder.show();
             }
@@ -65,7 +67,6 @@ public class AddAlarmActivity extends AppCompatActivity{
         seekBarVol = findViewById(R.id.seekBar);
         seekBarVol.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         seekBarVol.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
-
 
         tvRepeat = findViewById(R.id.tvRepeat);
         timePicker = findViewById(R.id.timePicker);
@@ -99,7 +100,6 @@ public class AddAlarmActivity extends AppCompatActivity{
         }
         else{
             alarmDetails = dbHelper.getAlarm(id);
-
             timePicker.setHour(alarmDetails.getTimeHour());
             timePicker.setMinute(alarmDetails.getTimeMinute());
             tbName.setText(alarmDetails.getName());

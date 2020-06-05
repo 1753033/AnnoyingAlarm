@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 
 public class TodoListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, View.OnFocusChangeListener{
     ListView listView;
-
+    ImageButton btnAddTodo;
     ArrayList<Task> taskArrayList;
     TodoAdapter taskArrayAdapter;
 
@@ -35,6 +36,8 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_todo);
 
         mLayoutInflater = LayoutInflater.from(this);
@@ -47,6 +50,16 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
 
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);
+        btnAddTodo = findViewById(R.id.btnAddTodo);
+        btnAddTodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = mLayoutInflater.inflate(R.layout.task_new, null);
+                //view.findViewById(R.id.txtTitle).setOnFocusChangeListener(this);
+                AlertDialog.Builder mBuilder = createAlertDialog(view);
+                mBuilder.show();
+            }
+        });
     }
 
     @Override

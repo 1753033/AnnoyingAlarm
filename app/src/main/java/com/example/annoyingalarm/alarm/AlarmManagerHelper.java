@@ -1,10 +1,12 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.alarm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.example.annoyingalarm.DBHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#ede7f6"
-    tools:context=".AlarmScreenShakeActivity">
+    android:background="@color/Background_LightPurple"
+    tools:context=".alarm.AlarmScreenShakeActivity">
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"

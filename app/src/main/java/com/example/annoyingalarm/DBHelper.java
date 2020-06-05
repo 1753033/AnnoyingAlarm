@@ -7,10 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
-import com.example.annoyingalarm.AlarmContract.Alarm;
+import com.example.annoyingalarm.alarm.AlarmContract.Alarm;
 import com.example.annoyingalarm.AccountContract.Account;
-import com.example.annoyingalarm.SleepContract.Sleep;
-import com.example.annoyingalarm.ChallengeContract.Challenge;
+import com.example.annoyingalarm.alarm.AlarmObject;
 
 import java.util.ArrayList;
 
@@ -64,15 +63,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private AlarmObject populateModel(Cursor c) {
         AlarmObject model = new AlarmObject();
-        model.id = c.getLong(c.getColumnIndex(Alarm._ID));
-        model.name = c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_NAME));
-        model.timeHour = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TIME_HOUR));
-        model.timeMinute = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TIME_MINUTE));
-        model.repeatWeekly = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_REPEAT_WEEKLY)) == 0 ? false : true;
-        model.alarmTone = Uri.parse(c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TONE)));
-        model.type = c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TYPE));
-        model.volume = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_VOL));
-        model.isEnabled = c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_ENABLED)) == 0 ? false : true;
+        model.setId(c.getLong(c.getColumnIndex(Alarm._ID)));
+        model.setName(c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_NAME)));
+        model.setTimeHour(c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TIME_HOUR)));
+        model.setTimeMinute(c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TIME_MINUTE)));
+        model.setRepeatWeekly(c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_REPEAT_WEEKLY)) == 0 ? false : true);
+        model.setAlarmTone(Uri.parse(c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TONE))));
+        model.setType(c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_TYPE)));
+        model.setVolume(c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_VOL)));
+        model.setEnabled(c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_ENABLED)) == 0 ? false : true);
 
         String[] repeatingDays = c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_REPEAT_DAYS)).split(",");
         for (int i = 0; i < repeatingDays.length; i++) {
@@ -84,14 +83,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private ContentValues populateContent(AlarmObject model) {
         ContentValues values = new ContentValues();
-        values.put(Alarm.COLUMN_NAME_ALARM_NAME, model.name);
-        values.put(Alarm.COLUMN_NAME_ALARM_TIME_HOUR, model.timeHour);
-        values.put(Alarm.COLUMN_NAME_ALARM_TIME_MINUTE, model.timeMinute);
-        values.put(Alarm.COLUMN_NAME_ALARM_REPEAT_WEEKLY, model.repeatWeekly);
-        values.put(Alarm.COLUMN_NAME_ALARM_TONE, model.alarmTone != null ? model.alarmTone.toString() : "");
-        values.put(Alarm.COLUMN_NAME_ALARM_TYPE, model.type);
-        values.put(Alarm.COLUMN_NAME_ALARM_VOL,model.volume);
-        values.put(Alarm.COLUMN_NAME_ALARM_ENABLED, model.isEnabled);
+        values.put(Alarm.COLUMN_NAME_ALARM_NAME, model.getName());
+        values.put(Alarm.COLUMN_NAME_ALARM_TIME_HOUR, model.getTimeHour());
+        values.put(Alarm.COLUMN_NAME_ALARM_TIME_MINUTE, model.getTimeMinute());
+        values.put(Alarm.COLUMN_NAME_ALARM_REPEAT_WEEKLY, model.isRepeatWeekly());
+        values.put(Alarm.COLUMN_NAME_ALARM_TONE, model.getAlarmTone() != null ? model.getAlarmTone().toString() : "");
+        values.put(Alarm.COLUMN_NAME_ALARM_TYPE, model.getType());
+        values.put(Alarm.COLUMN_NAME_ALARM_VOL, model.getVolume());
+        values.put(Alarm.COLUMN_NAME_ALARM_ENABLED, model.isEnabled());
 
         String repeatingDays = "";
         for (int i = 0; i<7; i++) {
@@ -121,7 +120,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public long updateAlarm(AlarmObject model) {
         ContentValues values = populateContent(model);
-        return getWritableDatabase().update(Alarm.TABLE_NAME, values, Alarm._ID + " = ?", new String[] {String.valueOf(model.id)});
+        return getWritableDatabase().update(Alarm.TABLE_NAME, values, Alarm._ID + " = ?", new String[] {String.valueOf(model.getId())});
     }
 
     public int deleteAlarm(long id) {

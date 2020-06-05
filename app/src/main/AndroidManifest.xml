@@ -16,10 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RelaxActivity"></activity>
-        <activity android:name=".AlarmScreenShakeActivity" />
-        <activity android:name=".AlarmScreenMathActivity" />
-        <activity android:name=".AlarmScreenActivity" />
+        <activity android:name=".rawcode.RelaxActivity"></activity>
+        <activity android:name=".alarm.AlarmScreenShakeActivity" />
+        <activity android:name=".alarm.AlarmScreenMathActivity" />
+        <activity android:name=".alarm.AlarmScreenActivity" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -28,11 +28,11 @@
         <activity android:name=".SleepHistoryActivity" />
         <activity android:name=".AccountInfoActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MoreActivity" />
+        <activity android:name=".rawcode.MoreActivity" />
         <activity android:name=".NewsDetailActivity" />
-        <activity android:name=".NewsActivity" />
-        <activity android:name=".WeatherActivity" />
-        <activity android:name=".AddAlarmActivity" />
+        <activity android:name=".rawcode.NewsActivity" />
+        <activity android:name=".rawcode.WeatherActivity" />
+        <activity android:name=".alarm.AddAlarmActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,10 +43,10 @@
         <activity android:name=".TodoListActivity" />
 
         <service
-            android:name=".AlarmService"
+            android:name=".alarm.AlarmService"
             android:enabled="true" />
 
-        <receiver android:name=".AlarmManagerHelper" />
+        <receiver android:name=".alarm.AlarmManagerHelper" />
     </application>
 
 </manifest>
