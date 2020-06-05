@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.account;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.annoyingalarm.MainActivity;
+import com.example.annoyingalarm.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -18,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class AccountInfoActivity extends AppCompatActivity {
     Button btnLogout;
@@ -57,13 +60,14 @@ public class AccountInfoActivity extends AppCompatActivity {
         txtName = findViewById(R.id.txtName);
         txtUsername = findViewById(R.id.txtUsername);
         tvAvatar = findViewById(R.id.tvAvatar);
-        updateUI();
+        if(mAuth.getCurrentUser() != null)
+            updateUI();
         // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void updateUI() {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        FirebaseUser account = mAuth.getCurrentUser();
         txtUsername.setText(account.getDisplayName());
         txtName.setText("    Name: " + account.getDisplayName());
         txtEmail.setText(account.getEmail());

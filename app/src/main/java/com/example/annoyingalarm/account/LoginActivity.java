@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.account;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.annoyingalarm.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -28,7 +30,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
-    private Button btnLogin;
+    private Button btnLoginWGG, btnLogin;
+    private TextView btnRegister;
     private GoogleSignInClient mGoogleSignInClient;
     private String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
@@ -44,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_login);
         mProgress = findViewById(R.id.progress_circular);
-        btnLogin = findViewById(R.id.btnLogin);
+        btnLoginWGG = findViewById(R.id.btnLoginWGG);
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -54,10 +57,28 @@ public class LoginActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLoginWGG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+                signInWGG();
+            }
+        });
+
+        btnLogin =  findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnRegister = findViewById(R.id.btnRegister);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -72,7 +93,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void signIn() {
+
+
+    private void signInWGG() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
         mProgress.setVisibility(View.VISIBLE);
@@ -119,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
         else{
+            mProgress.setVisibility(View.INVISIBLE);
             Toast.makeText(LoginActivity.this, "acc failed", Toast.LENGTH_SHORT).show();
         }
     }

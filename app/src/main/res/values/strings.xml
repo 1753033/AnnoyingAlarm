@@ -36,4 +36,10 @@
     <string name="go_to_details">Go to details</string>
     <string name="details">Details</string>
     <string name="challenges">Challenges</string>
+    <string name="user_name">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Create account</string>
+    <string name="login">Already a member? Login</string>
+    <string name="register_title">Don\'t have an account? Sign up</string>
 </resources>
