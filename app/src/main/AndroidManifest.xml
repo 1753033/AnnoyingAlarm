@@ -26,8 +26,8 @@
         <activity android:name=".ChallengeActivity" />
         <activity android:name=".SleepDetailActivity" />
         <activity android:name=".SleepHistoryActivity" />
-        <activity android:name=".AccountInfoActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".account.AccountInfoActivity" />
+        <activity android:name=".account.LoginActivity" />
         <activity android:name=".rawcode.MoreActivity" />
         <activity android:name=".NewsDetailActivity" />
         <activity android:name=".rawcode.NewsActivity" />

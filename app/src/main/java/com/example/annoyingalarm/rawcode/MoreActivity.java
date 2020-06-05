@@ -12,8 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.annoyingalarm.AccountInfoActivity;
-import com.example.annoyingalarm.LoginActivity;
+import com.example.annoyingalarm.account.AccountInfoActivity;
+import com.example.annoyingalarm.account.LoginActivity;
 import com.example.annoyingalarm.MainActivity;
 import com.example.annoyingalarm.R;
 import com.example.annoyingalarm.SettingsActivity;
