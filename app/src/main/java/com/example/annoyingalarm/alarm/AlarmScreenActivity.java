@@ -7,6 +7,8 @@ import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -19,6 +21,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
     private Ringtone ringtone;
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager ;
+    private Vibrator vibrator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
         String tone = getIntent().getStringExtra(AlarmManagerHelper.TONE);
 
         audioManager = (AudioManager) getApplication().getSystemService(AUDIO_SERVICE);
+        vibrator = (Vibrator) getApplication().getSystemService(getApplicationContext().VIBRATOR_SERVICE);
 
         TextView tvName =  findViewById(R.id.tvName);
         tvName.setText(name);
@@ -46,6 +50,7 @@ public class AlarmScreenActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 //ringtone.stop();
                 mediaPlayer.stop();
+                vibrator.cancel();
                 finish();
             }
         });
@@ -57,6 +62,8 @@ public class AlarmScreenActivity extends AppCompatActivity {
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volumn,AudioManager.FLAG_PLAY_SOUND);
                     //ringtone = RingtoneManager.getRingtone(this,toneUri);
                     //ringtone.play();
+                    long[] pattern = {0, 100, 1000, 300, 200, 100, 500, 200, 100};
+                    vibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE));
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),toneUri);
                     mediaPlayer.setLooping(true);
                     mediaPlayer.start();

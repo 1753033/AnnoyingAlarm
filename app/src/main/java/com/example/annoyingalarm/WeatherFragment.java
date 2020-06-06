@@ -94,6 +94,7 @@ public class WeatherFragment extends Fragment {
 
         return view;
     }
+
     public void getCurrentWeatherData(String data){
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String URL = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&appid="+APIKey;
@@ -190,13 +191,14 @@ public class WeatherFragment extends Fragment {
                     weatherAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.e("JSON Error",e.toString());
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(),"Can't not find.",Toast.LENGTH_SHORT).show();
-
+                Log.e("Response Error",error.toString());
             }
         });
 
