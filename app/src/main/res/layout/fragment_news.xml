@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="DD-MM-YYYY"
                 android:textSize="10dp"
+                android:textColor="@color/Background_TextColorPurple"
                 android:layout_marginHorizontal="2dp"
                 android:id="@+id/tvDateNews"/>
         </LinearLayout>

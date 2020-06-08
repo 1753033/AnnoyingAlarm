@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
@@ -39,6 +40,13 @@ public class RelaxFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_relax, container, false);
+
+        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
+            view.setBackgroundResource(R.drawable.background);
+        }
+        else {
+            view.setBackgroundResource(R.drawable.background_dark);
+        }*/
 
         tvShow = view.findViewById(R.id.tvshow);
         btnStart = view.findViewById(R.id.btnStart);

@@ -24,7 +24,7 @@
     <string name="account_info">Account Info</string>
     <string name="nofitication">Nofitications</string>
     <string name="to_do_list">Todo list</string>
-    <string name="theme">Light Mode</string>
+    <string name="theme">Dark Mode</string>
     <string name="setting">Settings</string>
 
     <!-- Login screen -->
@@ -49,4 +49,7 @@
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="change_password">Change Password</string>
+
+
+    <style name="LightTheme"></style>
 </resources>

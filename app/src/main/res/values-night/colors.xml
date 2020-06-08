@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#7b1fa2</color>
+    <color name="colorPrimaryDark">#4a0072</color>
+    <color name="colorAccent">#ae52d4</color>
+
     <color name="Background_Light">#FFFFFF</color>
     <color name="Background_Dark">#000000</color>
     <color name="Letters_Light">#000000</color>
@@ -10,10 +11,10 @@
     <color name="colorButton_Bg">#FFFFFF</color>
 
     <color name="Background_menu">#f3e5f5</color>
-    <color name="Background_LightPurple">#ede7f6</color>
+    <color name="Background_LightPurple">#ae52d4</color>
     <color name="Background_TextViewWhite">#fff7ff</color>
     <color name="Background_TextColorPurple">#a094b7</color>
 
-    <color name="colorText">#000000</color>
-    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorBackground">#000000</color>
 </resources>

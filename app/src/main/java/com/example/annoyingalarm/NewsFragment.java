@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import org.w3c.dom.Document;
@@ -39,6 +40,13 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_news,container,false);
+
+        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
+            view.setBackgroundResource(R.drawable.background);
+        }
+        else {
+            view.setBackgroundResource(R.drawable.background_dark);
+        }*/
 
         tvDateNews = view.findViewById(R.id.tvDateNews);
         lvTitle = view.findViewById(R.id.lvTitle);

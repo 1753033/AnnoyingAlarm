@@ -10,6 +10,8 @@ import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
     private Ringtone ringtone;
     private ImageView img;
     private MediaPlayer mediaPlayer;
+    private Vibrator vibrator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
         String tone = getIntent().getStringExtra(AlarmManagerHelper.TONE);
 
         audioManager= (AudioManager) getApplication().getSystemService(AUDIO_SERVICE);
+        vibrator = (Vibrator) getApplication().getSystemService(getApplicationContext().VIBRATOR_SERVICE);
 
         img=findViewById(R.id.icon_sleep);
 
@@ -60,6 +64,7 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),toneUri);
                     mediaPlayer.setLooping(true);
                     mediaPlayer.start();
+                    vibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE));
                     Toast.makeText(this,"Ring",Toast.LENGTH_SHORT).show();
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.annoyingalarm;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -40,8 +42,8 @@ public class WeatherFragment extends Fragment {
     TextView tvCity,tvTemp,tvState,tvHumidity,tvCloud,tvWind,tvDate;
     ImageView iconWeather;
     String City;
-    String APIKey ="53fbf527d52d4d773e828243b90c1f8e";
-
+    //String APIKey ="53fbf527d52d4d773e828243b90c1f8e";
+    String APIKey ="4bae31b7fd7ff07e795d544f0140725f";
     ListView lvWeather7days;
     WeatherAdapter weatherAdapter;
     ArrayList<Weather> arrayList;
@@ -50,6 +52,13 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_weather,container,false);
+
+        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
+            view.setBackgroundResource(R.drawable.background);
+        }
+        else {
+            view.setBackgroundResource(R.drawable.background_dark);
+        }*/
 
         search = view.findViewById(R.id.search);
         btnSearch = view.findViewById(R.id.btnSearch);
@@ -71,8 +80,7 @@ public class WeatherFragment extends Fragment {
         layoutParams.setMargins(0,0,0,200);
         lvWeather7days.setVisibility(View.GONE);
 
-        getCurrentWeatherData("Saigon");
-        Get7DaysData("Saigon");
+        new GetDataAsyncTask().execute("Saigon");
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,14 +95,29 @@ public class WeatherFragment extends Fragment {
 
                 lvWeather7days.setVisibility(View.VISIBLE);
                 layoutParams.setMargins(0,0,0,0);
-                getCurrentWeatherData(City);
-                Get7DaysData(City);
+                new GetDataAsyncTask().execute(City);
+                new GetData7DaysAsyncTask().execute(City);
             }
         });
 
         return view;
     }
+    private class GetDataAsyncTask extends AsyncTask <String,Void,Void>{
+        @Override
+        protected Void doInBackground(String... strings) {
+            getCurrentWeatherData(strings[0]);
+            return null;
+        }
 
+    }
+    private class GetData7DaysAsyncTask extends AsyncTask <String,Void,Void>{
+        @Override
+        protected Void doInBackground(String... strings) {
+            get7DaysData(strings[0]);
+            return null;
+        }
+
+    }
     public void getCurrentWeatherData(String data){
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String URL = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&appid="+APIKey;
@@ -151,7 +174,7 @@ public class WeatherFragment extends Fragment {
         });
         requestQueue.add(stringRequest);
     }
-    private void Get7DaysData(String data) {
+    private void get7DaysData(String data) {
         if(!arrayList.isEmpty()){
             arrayList.clear();
         }

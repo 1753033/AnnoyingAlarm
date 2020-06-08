@@ -61,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_account_info"
                 android:text="@string/account_info" />
 
@@ -71,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_notification"
                 android:text="@string/nofitication" />
 
@@ -81,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/icon_sleeping"
                 android:text="Sleep History" />
 
@@ -91,7 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_todo_list"
                 android:text="@string/to_do_list" />
 
@@ -101,9 +105,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_sound"
-                android:text="@string/sound" />
+                android:text="@string/theme" />
 
             <Button
                 android:id="@+id/btnSetting"
@@ -111,7 +116,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_setting"
                 android:text="@string/setting" />
         </LinearLayout>

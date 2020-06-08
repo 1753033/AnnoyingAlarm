@@ -33,6 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Login"
                 android:textSize="20sp"
+                android:textColor="@color/colorText"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/txtEmail"
@@ -42,6 +43,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Email"
                 android:visibility="invisible"
+                android:textColor="@color/colorText"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -58,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_account_info"
                 android:text="@string/account_info" />
 
@@ -68,8 +71,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
                 android:drawableStart="@drawable/ic_notification"
+                android:textColor="@color/colorText"
                 android:text="@string/nofitication" />
 
             <Button
@@ -78,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/icon_sleeping"
                 android:text="Sleep History" />
 
@@ -88,19 +93,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_todo_list"
                 android:text="@string/to_do_list" />
 
             <Button
-                android:id="@+id/btnSound"
+                android:id="@+id/btnTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_sound"
-                android:text="@string/sound" />
+                android:text="@string/theme" />
 
             <Button
                 android:id="@+id/btnSetting"
@@ -108,7 +115,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:layout_marginRight="26dp"
-                android:background="@color/Background_Light"
+                android:background="@color/colorBackground"
+                android:textColor="@color/colorText"
                 android:drawableStart="@drawable/ic_setting"
                 android:text="@string/setting" />
         </LinearLayout>

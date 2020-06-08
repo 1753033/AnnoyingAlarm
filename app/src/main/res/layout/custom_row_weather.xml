@@ -13,6 +13,7 @@
         <TextView android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
             android:textSize="15dp"
             android:text="Date"
             android:layout_margin="3dp"/>
@@ -47,6 +48,7 @@
                 android:layout_weight="1"
                 android:text="Max"
                 android:textSize="10dp"
+                android:textColor="@color/colorText"
                 android:id="@+id/tvMaxTemp"/>
             <TextView
                 android:layout_width="0dp"
@@ -54,6 +56,7 @@
                 android:layout_weight="1"
                 android:text="Min"
                 android:textSize="10dp"
+                android:textColor="@color/colorText"
                 android:id="@+id/tvMinTemp"/>
 
         </LinearLayout>

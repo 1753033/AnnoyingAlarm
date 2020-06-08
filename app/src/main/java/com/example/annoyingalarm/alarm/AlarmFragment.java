@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.example.annoyingalarm.DBHelper;
@@ -32,6 +33,13 @@ public class AlarmFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_alarm, container, false);
+
+        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
+            view.setBackgroundResource(R.drawable.background);
+        }
+        else {
+            view.setBackgroundResource(R.drawable.background_dark);
+        }*/
 
         listViewAlarm = view.findViewById(R.id.listViewAlarm);
         adapter = new AlarmListAdapter(getContext(),dbHelper.getAlarms(),AlarmFragment.this);

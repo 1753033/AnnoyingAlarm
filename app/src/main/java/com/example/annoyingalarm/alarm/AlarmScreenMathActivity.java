@@ -7,6 +7,8 @@ import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -28,6 +30,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
     private Random generator = null;
     private AudioManager audioManager ;
     private MediaPlayer mediaPlayer;
+    private Vibrator vibrator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
         int volumn = getIntent().getIntExtra(AlarmManagerHelper.VOL, 7);
 
         audioManager = (AudioManager) getApplication().getSystemService(AUDIO_SERVICE);
+        vibrator = (Vibrator) getApplication().getSystemService(getApplicationContext().VIBRATOR_SERVICE);
 
         img = findViewById(R.id.icon_wake);
 
@@ -111,6 +115,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
                     if(check==3) {
                         //ringtone.stop();
                         mediaPlayer.stop();
+                        vibrator.cancel();
                         finish();
                     }
                     else {
@@ -140,6 +145,7 @@ public class AlarmScreenMathActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),toneUri);
                     mediaPlayer.setLooping(true);
                     mediaPlayer.start();
+                    vibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE));
                     Toast.makeText(this,"Wake UP!!!",Toast.LENGTH_SHORT).show();
                 }
             }
