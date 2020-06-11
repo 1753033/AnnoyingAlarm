@@ -52,7 +52,7 @@ public class WeatherAdapter extends BaseAdapter {
         tvMaxTemp.setText(weather.maxTemp+"°C");
         tvMinTemp.setText(weather.minTemp+"°C");
 
-        Picasso.with(context).load("http://openweathermap.org/img/wn/"+weather.img+".png").into(img);
+        Picasso.with(context).load("https://openweathermap.org/img/wn/"+weather.img+".png").into(img);
         return convertView;
     }
 }

@@ -35,10 +35,11 @@ public class AlarmService extends Service {
         alarmIntent.putExtras(intent);
         getApplication().startActivity(alarmIntent);
 
-        if(once){
+       /* if(once){
             DBHelper dbHelper = new DBHelper(this);
             dbHelper.getAlarm(intent.getExtras().getLong("id")).setEnabled(false);
-        }
+        }*/
+
         AlarmManagerHelper.setAlarms(this);
 
         return super.onStartCommand(intent, flags, startId);

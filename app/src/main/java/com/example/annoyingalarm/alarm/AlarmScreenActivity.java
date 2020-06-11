@@ -7,10 +7,14 @@ import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.PowerManager;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +26,9 @@ public class AlarmScreenActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager ;
     private Vibrator vibrator;
+    private PowerManager.WakeLock mWakelock;
+    private static int WAKELOCK_TIME = 60 * 1000;
+    public final String TAG = this.getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +81,51 @@ public class AlarmScreenActivity extends AppCompatActivity {
             // TODO: handle exception
             e.printStackTrace();
         }
+        Runnable releaseWakelock = new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
+                if (mWakelock != null && mWakelock.isHeld()) {
+                    mWakelock.release();
+                }
+            }
+        };
+
+        new Handler().postDelayed(releaseWakelock, WAKELOCK_TIME);
+    }
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
+        PowerManager pm = (PowerManager) getApplication().getSystemService(getApplicationContext().POWER_SERVICE);
+
+        if (mWakelock == null) {
+            mWakelock = pm.newWakeLock((PowerManager.PARTIAL_WAKE_LOCK  | PowerManager.ACQUIRE_CAUSES_WAKEUP), TAG);
+
+        }
+
+        if (!mWakelock.isHeld()) {
+            mWakelock.acquire();
+            Log.i(TAG, "Wakelog acquired!");
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+
+        if (mWakelock != null && mWakelock.isHeld()) {
+            mWakelock.release();
+        }
     }
 }

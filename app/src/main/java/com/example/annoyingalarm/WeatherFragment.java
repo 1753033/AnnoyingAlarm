@@ -120,7 +120,7 @@ public class WeatherFragment extends Fragment {
     }
     public void getCurrentWeatherData(String data){
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        String URL = "http://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&appid="+APIKey;
+        String URL = "https://api.openweathermap.org/data/2.5/weather?q="+data+"&units=metric&appid="+APIKey;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -142,7 +142,7 @@ public class WeatherFragment extends Fragment {
                     JSONObject jsonObjectWeather = jsonArrayWeather.getJSONObject(0);
                     String state = jsonObjectWeather.getString("main");
                     String icon = jsonObjectWeather.getString("icon");
-                    Picasso.with(getContext()).load("http://openweathermap.org/img/wn/"+icon+".png").into(iconWeather);
+                    Picasso.with(getContext()).load("https://openweathermap.org/img/wn/"+icon+".png").into(iconWeather);
                     tvState.setText(state);
 
                     JSONObject jsonObjectMain = jsonObject.getJSONObject("main");
@@ -164,12 +164,14 @@ public class WeatherFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.e("JSON Error",e.toString());
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(),"Can't not find.",Toast.LENGTH_SHORT).show();
+                Log.e("Response Error",error.toString());
             }
         });
         requestQueue.add(stringRequest);
@@ -178,7 +180,7 @@ public class WeatherFragment extends Fragment {
         if(!arrayList.isEmpty()){
             arrayList.clear();
         }
-        String URL = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+data+"&units=metric&cnt=7&appid="+APIKey;
+        String URL = "https://api.openweathermap.org/data/2.5/forecast/daily?q="+data+"&units=metric&cnt=7&appid="+APIKey;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
