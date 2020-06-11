@@ -62,19 +62,9 @@
                 android:layout_marginRight="26dp"
                 android:background="@color/colorBackground"
                 android:textColor="@color/colorText"
-                android:drawableStart="@drawable/ic_account_info"
+                android:drawableLeft="@drawable/ic_account_info"
+                android:layout_marginVertical="5dp"
                 android:text="@string/account_info" />
-
-            <Button
-                android:id="@+id/btnNotification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:background="@color/colorBackground"
-                android:drawableStart="@drawable/ic_notification"
-                android:textColor="@color/colorText"
-                android:text="@string/nofitication" />
 
             <Button
                 android:id="@+id/btnSleepHistory"
@@ -84,7 +74,8 @@
                 android:layout_marginRight="26dp"
                 android:background="@color/colorBackground"
                 android:textColor="@color/colorText"
-                android:drawableStart="@drawable/icon_sleeping"
+                android:drawableLeft="@drawable/icon_sleeping"
+                android:layout_marginVertical="5dp"
                 android:text="Sleep History" />
 
             <Button
@@ -95,7 +86,8 @@
                 android:layout_marginRight="26dp"
                 android:background="@color/colorBackground"
                 android:textColor="@color/colorText"
-                android:drawableStart="@drawable/ic_todo_list"
+                android:drawableLeft="@drawable/ic_todo_list"
+                android:layout_marginVertical="5dp"
                 android:text="@string/to_do_list" />
 
             <Button
@@ -106,19 +98,11 @@
                 android:layout_marginRight="26dp"
                 android:background="@color/colorBackground"
                 android:textColor="@color/colorText"
-                android:drawableStart="@drawable/ic_sound"
+                android:drawableLeft="@drawable/icons_change_theme"
+                android:layout_marginVertical="5dp"
                 android:text="@string/theme" />
 
-            <Button
-                android:id="@+id/btnSetting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="26dp"
-                android:background="@color/colorBackground"
-                android:textColor="@color/colorText"
-                android:drawableStart="@drawable/ic_setting"
-                android:text="@string/setting" />
+
         </LinearLayout>
     </RelativeLayout>
 

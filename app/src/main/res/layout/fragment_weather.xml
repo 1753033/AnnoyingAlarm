@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#ede7f6"
+            android:background="@color/Background_menu"
             android:id="@+id/layoutTop"
             android:weightSum="3">
             <EditText
@@ -33,8 +33,8 @@
                 android:layout_height="wrap_content"
                 android:text="More"
                 android:id="@+id/btnSearch"
-                android:background="#ede7f6"
-                android:textColor="@color/Background_Dark"
+                android:background="@color/Background_menu"
+                android:textColor="@color/Background"
                 android:layout_marginLeft="10dp"/>
         </LinearLayout>
         <LinearLayout

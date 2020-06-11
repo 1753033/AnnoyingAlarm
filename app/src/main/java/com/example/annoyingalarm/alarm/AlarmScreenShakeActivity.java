@@ -10,9 +10,13 @@ import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.PowerManager;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +32,9 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
     private ImageView img;
     private MediaPlayer mediaPlayer;
     private Vibrator vibrator;
+    private PowerManager.WakeLock mWakelock;
+    private static int WAKELOCK_TIME = 60 * 1000;
+    public final String TAG = this.getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +79,21 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
             // TODO: handle exception
             e.printStackTrace();
         }
+        Runnable releaseWakelock = new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
+                if (mWakelock != null && mWakelock.isHeld()) {
+                    mWakelock.release();
+                }
+            }
+        };
+
+        new Handler().postDelayed(releaseWakelock, WAKELOCK_TIME);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -97,6 +119,22 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
         super.onResume();
         // Add the following line to register the Session Manager Listener onResume
         mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+
+        PowerManager pm = (PowerManager) getApplication().getSystemService(getApplicationContext().POWER_SERVICE);
+
+        if (mWakelock == null) {
+            mWakelock = pm.newWakeLock((PowerManager.PARTIAL_WAKE_LOCK  | PowerManager.ACQUIRE_CAUSES_WAKEUP), TAG);
+
+        }
+
+        if (!mWakelock.isHeld()) {
+            mWakelock.acquire();
+            Log.i(TAG, "Wakelog acquired!");
+        }
     }
 
     @Override
@@ -104,5 +142,10 @@ public class AlarmScreenShakeActivity extends AppCompatActivity {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
+
+        if (mWakelock != null && mWakelock.isHeld()) {
+            mWakelock.release();
+        }
     }
+
 }

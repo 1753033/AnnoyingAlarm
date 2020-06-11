@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.example.annoyingalarm.R;
 import com.example.annoyingalarm.todo.Task;
 
@@ -58,10 +60,13 @@ public class TodoAdapter extends BaseAdapter {
         description.setText(curTask.getTaskDescription());
         targetDate.setText(curTask.getDate());
 
-        if (curTask.getStatus() == 1)
+        if (curTask.getStatus() == 1) {
             imageView.setImageResource(R.drawable.ic_checked);
-        else
+        }
+        else{
             imageView.setImageResource(R.drawable.ic_delete);
+        }
+
 
         return convertView;
     }

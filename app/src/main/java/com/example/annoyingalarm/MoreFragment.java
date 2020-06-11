@@ -29,8 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MoreFragment extends Fragment {
     private static final int REQUEST_CODE_LOGIN = 0x9345;
     private static final String TAG = "More fragment";
-    private Button btnSetting, btnTodo, btnTheme;
-    private Button btnAccountInfo, btnNotification,btnSleepHistory;
+    private Button btnAccountInfo,btnSleepHistory,btnSetting, btnTodo, btnTheme;
     private TextView txtName, txtEmail;
     private ImageView avatar;
     private FirebaseAuth mAuth;
@@ -41,13 +40,8 @@ public class MoreFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_more, container, false);
 
-        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
-            view.setBackgroundResource(R.drawable.background);
-        }
-        else {
-            view.setBackgroundResource(R.drawable.background_dark);
-        }*/
 
+        avatar = view.findViewById(R.id.avatar);
         btnTodo = view.findViewById(R.id.btnTodoList);
         btnTodo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,29 +77,21 @@ public class MoreFragment extends Fragment {
             }
         });
 
-        btnSetting = view.findViewById(R.id.btnSetting);
-        btnSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent openSettings = new Intent(getContext(),SettingsActivity.class);
-                startActivity(openSettings);
-            }
-        });
-
         btnTheme = view.findViewById(R.id.btnTheme);
         btnTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
+                if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
                 else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 }
-                startActivity(new Intent(getContext(),MainActivity.class));*/
+                startActivity(new Intent(getContext(),MainActivity.class));
 
             }
         });
+
 
         // update ui
         txtName = view.findViewById(R.id.txtName);

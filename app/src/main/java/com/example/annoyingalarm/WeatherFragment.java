@@ -53,12 +53,7 @@ public class WeatherFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_weather,container,false);
 
-        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
-            view.setBackgroundResource(R.drawable.background);
-        }
-        else {
-            view.setBackgroundResource(R.drawable.background_dark);
-        }*/
+
 
         search = view.findViewById(R.id.search);
         btnSearch = view.findViewById(R.id.btnSearch);

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="Background_Light">#FFFFFF</color>
-    <color name="Background_Dark">#000000</color>
+    <color name="colorPrimary">#d1c4e9</color>
+    <color name="colorPrimaryDark">#a094b7</color>
+    <color name="colorAccent">#7e57c2</color>
+    <color name="Background">#000000</color>
     <color name="Letters_Light">#000000</color>
     <color name="Letters_Dark">#FFFFFF</color>
     <color name="colorButton_Bg">#FFFFFF</color>
@@ -15,5 +14,6 @@
     <color name="Background_TextColorPurple">#a094b7</color>
 
     <color name="colorText">#000000</color>
+    <color name="colorTextNight">#FFFFFF</color>
     <color name="colorBackground">#FFFFFF</color>
 </resources>

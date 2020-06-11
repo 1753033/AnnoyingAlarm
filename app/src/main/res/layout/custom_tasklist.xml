@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="@color/Background_TextViewWhite"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorText"
         style="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <TextView

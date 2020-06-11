@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
@@ -20,6 +21,7 @@ import com.example.annoyingalarm.todo.adapter.TodoAdapter;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.ArrayList;
 
@@ -60,6 +62,7 @@ public class TodoListActivity extends AppCompatActivity implements AdapterView.O
                 mBuilder.show();
             }
         });
+
     }
 
     @Override

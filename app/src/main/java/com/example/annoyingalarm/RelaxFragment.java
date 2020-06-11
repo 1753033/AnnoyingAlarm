@@ -41,12 +41,7 @@ public class RelaxFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_relax, container, false);
 
-        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
-            view.setBackgroundResource(R.drawable.background);
-        }
-        else {
-            view.setBackgroundResource(R.drawable.background_dark);
-        }*/
+
 
         tvShow = view.findViewById(R.id.tvshow);
         btnStart = view.findViewById(R.id.btnStart);
@@ -65,6 +60,8 @@ public class RelaxFragment extends Fragment {
         btnStart.setEnabled(false);
         btnReset.setEnabled(false);
         btnReset.setVisibility(View.INVISIBLE);
+
+
 
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -166,6 +163,7 @@ public class RelaxFragment extends Fragment {
             @Override
             public void onFinish() {
                 isTimerRunning=false;
+
                 btnStart.setBackgroundResource(R.drawable.icons_play);
                 btnStart.setVisibility(View.INVISIBLE);
                 btnReset.setVisibility(View.VISIBLE);
@@ -175,12 +173,14 @@ public class RelaxFragment extends Fragment {
             }
         }.start();
         isTimerRunning = true;
+
         btnStart.setBackgroundResource(R.drawable.icons_pause);
         btnReset.setVisibility(View.INVISIBLE);
     }
     private void pauseTimer(){
         countDownTimer.cancel();
         isTimerRunning = false;
+
         btnStart.setBackgroundResource(R.drawable.icons_play);
         btnReset.setVisibility(View.VISIBLE);
         mediaPlayer.pause();

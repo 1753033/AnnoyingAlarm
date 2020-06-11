@@ -10,8 +10,10 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.annoyingalarm.alarm.AlarmFragment;
@@ -21,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
     final int Code_Settings = 123001;
     ImageButton btnAlarm,btnWeather,btnNews,btnNight,btnMore;
     TextView tvAlarm,tvWeather,tvNews,tvNight,tvMore;
-    //ListView listViewAlarm;
-    //AlarmListAdapter adapter;
     DBHelper dbHelper = new DBHelper(this);
     AlarmFragment alarmFragment = new AlarmFragment(dbHelper);
     @Override
@@ -33,27 +33,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        /*listViewAlarm = findViewById(R.id.listViewAlarm);
-        listViewAlarm = alarmFragment.listViewAlarm;
-        adapter = new AlarmListAdapter(MainActivity.this,dbHelper.getAlarms());
-        listViewAlarm.setAdapter(adapter);
-
-        btnAddAlarm = findViewById(R.id.btnAddAlarm);
-
-        btnAddAlarm = alarmFragment.btnAddAlarm;
-        btnAddAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startAlarmDetailsActivity(-1);
-            }
-        });*/
-
         tvAlarm = findViewById(R.id.tvAlarm);
         tvNews = findViewById(R.id.tvNews);
         tvNight = findViewById(R.id.tvSleep);
         tvWeather = findViewById(R.id.tvWeather);
         tvMore = findViewById(R.id.tvMore);
-
 
         btnAlarm = findViewById(R.id.btnAlarm);
         btnAlarm.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         initAlarmFragment();
         highlightText(tvAlarm);
 
@@ -143,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         tvAlarm.setTextColor(Color.parseColor("#718792"));
         tvMore.setTextColor(Color.parseColor("#718792"));
         tvNews.setTextColor(Color.parseColor("#718792"));
-        tv.setTextColor(Color.parseColor("#000a12"));
+        tv.setTextColor(getColor(R.color.colorText));
     }
     /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

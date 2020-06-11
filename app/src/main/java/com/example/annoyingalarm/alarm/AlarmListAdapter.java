@@ -2,6 +2,7 @@ package com.example.annoyingalarm.alarm;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.annoyingalarm.R;
@@ -61,6 +64,7 @@ public class AlarmListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         View row = inflater.inflate(R.layout.alarm_list_item,null);
+
 
         TextView tvTime = row.findViewById(R.id.tvTime);
         TextView tvName = row.findViewById(R.id.tvName);

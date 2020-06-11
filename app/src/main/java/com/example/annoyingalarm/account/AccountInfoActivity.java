@@ -2,13 +2,16 @@ package com.example.annoyingalarm.account;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.annoyingalarm.MainActivity;
@@ -35,6 +38,7 @@ public class AccountInfoActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_account_info);
+
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -73,6 +77,19 @@ public class AccountInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
+            ViewGroup viewGroup = (ViewGroup) ((ViewGroup) (findViewById(android.R.id.content))).getChildAt(0);
+            viewGroup.setBackgroundResource(R.drawable.background);
+            btnLogout.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout,0,0,0);
+            btnChangePwd.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout,0,0,0);
+
+        }
+        else {
+            ViewGroup viewGroup = (ViewGroup) ((ViewGroup) (findViewById(android.R.id.content))).getChildAt(0);
+            viewGroup.setBackgroundResource(R.drawable.background_dark);
+            btnLogout.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout_dark,0,0,0);
+            btnChangePwd.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout_dark,0,0,0);
+        }
     }
 
     private void updateUI() {

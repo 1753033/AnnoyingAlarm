@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="#d1c4e9"
+        android:background="@color/Background_LightPurple"
         android:layout_weight="20">
         <TextView
             android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:text="@string/details"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorText"
             android:textStyle="bold"
             android:textSize="30sp"
             />
@@ -33,7 +33,7 @@
             android:layout_marginRight="50dp"
             android:text="08/05/2020"
             android:textSize="16sp"
-            android:background="@drawable/round_bg"
+            android:background="@color/Background_TextViewWhite"
             android:drawableEnd="@drawable/ic_calendar"
             />
     </LinearLayout>

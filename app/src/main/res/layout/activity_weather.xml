@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="City: "
                 android:textSize="20dp"
-                android:textColor="@color/Background_Dark"
+                android:textColor="@color/Background"
                 android:id="@+id/tvCityName"
                 android:layout_marginHorizontal="5dp"
                 android:layout_gravity="center"/>
@@ -60,7 +60,7 @@
                 android:id="@+id/tvDate"
                 android:text="Date"
                 android:textSize="20dp"
-                android:textColor="@color/Background_Dark"
+                android:textColor="@color/Background"
                 android:layout_marginHorizontal="5dp"
                 android:layout_gravity="center"/>
         </LinearLayout>
@@ -224,7 +224,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/Background_Dark"
+                android:textColor="@color/Background"
                 android:text="Weather"/>
         </LinearLayout>
         <LinearLayout

@@ -10,20 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#ede7f6"
+        android:background="@color/Background_LightPurple"
         android:weightSum="100">
     <ImageButton
         android:layout_width="0dp"
         android:layout_weight="10"
         android:layout_height="wrap_content"
         android:src="@drawable/icon_back"
-        android:background="#ede7f6"
+        android:background="@color/Background_LightPurple"
         android:id="@+id/btnBack"
         android:layout_gravity="center"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#ede7f6"
+            android:background="@color/Background_LightPurple"
             android:layout_weight="90"
             android:text="Title"
             android:layout_gravity="center"

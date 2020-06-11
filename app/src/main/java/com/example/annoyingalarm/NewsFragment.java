@@ -41,12 +41,8 @@ public class NewsFragment extends Fragment {
         super.onCreateView(inflater,container,savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_news,container,false);
 
-        /*if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
-            view.setBackgroundResource(R.drawable.background);
-        }
-        else {
-            view.setBackgroundResource(R.drawable.background_dark);
-        }*/
+
+
 
         tvDateNews = view.findViewById(R.id.tvDateNews);
         lvTitle = view.findViewById(R.id.lvTitle);

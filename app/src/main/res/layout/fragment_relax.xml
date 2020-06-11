@@ -16,14 +16,14 @@
             android:layout_height="0dp"
             android:weightSum="100"
             android:orientation="horizontal"
-            android:background="#ede7f6"
+            android:background="@color/Background_menu"
             android:layout_weight="8">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sleep"
                 android:textSize="25dp"
-                android:textColor="@color/Background_Dark"
+                android:textColor="@color/Background"
                 android:layout_gravity="center"
                 android:paddingLeft="5dp"
                 android:textStyle="bold"/>
