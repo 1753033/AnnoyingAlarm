@@ -24,8 +24,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="Trần Thanh Tâm"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorText"
             android:textStyle="bold"
             android:textSize="25sp"/>
         <TextView
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="po.tran2k@gmail.com"
             android:textStyle="normal"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorText"
             android:textSize="16sp"/>
     </LinearLayout>
     <LinearLayout

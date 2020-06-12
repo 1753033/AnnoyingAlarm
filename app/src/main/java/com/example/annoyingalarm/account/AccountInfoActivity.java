@@ -3,8 +3,12 @@ package com.example.annoyingalarm.account;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +28,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 public class AccountInfoActivity extends AppCompatActivity {
     Button btnLogout, btnChangePwd;
@@ -77,19 +83,7 @@ public class AccountInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO) {
-            ViewGroup viewGroup = (ViewGroup) ((ViewGroup) (findViewById(android.R.id.content))).getChildAt(0);
-            viewGroup.setBackgroundResource(R.drawable.background);
-            btnLogout.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout,0,0,0);
-            btnChangePwd.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout,0,0,0);
 
-        }
-        else {
-            ViewGroup viewGroup = (ViewGroup) ((ViewGroup) (findViewById(android.R.id.content))).getChildAt(0);
-            viewGroup.setBackgroundResource(R.drawable.background_dark);
-            btnLogout.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout_dark,0,0,0);
-            btnChangePwd.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_logout_dark,0,0,0);
-        }
     }
 
     private void updateUI() {
@@ -98,7 +92,21 @@ public class AccountInfoActivity extends AppCompatActivity {
         txtName.setText("    Name: " + account.getDisplayName());
         txtEmail.setText(account.getEmail());
         txtEmail2.setText("    Email: " + account.getEmail());
-        tvAvatar.setImageURI(account.getPhotoUrl());
+        Picasso.with(getBaseContext()).load(account.getPhotoUrl())
+                .into(tvAvatar, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Bitmap imageBitmap = ((BitmapDrawable) tvAvatar.getDrawable()).getBitmap();
+                        RoundedBitmapDrawable imageDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+                        imageDrawable.setCircular(true);
+                        imageDrawable.setCornerRadius(Math.max(imageBitmap.getWidth(), imageBitmap.getHeight()) / 2.0f);
+                        tvAvatar.setImageDrawable(imageDrawable);
+                    }
+                    @Override
+                    public void onError() {
+                        tvAvatar.setImageResource(R.drawable.ic_logo_user);
+                    }
+                });
     }
 
     private void signOut() {
