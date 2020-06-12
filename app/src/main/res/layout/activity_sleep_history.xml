@@ -13,7 +13,8 @@
         android:layout_weight="100"
         android:weightSum="100"
         android:orientation="vertical">
-    <TextView
+
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -21,31 +22,53 @@
         android:background="@color/Background_menu"
         android:textColor="@color/colorText"
         android:textStyle="bold"
-        android:textSize="30sp"
-        />
-    <Button
+        android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold"
+            android:text="Schedule"
+            android:textSize="20sp" />
+
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/go_to_details"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/round_bg"
-        android:textColor="#000000"
-        android:drawableEnd="@drawable/ic_right_arrow"
-        />
+        android:padding="10dp"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        android:text="Bedtime"
+        android:textSize="25sp" />
 
-    <com.github.mikephil.charting.charts.CombinedChart
-        android:id="@+id/combinedChart1"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="10dp"
-        />
-    <com.github.mikephil.charting.charts.CombinedChart
-        android:id="@+id/combinedChart2"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="10dp"
-        />
+        <TextView
+            android:id="@+id/edtBedtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorText"
+            android:text="00:00"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold"
+            android:text="Wake Up"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/edtWakeUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorText"
+            android:text="00:00"
+            android:textSize="30sp" />
+
+
     </LinearLayout>
 </LinearLayout>

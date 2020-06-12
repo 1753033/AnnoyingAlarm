@@ -1,4 +1,4 @@
-package com.example.annoyingalarm;
+package com.example.annoyingalarm.sleep;
 
 import android.provider.BaseColumns;
 
