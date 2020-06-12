@@ -1,13 +1,16 @@
 package com.example.annoyingalarm;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -39,7 +42,7 @@ public class SleepHistoryActivity extends AppCompatActivity {
     private int lastSelectedHour2 = -1;
     private int lastSelectedMinute2 = -1;
     private TextView edtBedtime, edtWakeUp;
-
+    private Button btnGoToDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,14 @@ public class SleepHistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonSelectTime2();
+            }
+        });
+        btnGoToDetail = findViewById(R.id.btnGoToDetail);
+        btnGoToDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(SleepHistoryActivity.this, SleepDetailActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
+    android:background="@drawable/background"
     tools:context=".SleepHistoryActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="5dp"
             android:textColor="@color/colorText"
             android:textStyle="bold"
             android:text="Schedule"
@@ -36,7 +37,7 @@
         <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="5dp"
         android:textColor="@color/colorText"
         android:textStyle="bold"
         android:text="Bedtime"
@@ -46,7 +47,7 @@
             android:id="@+id/edtBedtime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="5dp"
             android:textColor="@color/colorText"
             android:text="00:00"
             android:textSize="30sp" />
@@ -64,11 +65,23 @@
             android:id="@+id/edtWakeUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="5dp"
             android:textColor="@color/colorText"
             android:text="00:00"
             android:textSize="30sp" />
 
+        <Button
+            android:id="@+id/btnGoToDetail"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@android:color/white"
+            android:layout_gravity="end"
+            android:textColor="@android:color/black"
+            android:text="@string/go_to_details"
+            android:background="@drawable/round_bg"
+            />
 
     </LinearLayout>
 </LinearLayout>

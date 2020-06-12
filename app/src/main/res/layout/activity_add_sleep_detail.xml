@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:background="@color/Background_LightPurple"
+    tools:context=".sleep.AddSleepDetail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="8"
+        android:background="@color/Background_TextViewWhite"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:id="@+id/btnCancel"
+            android:textColor="@color/Background_TextColorPurple"
+            android:background="@color/Background_TextViewWhite"
+            android:text="Cancel"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="25dp"
+            android:text="Add Sleep"
+            android:layout_marginHorizontal="35dp"
+            android:id="@+id/tvTime"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:id="@+id/btnDone"
+            android:background="@color/Background_TextViewWhite"
+            android:textColor="@color/Background_TextColorPurple"
+            android:text="Done"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="92"
+        android:layout_gravity="center"
+        android:gravity="top"
+        android:paddingTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold"
+            android:text="Bedtime"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/edtBedtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorText"
+            android:text="00:00"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold"
+            android:text="Wake Up"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/edtWakeUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorText"
+            android:text="00:00"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold"
+            android:text="Date Sleep"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/edtDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorText"
+            android:text="DD/MM/YYYY"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
