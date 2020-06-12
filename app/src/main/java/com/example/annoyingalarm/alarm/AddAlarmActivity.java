@@ -222,6 +222,9 @@ public class AddAlarmActivity extends AppCompatActivity{
                 if(alarmDetails.repeatWeekly){
                     tvRepeat.setText(tvRepeat.getText()+"Everyday");
                 }
+                else if(!rbMon.isChecked() && !rbTue.isChecked() && !rbWed.isChecked() && !rbThu.isChecked() && !rbFri.isChecked() && !rbSat.isChecked() && !rbSun.isChecked()){
+                    tvRepeat.setText("Once");
+                }
                 else{
                     for(int i = 0;i<alarmDetails.repeatingDays.length;i++){
                         if (alarmDetails.repeatingDays[i]){
