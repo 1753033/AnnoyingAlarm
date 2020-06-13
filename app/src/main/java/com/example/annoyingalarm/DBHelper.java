@@ -224,10 +224,12 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(Sleep.COLUMN_NAME_SLEEP_MONTH, sleep.getMonth());
         values.put(Sleep.COLUMN_NAME_SLEEP_YEAR, sleep.getYear());
 
-        return getWritableDatabase().update(Alarm.TABLE_NAME, values, Alarm._ID + " = ?", new String[] {String.valueOf(sleep.getId())});
+        return getWritableDatabase().update(Sleep.TABLE_NAME, values, Alarm._ID + " = ?", new String[] {String.valueOf(sleep.getId())});
     }
 
     public int deleteSleep(long id) {
         return getWritableDatabase().delete(Sleep.TABLE_NAME, Sleep._ID + " = ?", new String[] {String.valueOf(id)});
     }
+
+    
 }

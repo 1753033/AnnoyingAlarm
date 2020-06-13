@@ -9,15 +9,20 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.annoyingalarm.R;
+import com.example.annoyingalarm.SleepDetailActivity;
 
 import java.util.ArrayList;
 
 public class SleepListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<SleepObject> data;
-
+    Activity activity;
     public SleepListAdapter(Context context, ArrayList<SleepObject> data) {
         this.context = context;
+        this.data = data;
+    }
+
+    public void setData(ArrayList<SleepObject> data) {
         this.data = data;
     }
 
@@ -57,11 +62,27 @@ public class SleepListAdapter extends BaseAdapter {
         edtDate = convertView.findViewById(R.id.edtDate);
         edtDuration = convertView.findViewById(R.id.edtDuration);
 
-        SleepObject sleep = (SleepObject)data.get(position);
-        edtBedtime.setText(sleep.getStartToSleepHrs() + ":" + sleep.getStartToSleepMinute());
-        edtWakeUp.setText(sleep.getWakeUpTimeHrs() + ":" + sleep.getWakeUpTimeMinute());
-        edtDate.setText("Date: " + sleep.getDay() + "/" + sleep.getMonth() + "/" + sleep.getYear());
-        edtDuration.setText(sleep.getSleepDuration() + "Hrs");
+        final SleepObject sleep = (SleepObject)data.get(position);
+        edtBedtime.setText(String.format("%02d:%02d ", sleep.getStartToSleepHrs(), sleep.getStartToSleepMinute()));
+        edtWakeUp.setText(String.format("%02d:%02d ", sleep.getWakeUpTimeHrs(), sleep.getWakeUpTimeMinute()));
+        edtDate.setText(String.format("%02d/%02d/%02d ", sleep.getDay(), sleep.getMonth(), sleep.getYear()));
+        edtDuration.setText(String.format("%.2fHrs",sleep.getSleepDuration()));
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((SleepDetailActivity)context).startAddSleepDetail(sleep.getId());
+            }
+        });
+
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //((MainActivity) context).deleteAlarm(obj.id);
+                ((SleepDetailActivity)context).deleteSleepDetail(sleep.getId());
+                return true;
+            }
+        });
         return convertView;
     }
 

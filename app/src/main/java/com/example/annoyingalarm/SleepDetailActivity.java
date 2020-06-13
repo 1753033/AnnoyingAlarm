@@ -4,8 +4,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -58,8 +60,31 @@ public class SleepDetailActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode != Activity.RESULT_CANCELED)
         {
-
+            adapter.setData(dbHelper.getSleep());
+            adapter.notifyDataSetChanged();
         }
     }
 
+    public void startAddSleepDetail(int code) {
+        final Intent intent = new Intent(SleepDetailActivity.this, AddSleepDetail.class);
+        // quy dinh khi add moi id la -1
+        intent.putExtra("id", code);
+        startActivityForResult(intent, REQUEST_CODE_SLEEP);
+    }
+
+    public void deleteSleepDetail(int code) {
+        final long id = code;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to delete ?")
+                .setCancelable(true)
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbHelper.deleteSleep(id);
+                        adapter.setData(dbHelper.getSleep());
+                        adapter.notifyDataSetChanged();
+                    }
+                }).show();
+    }
 }

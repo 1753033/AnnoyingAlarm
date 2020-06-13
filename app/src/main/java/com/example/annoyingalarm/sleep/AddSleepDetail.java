@@ -73,8 +73,11 @@ public class AddSleepDetail extends AppCompatActivity {
             lastSelectedHour2 = sleep.getWakeUpTimeHrs();
             lastSelectedMinute2 = sleep.getWakeUpTimeMinute();
             mYear = sleep.getYear();
-            mMonth = sleep.getMonth();
+            mMonth = sleep.getMonth() - 1;
             mDay = sleep.getDay();
+            edtBedtime.setText(String.format("%02d:%02d ", lastSelectedHour1, lastSelectedMinute1));
+            edtWakeUp.setText(String.format("%02d:%02d ", lastSelectedHour2, lastSelectedMinute2));
+            edtDate.setText(String.format("%02d/%02d/%02d ", mDay, mMonth + 1, mYear));
         }
 
         btnDone = findViewById(R.id.btnDone);
@@ -130,7 +133,7 @@ public class AddSleepDetail extends AppCompatActivity {
         }
 
         long difference = date2.getTime() - date1.getTime();
-        duration = difference / (60 * 60 * 1000);
+        duration = (float)(difference) / (60 * 60 * 1000);
         return duration;
     }
 
@@ -147,7 +150,7 @@ public class AddSleepDetail extends AppCompatActivity {
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                edtBedtime.setText(hourOfDay + ":" + minute );
+                edtBedtime.setText(String.format("%02d:%02d ", hourOfDay, minute));
                 lastSelectedHour1 = hourOfDay;
                 lastSelectedMinute1 = minute;
             }
@@ -177,7 +180,7 @@ public class AddSleepDetail extends AppCompatActivity {
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                edtWakeUp.setText(hourOfDay + ":" + minute );
+                edtWakeUp.setText(String.format("%02d:%02d ", hourOfDay, minute));
                 lastSelectedHour2 = hourOfDay;
                 lastSelectedMinute2 = minute;
             }
@@ -209,7 +212,7 @@ public class AddSleepDetail extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
-                        edtDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        edtDate.setText(String.format("%02d/%02d/%02d ", dayOfMonth, (monthOfYear + 1), year));
                         mYear = year;
                         mMonth = monthOfYear;
                         mDay = dayOfMonth;

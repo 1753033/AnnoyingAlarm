@@ -21,7 +21,7 @@ public class SleepObject {
         year = -1;
     }
 
-    public SleepObject(int id, int startToSleepHrs, int startToSleepMinute, int wakeUpTimeMinute, int wakeUpTimeHrs, float sleepDuration, int day, int month, int year) {
+    public SleepObject(int id, int startToSleepHrs, int startToSleepMinute, int wakeUpTimeHrs, int wakeUpTimeMinute, float sleepDuration, int day, int month, int year) {
         super();
         this.id = id;
         this.startToSleepHrs = startToSleepHrs;

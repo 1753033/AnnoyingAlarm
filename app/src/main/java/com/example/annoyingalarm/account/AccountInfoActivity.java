@@ -14,10 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.annoyingalarm.DBHelper;
 import com.example.annoyingalarm.MainActivity;
 import com.example.annoyingalarm.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -37,7 +40,8 @@ public class AccountInfoActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private TextView txtUsername, txtEmail, txtName, txtEmail2;
     private ImageView tvAvatar;
-
+    private Switch switchDSync;
+    DBHelper dbHelper = new DBHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,17 @@ public class AccountInfoActivity extends AppCompatActivity {
             }
         });
 
+        switchDSync = findViewById(R.id.switchDSync);
+        switchDSync.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    Firebase fb = new Firebase(dbHelper);
+                    fb.createUser();
+                    fb.syncSleepData();
+                }
+            }
+        });
     }
 
     private void updateUI() {

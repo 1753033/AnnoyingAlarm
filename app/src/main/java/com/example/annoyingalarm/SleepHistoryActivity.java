@@ -2,8 +2,12 @@ package com.example.annoyingalarm;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.NotificationCompat;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,8 +15,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -44,6 +50,8 @@ public class SleepHistoryActivity extends AppCompatActivity {
     private TextView edtBedtime, edtWakeUp;
     private Button btnGoToDetail;
 
+    // Notifications
+    private Switch swSchedule;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +81,16 @@ public class SleepHistoryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        swSchedule = findViewById(R.id.swSchedule);
+        swSchedule.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+
+                }
+            }
+        });
     }
 
     private void buttonSelectTime1()  {
@@ -88,7 +106,7 @@ public class SleepHistoryActivity extends AppCompatActivity {
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                edtBedtime.setText(hourOfDay + ":" + minute );
+                edtBedtime.setText(String.format("%02d:%02d ", hourOfDay, minute));
                 lastSelectedHour1 = hourOfDay;
                 lastSelectedMinute1 = minute;
             }
@@ -118,7 +136,7 @@ public class SleepHistoryActivity extends AppCompatActivity {
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                edtWakeUp.setText(hourOfDay + ":" + minute );
+                edtWakeUp.setText(String.format("%02d:%02d ", hourOfDay, minute));
                 lastSelectedHour2 = hourOfDay;
                 lastSelectedMinute2 = minute;
             }
@@ -135,5 +153,8 @@ public class SleepHistoryActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
+    public void createNotification() {
+
+    }
 }
 
