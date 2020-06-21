@@ -5,7 +5,6 @@
 
 2.  1753030 - Mai Thanh Bình - 1753030@student.hcmus.edu.vn
 
-3.  1753028 - Nguyễn Trần Tuấn Anh - 1753033@student.hcmus.edu.vn
 
 ## Mô tả chức năng
 link: https://drive.google.com/file/d/1YCceFuEgN4QqU8mrMTwRrR80XZpNjVom/view?usp=sharing
