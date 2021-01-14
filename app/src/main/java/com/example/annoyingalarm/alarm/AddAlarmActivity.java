@@ -25,7 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.example.annoyingalarm.DBHelper;
+import com.example.annoyingalarm.helper.DBHelper;
 import com.example.annoyingalarm.R;
 
 import java.util.ArrayList;

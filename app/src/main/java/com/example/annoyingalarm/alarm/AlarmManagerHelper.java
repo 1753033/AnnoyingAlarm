@@ -6,7 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.annoyingalarm.DBHelper;
+import com.example.annoyingalarm.helper.DBHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;

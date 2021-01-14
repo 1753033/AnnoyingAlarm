@@ -1,13 +1,10 @@
 package com.example.annoyingalarm.alarm;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
-
-import com.example.annoyingalarm.DBHelper;
 
 public class AlarmService extends Service {
     @Nullable

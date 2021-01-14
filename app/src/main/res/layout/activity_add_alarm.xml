@@ -3,21 +3,21 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Background_LightPurple"
+    android:background="@color/colorBackground"
     android:weightSum="100">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="8"
-        android:background="@color/Background_TextViewWhite"
+        android:background="@color/Background_menu"
         android:gravity="center">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:id="@+id/btnCancel"
             android:textColor="@color/Background_TextColorPurple"
-            android:background="@color/Background_TextViewWhite"
+            android:background="@color/colorBackground"
             android:text="Cancel"/>
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:id="@+id/btnDone"
-            android:background="@color/Background_TextViewWhite"
+            android:background="@color/colorBackground"
             android:textColor="@color/Background_TextColorPurple"
             android:text="Done"/>
     </LinearLayout>

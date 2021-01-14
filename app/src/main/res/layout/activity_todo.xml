@@ -6,7 +6,7 @@
     android:background="@drawable/background"
     android:weightSum="100"
     android:orientation="vertical"
-    tools:context=".TodoListActivity">
+    tools:context=".todo.TodoListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="90"
-            android:text="Todo"
+            android:text="What todo ?"
             android:textSize="25dp"
             android:textColor="@color/colorText"
             android:layout_gravity="center"
